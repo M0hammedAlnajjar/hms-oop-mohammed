@@ -113,5 +113,10 @@ public class HospitalApp {
     public static double calculateDiscount(double amount, double discountPercentage) {
         return amount * discountPercentage / 100;
     }
+    // Calculate days between two days
+    public static int daysBetween(int startDay, int endDay) {
+        return endDay - startDay;
+    }
+
 
 }
