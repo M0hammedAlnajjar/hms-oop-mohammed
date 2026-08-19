@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Arrays;
+
 public class Doctor extends Person {
 
     private String specialization;
@@ -17,5 +19,16 @@ public class Doctor extends Person {
         this.experienceYears = experienceYears;
         this.onCall = onCall;
         this.specialization = specialization;
+    }
+
+    @Override
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println("Specialization: " + specialization);
+        System.out.println("Experience Years: " + experienceYears);
+        System.out.println("Consultation Fee: " + consultationFee);
+        System.out.println("On Call: " + onCall);
+        System.out.println("Patient load: "+Arrays.toString(availableSlots));
+
     }
 }
