@@ -70,8 +70,15 @@ public class RecordService implements Manageable, Searchable {
 
     @Override
     public Object searchById(String id) {
+
+        for (int i = 0; i < recordCount; i++) {
+
+            if (records[i].getRecordId().equals(id)) {
+                return records[i];
+            }
+        }
+
         return null;
     }
-
 
 }
