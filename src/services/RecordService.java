@@ -81,5 +81,12 @@ public class RecordService implements Manageable, Searchable {
 
         return "****" + nationalId.substring(nationalId.length() - 4);
     }
+    // Check if the day is a working day
+    public static boolean isWorkingDay(String day) {
+
+        return day != null
+                && !day.equalsIgnoreCase("Friday")
+                && !day.equalsIgnoreCase("Saturday");
+    }
 
 }
