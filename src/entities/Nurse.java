@@ -20,7 +20,13 @@ public class Nurse extends Person{
     }
 
     public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
+        if(departmentId != null || !departmentId.isBlank()){
+            this.departmentId = departmentId;
+
+        }else {
+            System.out.println("Department ID is null or empty");
+        }
+
     }
 
     public String getShift() {
