@@ -149,5 +149,11 @@ public void addRecordId(String recordId) {
     newRecordIds[medicalRecordIds.length] = recordId;
     medicalRecordIds = newRecordIds;
 }
+public int  getRecordCount(){
+        if(medicalRecordIds == null){
+            return 0;
+        }
+        return medicalRecordIds.length;
+}
 
 }
