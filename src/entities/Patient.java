@@ -1,8 +1,7 @@
 package entities;
 
-import java.util.Arrays;
-
 public class Patient extends Person {
+
     private String bloodGroup;
     private String emergencyContact;
     private String registrationDate;
@@ -11,8 +10,41 @@ public class Patient extends Person {
     private double outstandingBalance;
     private boolean insured;
 
-    public Patient(String id, String firstName, String lastName, String dateOfBirth, String gender, String phoneNumber, String email, String address, String nationalId, int age, boolean active, String[] allergies, String bloodGroup, String emergencyContact, boolean insured, String[] medicalRecordIds, double outstandingBalance, String registrationDate) {
-        super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address, nationalId, age, active);
+    public Patient(
+            String id,
+            String firstName,
+            String lastName,
+            String dateOfBirth,
+            String gender,
+            String phoneNumber,
+            String email,
+            String address,
+            String nationalId,
+            int age,
+            boolean active,
+            String[] allergies,
+            String bloodGroup,
+            String emergencyContact,
+            boolean insured,
+            String[] medicalRecordIds,
+            double outstandingBalance,
+            String registrationDate
+    ) {
+
+        super(
+                id,
+                firstName,
+                lastName,
+                dateOfBirth,
+                gender,
+                phoneNumber,
+                email,
+                address,
+                nationalId,
+                age,
+                active
+        );
+
         this.allergies = allergies;
         this.bloodGroup = bloodGroup;
         this.emergencyContact = emergencyContact;
@@ -67,11 +99,10 @@ public class Patient extends Person {
     }
 
     public void setOutstandingBalance(double outstandingBalance) {
-        if (outstandingBalance >=0) {
-            this.outstandingBalance = outstandingBalance;
 
+        if (outstandingBalance >= 0) {
+            this.outstandingBalance = outstandingBalance;
         }
-        this.outstandingBalance = outstandingBalance;
     }
 
     public String getRegistrationDate() {
@@ -79,107 +110,148 @@ public class Patient extends Person {
     }
 
     public void setRegistrationDate(String registrationDate) {
-        this.registrationDate = registrationDate;
+
+        if (registrationDate != null &&
+                !registrationDate.isBlank()) {
+
+            this.registrationDate = registrationDate;
+        }
     }
 
     @Override
     public void displayInfo() {
+
         super.displayInfo();
+
         System.out.println("Blood Group: " + bloodGroup);
         System.out.println("Emergency Contact: " + emergencyContact);
+        System.out.println("Registration Date: " + registrationDate);
+        System.out.println("Outstanding Balance: " + outstandingBalance);
         System.out.println("Insured: " + insured);
-        System.out.println("Medical Records: " + Arrays.toString(medicalRecordIds));
+
         listAllergies();
-        System.out.println("Medical Records: " + getRecordCount());
 
+        System.out.println(
+                "Medical Record Count: " + getRecordCount()
+        );
     }
-
-    //(overloaded)
-    public Patient(String id, String firstName, String lastName) {
-        super(id, firstName, lastName);
-
-    }
-
 
     public void addAllergy(String allergy) {
-        if (this.allergies == null || allergy.isBlank()) {
+
+        if (allergy == null || allergy.isBlank()) {
             System.out.println("Invalid Allergy");
             return;
         }
+
         if (hasAllergy(allergy)) {
             System.out.println("Allergy already exists");
             return;
         }
-        if (allergy == null) {
-            System.out.println("Invalid Allergy");
+
+        if (allergies == null) {
+            allergies = new String[]{allergy};
             return;
         }
-        String[] newAllergies = new String[allergies.length + 1];
+
+        String[] newAllergies =
+                new String[allergies.length + 1];
+
         for (int i = 0; i < allergies.length; i++) {
             newAllergies[i] = allergies[i];
         }
-        newAllergies[allergies.length] = allergy;
-        allergies = newAllergies;
 
+        newAllergies[allergies.length] = allergy;
+
+        allergies = newAllergies;
     }
 
     public boolean hasAllergy(String allergy) {
-        if (allergy != null && !allergy.isBlank()) {
+
+        if (allergy == null || allergy.isBlank()) {
             return false;
         }
+
+        if (allergies == null) {
+            return false;
+        }
+
         for (String currentAllergy : allergies) {
-            if (currentAllergy == null || !currentAllergy.equalsIgnoreCase(allergy)) {
+
+            if (currentAllergy != null &&
+                    currentAllergy.equalsIgnoreCase(allergy)) {
+
                 return true;
             }
-
         }
 
         return false;
     }
-public void listAllergies() {
-    System.out.println("Allergies:");
-    if (allergies == null || allergies.length == 0) {
-        System.out.println("No Allergies");
-        return;
-    }
-    for (String allergy : allergies) {
-        if (allergy == null) {
-            System.out.println("Invalid Allergy" + allergy);
+
+    public void listAllergies() {
+
+        System.out.println("Allergies:");
+
+        if (allergies == null || allergies.length == 0) {
+            System.out.println("No Allergies");
+            return;
+        }
+
+        for (String allergy : allergies) {
+
+            if (allergy != null) {
+                System.out.println("- " + allergy);
+            }
         }
     }
-}
-public void addRecordId(String recordId) {
-    if (recordId == null || recordId.isBlank()) {
-        System.out.println("Invalid Record Id");
-        return;
+
+    public void addRecordId(String recordId) {
+
+        if (recordId == null || recordId.isBlank()) {
+            System.out.println("Invalid Record Id");
+            return;
+        }
+
+        if (medicalRecordIds == null) {
+            medicalRecordIds = new String[]{recordId};
+            return;
+        }
+
+        String[] newRecordIds =
+                new String[medicalRecordIds.length + 1];
+
+        for (int i = 0; i < medicalRecordIds.length; i++) {
+            newRecordIds[i] = medicalRecordIds[i];
+        }
+
+        newRecordIds[medicalRecordIds.length] = recordId;
+
+        medicalRecordIds = newRecordIds;
     }
-    if (medicalRecordIds == null) {
-        medicalRecordIds = new String[]{recordId};
-        return;
-    }
-    String[] newRecordIds = new String[medicalRecordIds.length + 1];
-    for (int i = 0; i < medicalRecordIds.length; i++) {
-        newRecordIds[i] = medicalRecordIds[i];
-    }
-    newRecordIds[medicalRecordIds.length] = recordId;
-    medicalRecordIds = newRecordIds;
-}
-public int  getRecordCount(){
-        if(medicalRecordIds == null){
+
+    public int getRecordCount() {
+
+        if (medicalRecordIds == null) {
             return 0;
         }
+
         return medicalRecordIds.length;
-}
-public void addToBalance(double amount){
-        if(amount<0){
-            System.out.println("valid Amount is :");
+    }
+
+    public void addToBalance(double amount) {
+
+        if (amount > 0) {
+
             outstandingBalance += amount;
 
-        }else
-            System.out.println("should be greater than 0");
-}
-public void clearBalance(){
-        outstandingBalance = 0;
-}
+        } else {
 
+            System.out.println(
+                    "Amount should be greater than 0"
+            );
+        }
+    }
+
+    public void clearBalance() {
+        outstandingBalance = 0;
+    }
 }
