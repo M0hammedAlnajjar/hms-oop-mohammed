@@ -7,6 +7,10 @@ public class DoctorService implements Manageable, Searchable {
     @Override
     public void add(Object entity) {
 
+        if (entity instanceof Doctor) {
+            doctors[doctorCount] = (Doctor) entity;
+            doctorCount++;
+        }
     }
 
     @Override
