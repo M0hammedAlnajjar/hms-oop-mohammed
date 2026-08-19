@@ -44,7 +44,27 @@ public class NurseService implements Manageable, Searchable {
     }
     @Override
     public Object[] search(String keyword) {
-        return new Object[0];
+
+        Nurse[] results = new Nurse[nurseCount];
+        int resultCount = 0;
+
+        for (int i = 0; i < nurseCount; i++) {
+
+            if (nurses[i].getFirstName().equalsIgnoreCase(keyword)
+                    || nurses[i].getLastName().equalsIgnoreCase(keyword)) {
+
+                results[resultCount] = nurses[i];
+                resultCount++;
+            }
+        }
+
+        Nurse[] finalResults = new Nurse[resultCount];
+
+        for (int i = 0; i < resultCount; i++) {
+            finalResults[i] = results[i];
+        }
+
+        return finalResults;
     }
 
     @Override
