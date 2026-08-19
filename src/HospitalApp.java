@@ -135,5 +135,14 @@ public class HospitalApp {
 
         return result.trim();
     }
+    // Safely convert String to int
+    public static int safeParseInt(String value) {
+
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
 
 }
