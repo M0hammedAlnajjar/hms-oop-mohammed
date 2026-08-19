@@ -2,7 +2,7 @@ package entities;
 
 import java.util.Arrays;
 
-public class Patient extends Person{
+public class Patient extends Person {
     private String bloodGroup;
     private String emergencyContact;
     private String registrationDate;
@@ -89,28 +89,29 @@ public class Patient extends Person{
         System.out.println("Medical Records: " + getRecordCount());
 
     }
-//(overloaded)
+
+    //(overloaded)
     public Patient(String id, String firstName, String lastName) {
         super(id, firstName, lastName);
 
     }
 
 
-    public void addAllergy(String allergy){
-        if(this.allergies == null || allergy.isBlank()){
+    public void addAllergy(String allergy) {
+        if (this.allergies == null || allergy.isBlank()) {
             System.out.println("Invalid Allergy");
             return;
         }
-        if(hasAllergy(allergy)){
+        if (hasAllergy(allergy)) {
             System.out.println("Allergy already exists");
             return;
         }
-        if(allergy==null){
+        if (allergy == null) {
             System.out.println("Invalid Allergy");
             return;
         }
-        String[] newAllergies = new String[allergies.length+1];
-        for(int i=0; i<allergies.length; i++){
+        String[] newAllergies = new String[allergies.length + 1];
+        for (int i = 0; i < allergies.length; i++) {
             newAllergies[i] = allergies[i];
         }
         newAllergies[allergies.length] = allergy;
@@ -118,11 +119,19 @@ public class Patient extends Person{
 
     }
 
-    private boolean hasAllergy(String allergy) {
+    public boolean hasAllergy(String allergy) {
+        if (allergy != null && !allergy.isBlank()) {
+            return false;
+        }
+        for (String currentAllergy : allergies) {
+            if (currentAllergy == null || !currentAllergy.equalsIgnoreCase(allergy)) {
+                return true;
+            }
+
+        }
 
         return false;
     }
-
 public void listAllergies() {
     System.out.println("Allergies:");
     if (allergies == null || allergies.length == 0) {
