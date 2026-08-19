@@ -143,6 +143,15 @@ public class HospitalApp {
         } catch (NumberFormatException e) {
             return 0;
         }
+
+    }// Safely convert String to double
+    public static double safeParseDouble(String value) {
+
+        try {
+            return Double.parseDouble(value);
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
     }
 
 }
