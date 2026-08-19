@@ -20,4 +20,70 @@ public class Appointment {
         this.reason = reason;
         this.status = status;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
+    }
+
+    public boolean isFollowUp() {
+        return followUp;
+    }
+
+    public void setFollowUp(boolean followUp) {
+        this.followUp = followUp;
+    }
+
+    public String getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(String doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public String getAppointmentTime() {
+        return appointmentTime;
+    }
+
+    public void setAppointmentTime(String appointmentTime) {
+        this.appointmentTime = appointmentTime;
+    }
+
+    public String getAppointmentId() {
+        return appointmentId;
+    }
+
+    public void setAppointmentId(String appointmentId) {
+        this.appointmentId = appointmentId;
+    }
+
+    public String getAppointmentDate() {
+        return appointmentDate;
+    }
+
+    public void setAppointmentDate(String appointmentDate) {
+        this.appointmentDate = appointmentDate;
+    }
+
+
 }
