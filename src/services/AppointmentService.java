@@ -150,4 +150,26 @@ public class AppointmentService implements Manageable, Searchable {
             }
         }
     }
+    // List appointments by status
+    public Appointment[] listByStatus(String status) {
+
+        Appointment[] results = new Appointment[appointmentCount];
+        int resultCount = 0;
+
+        for (int i = 0; i < appointmentCount; i++) {
+
+            if (appointments[i].getStatus().equalsIgnoreCase(status)) {
+                results[resultCount] = appointments[i];
+                resultCount++;
+            }
+        }
+
+        Appointment[] finalResults = new Appointment[resultCount];
+
+        for (int i = 0; i < resultCount; i++) {
+            finalResults[i] = results[i];
+        }
+
+        return finalResults;
+    }
 }
