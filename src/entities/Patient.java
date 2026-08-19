@@ -155,5 +155,13 @@ public int  getRecordCount(){
         }
         return medicalRecordIds.length;
 }
+public void addToBalance(double amount){
+        if(amount<0){
+            System.out.println("valid Amount is :");
+            outstandingBalance += amount;
+
+        }else
+            System.out.println("should be greater than 0");
+}
 
 }
