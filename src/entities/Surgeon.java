@@ -53,4 +53,42 @@ public class Surgeon extends Doctor  {
         this.operationTheatreAccess = operationTheatreAccess;
         this.upcomingSurgeryDates = upcomingSurgeryDates;
     }
+    @Override
+    public void displayInfo() {
+        super.displayInfo();
+
+        System.out.println("Surgeries Performed: " + surgeriesPerformed);
+        System.out.println("Operation Theatre Access: " + operationTheatreAccess);
+        System.out.println("Upcoming Surgery Count: " + getUpcomingCount());
+    }
+    public void performSurgery() {
+        surgeriesPerformed++;
+    }
+
+    public void scheduleSurgery(String surgeryDate) {
+
+        if (upcomingSurgeryDates == null) {
+            upcomingSurgeryDates = new String[]{surgeryDate};
+            return;
+        }
+
+        String[] newDates =
+                new String[upcomingSurgeryDates.length + 1];
+
+        for (int i = 0; i < upcomingSurgeryDates.length; i++) {
+            newDates[i] = upcomingSurgeryDates[i];
+        }
+
+        newDates[upcomingSurgeryDates.length] = surgeryDate;
+
+        upcomingSurgeryDates = newDates;
+    }
+    public int getUpcomingCount() {
+
+        if (upcomingSurgeryDates == null) {
+            return 0;
+        }
+
+        return upcomingSurgeryDates.length;
+    }
 }
