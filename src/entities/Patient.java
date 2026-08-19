@@ -163,5 +163,8 @@ public void addToBalance(double amount){
         }else
             System.out.println("should be greater than 0");
 }
+public void clearBalance(){
+        outstandingBalance = 0;
+}
 
 }
