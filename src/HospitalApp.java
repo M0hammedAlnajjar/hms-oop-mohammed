@@ -117,6 +117,23 @@ public class HospitalApp {
     public static int daysBetween(int startDay, int endDay) {
         return endDay - startDay;
     }
+    // Capitalize words
+    public static String capitalizeWords(String text) {
 
+        if (text == null || text.isBlank()) {
+            return text;
+        }
+
+        String[] words = text.split(" ");
+        String result = "";
+
+        for (String word : words) {
+            result += word.substring(0, 1).toUpperCase()
+                    + word.substring(1).toLowerCase()
+                    + " ";
+        }
+
+        return result.trim();
+    }
 
 }
