@@ -5,11 +5,13 @@ import entities.Patient;
 import interfaces.Manageable;
 import interfaces.Searchable;
 
-import java.util.ArrayList;
+
+
 
 public class PatientService implements Manageable, Searchable {
 
-    private ArrayList<Patient> patients = new ArrayList<>();
+
+
     // Find a patient by ID
     public Patient findPatient(String id) {
         return null;
@@ -39,5 +41,8 @@ public class PatientService implements Manageable, Searchable {
     public Object searchById(String id) {
         return null;
     }
+
+    private Patient[] patients = new Patient[100];
+    private int patientCount = 0;
 
 }
