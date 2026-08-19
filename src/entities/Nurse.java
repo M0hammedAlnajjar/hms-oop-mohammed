@@ -120,6 +120,10 @@ public class Nurse extends Person{
             }
         }assignedPatientIds = newPatientIds;
     }
+    public boolean  isNightShift(){
+        return shift != null &&
+        shift.equalsIgnoreCase("Night");
+    }
 }
 
 
