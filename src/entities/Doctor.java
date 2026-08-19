@@ -62,7 +62,32 @@ public class Doctor extends Person {
         newSlots[availableSlots.length] = slot;
         availableSlots = newSlots;
     }
+public void removeSlot(String slot) {
+        if (availableSlots == null || availableSlots.length == 0) {
+            return;
+        }
+        int position = -1;
+        for (int i = 0; i < availableSlots.length; i++) {
+           if(availableSlots[i] != null && availableSlots[i].equalsIgnoreCase(slot){
+               position = i;
+               break;
+           }
+        }
+        if (position == -1) {
+            System.out.println("Slot not found");
+            return;
+        }
+        String[] newSlots = new String[availableSlots.length - 1];
+        int index = 0;
+        for (int i = 0; i < availableSlots.length; i++) {
+            if(i == position) {
+                newSlots[index] = availableSlots[i];
+                index++;
+            }
+        }
+        availableSlots = newSlots;
 
+}
 
 
 }
