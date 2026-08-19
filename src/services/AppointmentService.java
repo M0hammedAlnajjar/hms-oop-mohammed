@@ -17,15 +17,28 @@ public class AppointmentService implements Manageable, Searchable {
     }
 
 
+    // Schedule appointment using IDs and date
     public Appointment schedule(
             String patientId,
             String doctorId,
-            String date,
-            String time,
-            String reason
+            String date
     ) {
 
-        return null;
+        Appointment appointment = new Appointment(
+                date,
+                "A" + appointmentCount,
+                "",
+                doctorId,
+                false,
+                patientId,
+                "",
+                "Scheduled"
+        );
+
+        appointments[appointmentCount] = appointment;
+        appointmentCount++;
+
+        return appointment;
     }
     @Override
     public void add(Object entity) {
