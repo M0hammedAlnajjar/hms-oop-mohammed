@@ -68,5 +68,24 @@ public class InPatient extends Patient{
         System.out.println("Daily Charges: " + dailyCharges);
         System.out.println("Days Admitted: " + daysAdmitted);
     }
-
+    public void admit(
+            String admissionDate,
+            String roomNumber,
+            double dailyCharges,
+            int daysAdmitted
+    ) {
+        this.admissionDate = admissionDate;
+        this.roomNumber = roomNumber;
+        this.dailyCharges = dailyCharges;
+        this.daysAdmitted = daysAdmitted;
+    }
+    public void discharge() {
+        admissionDate = null;
+        roomNumber = null;
+        dailyCharges = 0;
+        daysAdmitted = 0;
+    }
+    public double totalRoomCost() {
+        return dailyCharges * daysAdmitted;
+    }
 }
