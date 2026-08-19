@@ -49,7 +49,14 @@ public class PatientService implements Manageable, Searchable {
     }
     @Override
     public Object[] getAll() {
-        return null;
+
+        Patient[] allPatients = new Patient[patientCount];
+
+        for (int i = 0; i < patientCount; i++) {
+            allPatients[i] = patients[i];
+        }
+
+        return allPatients;
     }
     @Override
     public Object[] search(String keyword) {
