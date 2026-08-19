@@ -11,9 +11,16 @@ import interfaces.Searchable;
 public class PatientService implements Manageable, Searchable {
 
 
-
     // Find a patient by ID
     public Patient findPatient(String id) {
+
+        for (int i = 0; i < patientCount; i++) {
+
+            if (patients[i].getId().equals(id)) {
+                return patients[i];
+            }
+        }
+
         return null;
     }
 
