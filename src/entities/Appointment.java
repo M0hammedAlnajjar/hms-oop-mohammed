@@ -123,4 +123,9 @@ public class Appointment {
     public boolean isPast(String givenDate) {
         return appointmentDate.compareTo(givenDate) < 0;
     }
+
+    public void addNotes(String note, String author) {
+        System.out.println("Note: " + note);
+        System.out.println("Author: " + author);
+    }
 }
