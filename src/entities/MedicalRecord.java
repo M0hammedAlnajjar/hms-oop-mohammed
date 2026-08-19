@@ -33,4 +33,13 @@ public class MedicalRecord {
         System.out.println("Confidential: "+confidential);
 
    }
+//   overloading
+    public String appendNote(String note){
+}
+public String markConfidential(){
+
+}
+public boolean isConfidential(){
+        return confidential;
+}
 }
