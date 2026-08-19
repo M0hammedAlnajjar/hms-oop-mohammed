@@ -29,6 +29,13 @@ public class RecordService implements Manageable, Searchable {
     public Object searchById(String id) {
         return null;
     }
+    // Check if email is valid
+    public static boolean isValidEmail(String email) {
+
+        return email != null
+                && email.contains("@")
+                && email.contains(".");
+    }
 
 
 }
