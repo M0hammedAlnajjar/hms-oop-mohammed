@@ -13,7 +13,21 @@ public class AppointmentService implements Manageable, Searchable {
             String time
     ) {
 
-        return null;
+        Appointment appointment = new Appointment(
+                date,
+                "A" + appointmentCount,
+                time,
+                doctorId,
+                false,
+                patientId,
+                "",
+                "Scheduled"
+        );
+
+        appointments[appointmentCount] = appointment;
+        appointmentCount++;
+
+        return appointment;
     }
 
 
