@@ -1,6 +1,8 @@
 package entities;
 
-public class Person {
+import interfaces.Displayable;
+
+public class Person implements Displayable {
     private String id;
     private String firstName;
     private String lastName;
@@ -122,6 +124,10 @@ public class Person {
 
     public String getFullName() {
         return firstName + " " + lastName;
+    }
+    public void displaySummary() {
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + getFullName());
     }
 }
 
