@@ -57,6 +57,10 @@ public class RecordService implements Manageable, Searchable {
     public static String formatDate(String date) {
         return date;
     }
+    // Generate an ID
+    public static String generateId(String prefix, int number) {
+        return prefix + number;
+    }
 
 
 
