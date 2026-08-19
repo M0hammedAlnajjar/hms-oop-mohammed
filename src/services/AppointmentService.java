@@ -3,6 +3,8 @@ package services;
 import entities.Appointment;
 import interfaces.Manageable;
 import interfaces.Searchable;
+import entities.Patient;
+import entities.Doctor;
 public class AppointmentService implements Manageable, Searchable {
 
 
@@ -81,4 +83,30 @@ public class AppointmentService implements Manageable, Searchable {
     // Store appointments without generics
     private Appointment[] appointments = new Appointment[10];
     private int appointmentCount = 0;
+
+    // Schedule appointment using full objects and reason
+    public Appointment schedule(
+            Patient patient,
+            Doctor doctor,
+            String date,
+            String time,
+            String reason
+    ) {
+
+        Appointment appointment = new Appointment(
+                date,
+                "A" + appointmentCount,
+                time,
+                doctor.getId(),
+                false,
+                patient.getId(),
+                reason,
+                "Scheduled"
+        );
+
+        appointments[appointmentCount] = appointment;
+        appointmentCount++;
+
+        return appointment;
+    }
 }
