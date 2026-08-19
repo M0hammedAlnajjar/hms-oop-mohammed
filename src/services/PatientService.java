@@ -103,6 +103,17 @@ public class PatientService implements Manageable, Searchable {
     public Object searchById(String id) {
         return findPatient(id);
     }
+    // Update an existing patient
+    public void updatePatient(String id, Patient updatedPatient) {
+
+        for (int i = 0; i < patientCount; i++) {
+
+            if (patients[i].getId().equals(id)) {
+                patients[i] = updatedPatient;
+                return;
+            }
+        }
+    }
 
     private Patient[] patients = new Patient[100];
     private int patientCount = 0;
