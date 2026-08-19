@@ -15,6 +15,20 @@ public class NurseService implements Manageable, Searchable {
     @Override
     public void removeById(String id) {
 
+        for (int i = 0; i < nurseCount; i++) {
+
+            if (nurses[i].getId().equals(id)) {
+
+                for (int j = i; j < nurseCount - 1; j++) {
+                    nurses[j] = nurses[j + 1];
+                }
+
+                nurses[nurseCount - 1] = null;
+                nurseCount--;
+
+                return;
+            }
+        }
     }
 
     @Override
