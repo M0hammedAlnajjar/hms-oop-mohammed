@@ -109,4 +109,16 @@ public class AppointmentService implements Manageable, Searchable {
 
         return appointment;
     }
+
+    // Cancel appointment by ID
+    public void cancel(String appointmentId) {
+
+        for (int i = 0; i < appointmentCount; i++) {
+
+            if (appointments[i].getAppointmentId().equals(appointmentId)) {
+                appointments[i].cancel();
+                return;
+            }
+        }
+    }
 }
