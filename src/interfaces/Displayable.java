@@ -5,4 +5,6 @@ public interface Displayable {
     void displaySummary();
 
     boolean idAdult();
+
+    boolean isAdult();
 }

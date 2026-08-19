@@ -41,10 +41,12 @@ public class Person implements Displayable {
         this.active = active;
     }
 //overloaded
-    public Person(String id, String firstName, String lastName, String dateOfBirth) {
-    }
+
 
     public Person(String id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public int getAge() {
@@ -94,8 +96,10 @@ public class Person implements Displayable {
     }
 
     public void setFirstName(String firstName) {
-        if(firstName != null && !firstName.isBlank()) {}
-        this.firstName = firstName;
+        if(firstName != null && !firstName.isBlank()) {
+            this.firstName = firstName;
+        }
+
     }
 
     public String getGender() {
@@ -145,8 +149,16 @@ public class Person implements Displayable {
 
     @Override
     public void displayInfo() {
-
-
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + getFullName());
+        System.out.println("Date of Birth: " + dateOfBirth);
+        System.out.println("Gender: " + gender);
+        System.out.println("Phone Number: " + phoneNumber);
+        System.out.println("Email: " + email);
+        System.out.println("Address: " + address);
+        System.out.println("National ID: " + nationalId);
+        System.out.println("Age: " + age);
+        System.out.println("Active: " + active);
     }
 
     public void displaySummary() {
@@ -156,8 +168,30 @@ public class Person implements Displayable {
 
     @Override
     public boolean idAdult() {
+        return false;
+    }
+
+    @Override
+    public boolean isAdult() {
         return age >= 18;
     }
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Person)) {
+            return false;
+        }
+
+        Person other = (Person) obj;
+
+        return id != null && id.equals(other.id);
+    }
+
+
 
 }
 
