@@ -26,5 +26,10 @@ public class Person {
         this.nationalId = nationalId;
         this.phoneNumber = phoneNumber;
     }
+
+//overloaded
+    public Person(String id, String firstName, String lastName, String dateOfBirth) {
+    }
+
 }
 
