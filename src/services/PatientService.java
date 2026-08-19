@@ -32,6 +32,20 @@ public class PatientService implements Manageable, Searchable {
     @Override
     public void removeById(String id) {
 
+        for (int i = 0; i < patientCount; i++) {
+
+            if (patients[i].getId().equals(id)) {
+
+                for (int j = i; j < patientCount - 1; j++) {
+                    patients[j] = patients[j + 1];
+                }
+
+                patients[patientCount - 1] = null;
+                patientCount--;
+
+                return;
+            }
+        }
     }
     @Override
     public Object[] getAll() {
