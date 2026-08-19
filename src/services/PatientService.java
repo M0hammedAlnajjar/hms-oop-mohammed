@@ -24,6 +24,10 @@ public class PatientService implements Manageable, Searchable {
     @Override
     public void add(Object entity) {
 
+        if (entity instanceof Patient) {
+            patients[patientCount] = (Patient) entity;
+            patientCount++;
+        }
     }
     @Override
     public void removeById(String id) {
