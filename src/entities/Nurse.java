@@ -80,6 +80,22 @@ public class Nurse extends Person{
         }return
                 assignedPatientIds.length;
     }
+    public void assignPatient(String patientId) {
+        if(patientId == null || patientId.isBlank()) {
+            System.out.println("Patient ID is blank");
+            return;
+        }
+        if(assignedPatientIds == null) {
+            assignedPatientIds = new String[]{patientId};
+            return;
+        }
+        String[] newPatientIds = new String[assignedPatientIds.length+1];
+        for (int i = 0; i < assignedPatientIds.length; i++) {
+            newPatientIds[i] = assignedPatientIds[i];
+        }
+        newPatientIds[assignedPatientIds.length] = patientId;
+        assignedPatientIds = newPatientIds;
+    }
 }
 
 
