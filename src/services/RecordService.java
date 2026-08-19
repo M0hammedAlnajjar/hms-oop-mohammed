@@ -4,10 +4,13 @@ import interfaces.Manageable;
 import interfaces.Searchable;
 
 public class RecordService implements Manageable, Searchable {
-
     @Override
     public void add(Object entity) {
 
+        if (entity instanceof MedicalRecord) {
+            records[recordCount] = (MedicalRecord) entity;
+            recordCount++;
+        }
     }
 
     @Override
