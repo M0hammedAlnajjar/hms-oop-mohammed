@@ -91,4 +91,16 @@ public class Surgeon extends Doctor  {
 
         return upcomingSurgeryDates.length;
     }
+
+    public void updateContact(String phoneNumber, String email) {
+        setPhoneNumber(phoneNumber);
+        setEmail(email);
+    }
+    public void updateFee(double fee) {
+        setConsultationFee(fee);
+    }
+    public void updateFee(double fee, String reason) {
+        setConsultationFee(fee);
+        System.out.println("Reason: " + reason);
+    }
 }
