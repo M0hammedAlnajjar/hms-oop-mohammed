@@ -6,4 +6,67 @@ public class InPatient extends Patient{
     private double dailyCharges;
     private int daysAdmitted;
 
+
+
+    public InPatient(
+            String id,
+            String firstName,
+            String lastName,
+            String dateOfBirth,
+            String gender,
+            String phoneNumber,
+            String email,
+            String address,
+            String nationalId,
+            int age,
+            boolean active,
+            String[] allergies,
+            String bloodGroup,
+            String emergencyContact,
+            boolean insured,
+            String[] medicalRecordIds,
+            double outstandingBalance,
+            String registrationDate,
+            String admissionDate,
+            String roomNumber,
+            double dailyCharges,
+            int daysAdmitted
+    ) {
+
+        super(
+                id,
+                firstName,
+                lastName,
+                dateOfBirth,
+                gender,
+                phoneNumber,
+                email,
+                address,
+                nationalId,
+                age,
+                active,
+                allergies,
+                bloodGroup,
+                emergencyContact,
+                insured,
+                medicalRecordIds,
+                outstandingBalance,
+                registrationDate
+        );
+
+        this.admissionDate = admissionDate;
+        this.roomNumber = roomNumber;
+        this.dailyCharges = dailyCharges;
+        this.daysAdmitted = daysAdmitted;
+    }
+    @Override
+    public void displayInfo() {
+        super.displayInfo();
+
+        System.out.println("Admission Date: " + admissionDate);
+        System.out.println("Room Number: " + roomNumber);
+        System.out.println("Daily Charges: " + dailyCharges);
+        System.out.println("Days Admitted: " + daysAdmitted);
+    }
+
 }
