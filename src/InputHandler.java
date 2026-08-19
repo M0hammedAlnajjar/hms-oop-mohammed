@@ -11,4 +11,19 @@ public class InputHandler {
         System.out.print(message);
         return scanner.nextLine();
     }
+    // Read a whole number from the user
+    public int readInt(String message) {
+
+        while (true) {
+
+            System.out.print(message);
+            String input = scanner.nextLine();
+
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid number. Try again.");
+            }
+        }
+    }
 }
