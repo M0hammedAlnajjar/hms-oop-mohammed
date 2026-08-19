@@ -121,16 +121,33 @@ public class Patient extends Person{
         return false;
     }
 
-public void listAllergies(){
+public void listAllergies() {
     System.out.println("Allergies:");
-    if(allergies==null || allergies.length==0){
+    if (allergies == null || allergies.length == 0) {
         System.out.println("No Allergies");
         return;
     }
-    for(String allergy : allergies){
-        if(allergy==null){
-            System.out.println("Invalid Allergy"+allergy);
+    for (String allergy : allergies) {
+        if (allergy == null) {
+            System.out.println("Invalid Allergy" + allergy);
         }
     }
 }
+public void addRecordId(String recordId) {
+    if (recordId == null || recordId.isBlank()) {
+        System.out.println("Invalid Record Id");
+        return;
+    }
+    if (medicalRecordIds == null) {
+        medicalRecordIds = new String[]{recordId};
+        return;
+    }
+    String[] newRecordIds = new String[medicalRecordIds.length + 1];
+    for (int i = 0; i < medicalRecordIds.length; i++) {
+        newRecordIds[i] = medicalRecordIds[i];
+    }
+    newRecordIds[medicalRecordIds.length] = recordId;
+    medicalRecordIds = newRecordIds;
+}
+
 }
