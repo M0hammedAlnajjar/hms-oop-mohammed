@@ -132,4 +132,22 @@ public class AppointmentService implements Manageable, Searchable {
             }
         }
     }
+    // Reschedule appointment
+    public void reschedule(
+            String appointmentId,
+            String newDate,
+            String newTime
+    ) {
+
+        for (int i = 0; i < appointmentCount; i++) {
+
+            if (appointments[i].getAppointmentId().equals(appointmentId)) {
+
+                appointments[i].setDate(newDate);
+                appointments[i].setTime(newTime);
+
+                return;
+            }
+        }
+    }
 }
