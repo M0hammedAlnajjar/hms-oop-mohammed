@@ -121,4 +121,15 @@ public class AppointmentService implements Manageable, Searchable {
             }
         }
     }
+    // Complete appointment by ID
+    public void complete(String appointmentId) {
+
+        for (int i = 0; i < appointmentCount; i++) {
+
+            if (appointments[i].getAppointmentId().equals(appointmentId)) {
+                appointments[i].complete();
+                return;
+            }
+        }
+    }
 }
