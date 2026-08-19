@@ -69,6 +69,17 @@ public class Nurse extends Person{
         System.out.println("Department: " + departmentId);
         System.out.println("Shift: " + shift);
         System.out.println("Years of Service: " + yearsOfService);
-        System.out.println("Patient load:"+getPatientLoad);
+        System.out.println("Patient load:"+getPatientLoad());
+    }
+
+
+//    @overloading
+    public int getPatientLoad() {
+        if (assignedPatientIds == null ) {
+            return 0;
+        }return
+                assignedPatientIds.length;
     }
 }
+
+
