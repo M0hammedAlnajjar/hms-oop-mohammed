@@ -28,7 +28,19 @@ public class Nurse extends Person{
     }
 
     public void setShift(String shift) {
-        this.shift = shift;
+        if(shift==null){
+            System.out.println("Shift is null");
+            return;
+        }
+        if(
+                shift.equalsIgnoreCase("Morning") ||
+                        shift.equalsIgnoreCase("Evening") ||
+                        shift.equalsIgnoreCase("Night")
+        ){
+            this.shift = shift;
+        }else {
+            System.out.println("Shift is out of range");
+        }
     }
 
     public int getYearsOfService() {
