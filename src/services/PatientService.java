@@ -77,7 +77,27 @@ public class PatientService implements Manageable, Searchable {
     }
     @Override
     public Object[] search(String keyword) {
-        return null;
+
+        Patient[] results = new Patient[patientCount];
+        int resultCount = 0;
+
+        for (int i = 0; i < patientCount; i++) {
+
+            if (patients[i].getFirstName().equalsIgnoreCase(keyword)
+                    || patients[i].getLastName().equalsIgnoreCase(keyword)) {
+
+                results[resultCount] = patients[i];
+                resultCount++;
+            }
+        }
+
+        Patient[] finalResults = new Patient[resultCount];
+
+        for (int i = 0; i < resultCount; i++) {
+            finalResults[i] = results[i];
+        }
+
+        return finalResults;
     }
     @Override
     public Object searchById(String id) {
