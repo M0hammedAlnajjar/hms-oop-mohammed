@@ -103,5 +103,19 @@ public class RecordService implements Manageable, Searchable {
 
         return finalResults;
     }
+    // Count confidential medical records
+    public int countConfidential() {
+
+        int count = 0;
+
+        for (int i = 0; i < recordCount; i++) {
+
+            if (records[i].isConfidential()) {
+                count++;
+            }
+        }
+
+        return count;
+    }
 
 }
