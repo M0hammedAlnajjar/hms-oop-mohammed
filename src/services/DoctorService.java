@@ -69,9 +69,16 @@ public class DoctorService implements Manageable, Searchable {
 
         return finalResults;
     }
-
     @Override
     public Object searchById(String id) {
+
+        for (int i = 0; i < doctorCount; i++) {
+
+            if (doctors[i].getId().equals(id)) {
+                return doctors[i];
+            }
+        }
+
         return null;
     }
 
