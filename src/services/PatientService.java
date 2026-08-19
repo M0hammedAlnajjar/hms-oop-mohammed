@@ -104,14 +104,17 @@ public class PatientService implements Manageable, Searchable {
         return findPatient(id);
     }
     // Update an existing patient
-    public void updatePatient(String id, Patient updatedPatient) {
+    // Update patient contact information
+    public void updateContact(
+            String id,
+            String phoneNumber,
+            String email
+    ) {
 
-        for (int i = 0; i < patientCount; i++) {
+        Patient patient = (Patient) searchById(id);
 
-            if (patients[i].getId().equals(id)) {
-                patients[i] = updatedPatient;
-                return;
-            }
+        if (patient != null) {
+            patient.updateContact(phoneNumber, email);
         }
     }
 
