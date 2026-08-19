@@ -42,6 +42,13 @@ public class RecordService implements Manageable, Searchable {
         return phone != null
                 && !phone.isBlank();
     }
+    // Check if date is valid
+    public static boolean isValidDate(String date) {
+
+        return date != null
+                && !date.isBlank();
+    }
+
 
 
 }
