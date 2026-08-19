@@ -36,7 +36,12 @@ public class Nurse extends Person{
     }
 
     public void setYearsOfService(int yearsOfService) {
-        this.yearsOfService = yearsOfService;
+        if(yearsOfService > 0){
+            this.yearsOfService = yearsOfService;
+        }
+        else {
+            System.out.println("Years of Service is out of range");
+        }
     }
 
     public Nurse(String id,
