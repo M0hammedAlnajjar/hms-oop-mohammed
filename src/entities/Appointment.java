@@ -1,6 +1,7 @@
 package entities;
 
 public class Appointment {
+
     private String appointmentId;
     private String patientId;
     private String doctorId;
@@ -10,7 +11,16 @@ public class Appointment {
     private String reason;
     private boolean followUp;
 
-    public Appointment(String appointmentDate, String appointmentId, String appointmentTime, String doctorId, boolean followUp, String patientId, String reason, String status) {
+    public Appointment(
+            String appointmentDate,
+            String appointmentId,
+            String appointmentTime,
+            String doctorId,
+            boolean followUp,
+            String patientId,
+            String reason,
+            String status
+    ) {
         this.appointmentDate = appointmentDate;
         this.appointmentId = appointmentId;
         this.appointmentTime = appointmentTime;
@@ -84,25 +94,33 @@ public class Appointment {
     public void setAppointmentDate(String appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
-//    overloading
-    public void displayInfo(){
 
+    public void displayInfo() {
+        System.out.println("Appointment Id: " + appointmentId);
+        System.out.println("Patient Id: " + patientId);
+        System.out.println("Doctor Id: " + doctorId);
+        System.out.println("Appointment Date: " + appointmentDate);
+        System.out.println("Appointment Time: " + appointmentTime);
+        System.out.println("Status: " + status);
+        System.out.println("Reason: " + reason);
+        System.out.println("Follow Up: " + followUp);
     }
-    public void cancel(){
+
+    public void cancel() {
         status = "Cancelled";
-
     }
-    public void complete(){
+
+    public void complete() {
         status = "Complete";
     }
-    public void reschedule(String newDate, String newTime){
+
+    public void reschedule(String newDate, String newTime) {
         appointmentDate = newDate;
         appointmentTime = newTime;
         status = "Scheduled";
     }
 
-public void isPast(String givenDate){
-
-}
-
+    public boolean isPast(String givenDate) {
+        return appointmentDate.compareTo(givenDate) < 0;
+    }
 }
