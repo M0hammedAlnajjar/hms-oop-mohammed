@@ -61,6 +61,10 @@ public class RecordService implements Manageable, Searchable {
     public static String generateId(String prefix, int number) {
         return prefix + number;
     }
+    // Calculate BMI
+    public static double calculateBMI(double weight, double height) {
+        return weight / (height * height);
+    }
 
 
 
