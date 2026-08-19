@@ -51,4 +51,7 @@ public class AppointmentService implements Manageable, Searchable {
     public Object searchById(String id) {
         return null;
     }
+    // Store appointments without generics
+    private Appointment[] appointments = new Appointment[10];
+    private int appointmentCount = 0;
 }
