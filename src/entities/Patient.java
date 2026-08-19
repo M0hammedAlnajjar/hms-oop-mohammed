@@ -95,7 +95,30 @@ public class Patient extends Person{
 
 
     public void addAllergy(String allergy){
+        if(this.allergies == null || allergy.isBlank()){
+            System.out.println("Invalid Allergy");
+            return;
+        }
+        if(hasAllergy(allergy)){
+            System.out.println("Allergy already exists");
+            return;
+        }
+        if(allergy==null){
+            System.out.println("Invalid Allergy");
+            return;
+        }
+        String[] newAllergies = new String[allergies.length+1];
+        for(int i=0; i<allergies.length; i++){
+            newAllergies[i] = allergies[i];
+        }
+        newAllergies[allergies.length] = allergy;
+        allergies = newAllergies;
 
+    }
+
+    private boolean hasAllergy(String allergy) {
+
+        return false;
     }
 
 
