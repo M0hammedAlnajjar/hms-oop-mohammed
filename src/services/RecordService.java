@@ -29,64 +29,6 @@ public class RecordService implements Manageable, Searchable {
     public Object searchById(String id) {
         return null;
     }
-    // Check if email is valid
-    public static boolean isValidEmail(String email) {
 
-        return email != null
-                && email.contains("@")
-                && email.contains(".");
-    }
-    // Check if phone number is valid
-    public static boolean isValidPhone(String phone) {
-
-        return phone != null
-                && !phone.isBlank();
-    }
-    // Check if date is valid
-    public static boolean isValidDate(String date) {
-
-        return date != null
-                && !date.isBlank();
-    }
-    // Calculate age from birth year
-    public static int calculateAge(int birthYear, int currentYear) {
-
-        return currentYear - birthYear;
-    }
-    // Format a date
-    public static String formatDate(String date) {
-        return date;
-    }
-    // Generate an ID
-    public static String generateId(String prefix, int number) {
-        return prefix + number;
-    }
-    // Calculate BMI
-    public static double calculateBMI(double weight, double height) {
-        return weight / (height * height);
-    }
-    // Check if password is strong
-    public static boolean isStrongPassword(String password) {
-
-        return password != null
-                && password.length() >= 8;
-    }
-
-    // Mask national ID
-    public static String maskNationalId(String nationalId) {
-
-        if (nationalId == null) {
-            return null;
-        }
-
-        return "****" + nationalId.substring(nationalId.length() - 4);
-    }
-    // Check if the day is a working day
-    public static boolean isWorkingDay(String day) {
-
-        return day != null
-                && !day.equalsIgnoreCase("Friday")
-                && !day.equalsIgnoreCase("Saturday");
-    }
 
 }
