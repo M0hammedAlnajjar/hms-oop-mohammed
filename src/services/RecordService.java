@@ -65,6 +65,12 @@ public class RecordService implements Manageable, Searchable {
     public static double calculateBMI(double weight, double height) {
         return weight / (height * height);
     }
+    // Check if password is strong
+    public static boolean isStrongPassword(String password) {
+
+        return password != null
+                && password.length() >= 8;
+    }
 
 
 
