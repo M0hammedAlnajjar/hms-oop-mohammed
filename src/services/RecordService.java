@@ -29,4 +29,6 @@ public class RecordService implements Manageable, Searchable {
     public Object searchById(String id) {
         return null;
     }
+
+
 }
