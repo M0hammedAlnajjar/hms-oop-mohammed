@@ -172,4 +172,26 @@ public class AppointmentService implements Manageable, Searchable {
 
         return finalResults;
     }
+    // List appointments by patient ID
+    public Appointment[] listByPatient(String patientId) {
+
+        Appointment[] results = new Appointment[appointmentCount];
+        int resultCount = 0;
+
+        for (int i = 0; i < appointmentCount; i++) {
+
+            if (appointments[i].getPatientId().equals(patientId)) {
+                results[resultCount] = appointments[i];
+                resultCount++;
+            }
+        }
+
+        Appointment[] finalResults = new Appointment[resultCount];
+
+        for (int i = 0; i < resultCount; i++) {
+            finalResults[i] = results[i];
+        }
+
+        return finalResults;
+    }
 }
