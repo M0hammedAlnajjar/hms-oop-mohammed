@@ -104,4 +104,14 @@ public class NurseService implements Manageable, Searchable {
     // Store nurses without generics
     private Nurse[] nurses = new Nurse[10];
     private int nurseCount = 0;
+
+    // Reassign nurse to another shift
+    public void reassign(String nurseId, String newShift) {
+
+        Nurse nurse = (Nurse) searchById(nurseId);
+
+        if (nurse != null) {
+            nurse.setShift(newShift);
+        }
+    }
 }
