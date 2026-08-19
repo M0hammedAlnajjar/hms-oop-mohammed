@@ -86,8 +86,7 @@ public class Patient extends Person{
 
     }
 
-    @Override
-    public void displaySummary() {
-        super.displaySummary();
-    }
+
+
+
 }
