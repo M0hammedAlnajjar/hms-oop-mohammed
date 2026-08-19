@@ -34,7 +34,14 @@ public class DoctorService implements Manageable, Searchable {
 
     @Override
     public Object[] getAll() {
-        return new Object[0];
+
+        Doctor[] allDoctors = new Doctor[doctorCount];
+
+        for (int i = 0; i < doctorCount; i++) {
+            allDoctors[i] = doctors[i];
+        }
+
+        return allDoctors;
     }
 
     @Override
