@@ -46,7 +46,28 @@ public class DoctorService implements Manageable, Searchable {
 
     @Override
     public Object[] search(String keyword) {
-        return new Object[0];
+
+        Doctor[] results = new Doctor[doctorCount];
+        int resultCount = 0;
+
+        for (int i = 0; i < doctorCount; i++) {
+
+            if (doctors[i].getFirstName().equalsIgnoreCase(keyword)
+                    || doctors[i].getLastName().equalsIgnoreCase(keyword)
+                    || doctors[i].getSpecialization().equalsIgnoreCase(keyword)) {
+
+                results[resultCount] = doctors[i];
+                resultCount++;
+            }
+        }
+
+        Doctor[] finalResults = new Doctor[resultCount];
+
+        for (int i = 0; i < resultCount; i++) {
+            finalResults[i] = results[i];
+        }
+
+        return finalResults;
     }
 
     @Override
