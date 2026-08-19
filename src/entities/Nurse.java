@@ -96,6 +96,30 @@ public class Nurse extends Person{
         newPatientIds[assignedPatientIds.length] = patientId;
         assignedPatientIds = newPatientIds;
     }
+    public void unassignPatient(String patientId) {
+        if (assignedPatientIds == null || assignedPatientIds.length == 0) {
+            return;
+        }
+        int position = -1;
+        for (int i = 0; i < assignedPatientIds.length; i++) {
+            if (assignedPatientIds[i] != null && assignedPatientIds[i].equals(patientId)) {
+            }
+            position = i;
+            break;
+
+
+        }if (position >= 1) {
+            System.out.println("Patient not assigned");
+            return;
+        }String[] newPatientIds = new String[assignedPatientIds.length-1];
+        int index = 0;
+        for (int i = 0; i < assignedPatientIds.length; i++) {
+            if(i != position) {
+                newPatientIds[index] = assignedPatientIds[i];
+                index++;
+            }
+        }assignedPatientIds = newPatientIds;
+    }
 }
 
 
