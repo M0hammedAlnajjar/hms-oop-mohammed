@@ -88,6 +88,18 @@ public void removeSlot(String slot) {
         availableSlots = newSlots;
 
 }
+public boolean hasSlot(String slot) {
+        if(availableSlots == null ) {
+            return false;
+        }
+
+for(String currentSlot :availableSlots){
+    if(currentSlot.equalsIgnoreCase(slot)){
+    return true;}
+}
+return false;
+
+}
 
 
 }
