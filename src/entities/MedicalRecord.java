@@ -20,4 +20,17 @@ public class MedicalRecord {
         this.recordId = recordId;
         this.visitDate = visitDate;
     }
+   public void displayInfo(){
+        System.out.println("Record Id: "+recordId);
+        System.out.println("Patient Id: "+patientId);
+        System.out.println("Doctor Id: "+doctorId);
+        System.out.println("Prescription: "+prescription);
+        System.out.println("VisitDate: "+visitDate);
+        System.out.println("Diagnosis: "+diagnosis);
+        System.out.println("Doctor Name: "+doctorId);
+        System.out.println("Prescription Name: "+prescription);
+        System.out.println("Notes: "+notes);
+        System.out.println("Confidential: "+confidential);
+
+   }
 }
