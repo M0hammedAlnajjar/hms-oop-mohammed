@@ -79,6 +79,29 @@ public class RecordService implements Manageable, Searchable {
         }
 
         return null;
+
+    }
+    // List medical records by patient ID
+    public MedicalRecord[] listByPatient(String patientId) {
+
+        MedicalRecord[] results = new MedicalRecord[recordCount];
+        int resultCount = 0;
+
+        for (int i = 0; i < recordCount; i++) {
+
+            if (records[i].getPatientId().equals(patientId)) {
+                results[resultCount] = records[i];
+                resultCount++;
+            }
+        }
+
+        MedicalRecord[] finalResults = new MedicalRecord[resultCount];
+
+        for (int i = 0; i < resultCount; i++) {
+            finalResults[i] = results[i];
+        }
+
+        return finalResults;
     }
 
 }
