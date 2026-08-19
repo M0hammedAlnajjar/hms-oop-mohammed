@@ -44,6 +44,9 @@ public class Person implements Displayable {
     public Person(String id, String firstName, String lastName, String dateOfBirth) {
     }
 
+    public Person(String id, String firstName, String lastName) {
+    }
+
     public int getAge() {
         return age;
     }
