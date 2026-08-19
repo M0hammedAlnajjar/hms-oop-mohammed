@@ -70,5 +70,23 @@ public class InputHandler {
 
             System.out.println("Please enter yes or no.");
         }
+
+    }// Read a value from an allowed set
+    public String readFromAllowedSet(String message, String[] allowedValues) {
+
+        while (true) {
+
+            System.out.print(message);
+            String input = scanner.nextLine();
+
+            for (String value : allowedValues) {
+
+                if (value.equalsIgnoreCase(input)) {
+                    return input;
+                }
+            }
+
+            System.out.println("Invalid value. Try again.");
+        }
     }
 }
