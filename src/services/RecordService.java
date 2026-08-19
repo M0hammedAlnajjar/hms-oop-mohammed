@@ -1,9 +1,15 @@
 package services;
 
+import entities.MedicalRecord;
 import interfaces.Manageable;
 import interfaces.Searchable;
 
 public class RecordService implements Manageable, Searchable {
+
+    // Store medical records
+    private MedicalRecord[] records = new MedicalRecord[10];
+    private int recordCount = 0;
+
     @Override
     public void add(Object entity) {
 
@@ -43,7 +49,8 @@ public class RecordService implements Manageable, Searchable {
 
         return allRecords;
     }
-    @@Override
+
+    @Override
     public Object[] search(String keyword) {
 
         MedicalRecord[] results = new MedicalRecord[recordCount];
@@ -79,8 +86,8 @@ public class RecordService implements Manageable, Searchable {
         }
 
         return null;
-
     }
+
     // List medical records by patient ID
     public MedicalRecord[] listByPatient(String patientId) {
 
@@ -103,6 +110,7 @@ public class RecordService implements Manageable, Searchable {
 
         return finalResults;
     }
+
     // Count confidential medical records
     public int countConfidential() {
 
@@ -117,5 +125,4 @@ public class RecordService implements Manageable, Searchable {
 
         return count;
     }
-
 }
