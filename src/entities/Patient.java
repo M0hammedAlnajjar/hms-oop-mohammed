@@ -19,4 +19,9 @@ public class Patient extends Person{
         this.outstandingBalance = outstandingBalance;
         this.registrationDate = registrationDate;
     }
+
+    @Override
+    public void displayInfo() {
+        super.displayInfo();
+    }
 }
