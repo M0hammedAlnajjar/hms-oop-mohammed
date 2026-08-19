@@ -2,8 +2,9 @@ package services;
 
 
 import entities.Patient;
+import interfaces.Manageable;
 
-public class PatientService {
+public class PatientService implements Manageable {
 
 
     // Find a patient by ID
