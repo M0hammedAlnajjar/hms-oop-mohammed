@@ -143,6 +143,7 @@ public class Person implements Displayable {
     @Override
     public void displayInfo() {
 
+
     }
 
     public void displaySummary() {
@@ -154,5 +155,6 @@ public class Person implements Displayable {
     public boolean idAdult() {
         return age >= 18;
     }
+
 }
 

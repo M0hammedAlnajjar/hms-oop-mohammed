@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Arrays;
+
 public class Patient extends Person{
     private String bloodGroup;
     private String emergencyContact;
@@ -79,6 +81,10 @@ public class Patient extends Person{
     @Override
     public void displayInfo() {
         super.displayInfo();
+        System.out.println("Blood Group: " + bloodGroup);
+        System.out.println("Emergency Contact: " + emergencyContact);
+        System.out.println("Insured: " + insured);
+        System.out.println("Medical Records: " + Arrays.toString(medicalRecordIds));
 
     }
 //(overloaded)
@@ -87,9 +93,10 @@ public class Patient extends Person{
 
     }
 
-public void addAllergy(){
 
-}
+    public void addAllergy(String allergy){
+
+    }
 
 
 }
