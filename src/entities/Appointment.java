@@ -84,6 +84,25 @@ public class Appointment {
     public void setAppointmentDate(String appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
+//    overloading
+    public void displayInfo(){
 
+    }
+    public void cancel(){
+        status = "Cancelled";
+
+    }
+    public void complete(){
+        status = "Complete";
+    }
+    public void reschedule(String newDate, String newTime){
+        appointmentDate = newDate;
+        appointmentTime = newTime;
+        status = "Scheduled";
+    }
+
+public void isPast(String givenDate){
+
+}
 
 }
