@@ -30,10 +30,40 @@ public class Doctor extends Person {
 
     }
 
+//    overloaded
     private int getPatientLoad() {
    if (availableSlots == null ) {
        return 0;
    }
     return assignedPatientIds.length;
     }
+
+    public void addSlot(String slot) {
+        if (availableSlots == null || slot.isBlank()) {
+            System.out.println("Slot is empty");
+            return;
+
+        }
+        if (hasSlot(slot)) {
+            System.out.println("Slot already exists");
+        }
+        if (availableSlots == null) {
+            availableSlots = new String[]{slot};
+            return;
+        }
+        if (assignedPatientIds == null) {
+            assignedPatientIds = new String[]{slot};
+            return;
+        }
+        String[] newSlots = new String[availableSlots.length + 1];
+        for (int i = 0; i < availableSlots.length; i++) {
+            newSlots[i] = availableSlots[i];
+        }
+        newSlots[availableSlots.length] = slot;
+        availableSlots = newSlots;
+    }
+
+
+
 }
+
