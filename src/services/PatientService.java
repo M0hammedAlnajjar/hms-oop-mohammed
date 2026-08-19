@@ -1,6 +1,7 @@
 package services;
 
 
+import entities.InPatient;
 import entities.Patient;
 import interfaces.Manageable;
 import interfaces.Searchable;
@@ -117,7 +118,29 @@ public class PatientService implements Manageable, Searchable {
             patient.updateContact(phoneNumber, email);
         }
     }
+    // List all InPatients
+    public InPatient[] listInPatients() {
 
+        InPatient[] results = new InPatient[patientCount];
+        int count = 0;
+
+        for (int i = 0; i < patientCount; i++) {
+
+            if (patients[i] instanceof InPatient) {
+
+                results[count] = (InPatient) patients[i];
+                count++;
+            }
+        }
+
+        InPatient[] finalResults = new InPatient[count];
+
+        for (int i = 0; i < count; i++) {
+            finalResults[i] = results[i];
+        }
+
+        return finalResults;
+    }
     private Patient[] patients = new Patient[100];
     private int patientCount = 0;
 
