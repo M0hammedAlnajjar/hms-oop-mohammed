@@ -52,5 +52,23 @@ public class InputHandler {
                 System.out.println("Invalid decimal number. Try again.");
             }
         }
+    }// Read yes or no confirmation
+    public boolean readYesNo(String message) {
+
+        while (true) {
+
+            System.out.print(message);
+            String input = scanner.nextLine();
+
+            if (input.equalsIgnoreCase("yes")) {
+                return true;
+            }
+
+            if (input.equalsIgnoreCase("no")) {
+                return false;
+            }
+
+            System.out.println("Please enter yes or no.");
+        }
     }
 }
