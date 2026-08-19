@@ -48,6 +48,11 @@ public class RecordService implements Manageable, Searchable {
         return date != null
                 && !date.isBlank();
     }
+    // Calculate age from birth year
+    public static int calculateAge(int birthYear, int currentYear) {
+
+        return currentYear - birthYear;
+    }
 
 
 
