@@ -121,5 +121,16 @@ public class Patient extends Person{
         return false;
     }
 
-
+public void listAllergies(){
+    System.out.println("Allergies:");
+    if(allergies==null || allergies.length==0){
+        System.out.println("No Allergies");
+        return;
+    }
+    for(String allergy : allergies){
+        if(allergy==null){
+            System.out.println("Invalid Allergy"+allergy);
+        }
+    }
+}
 }
