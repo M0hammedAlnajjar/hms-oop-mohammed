@@ -1,6 +1,7 @@
 package services;
 import interfaces.Manageable;
 import interfaces.Searchable;
+import entities.Doctor;
 
 public class DoctorService implements Manageable, Searchable {
     @Override
@@ -27,4 +28,7 @@ public class DoctorService implements Manageable, Searchable {
     public Object searchById(String id) {
         return null;
     }
+
+    private Doctor[] doctors = new Doctor[10];
+    private int doctorCount = 0;
 }
