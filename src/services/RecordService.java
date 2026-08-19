@@ -36,6 +36,12 @@ public class RecordService implements Manageable, Searchable {
                 && email.contains("@")
                 && email.contains(".");
     }
+    // Check if phone number is valid
+    public static boolean isValidPhone(String phone) {
+
+        return phone != null
+                && !phone.isBlank();
+    }
 
 
 }
