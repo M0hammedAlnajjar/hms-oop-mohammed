@@ -31,12 +31,7 @@ public class Doctor extends Person {
     }
 
 //    overloaded
-    private int getPatientLoad() {
-   if (availableSlots == null ) {
-       return 0;
-   }
-    return assignedPatientIds.length;
-    }
+
 
     public void addSlot(String slot) {
         if (availableSlots == null || slot.isBlank()) {
@@ -111,13 +106,19 @@ public void assignPatient(String patientId) {
         return;
     }
     String[] newPatientIds = new String[assignedPatientIds.length + 1];
-    for (int i = 0; i < assignedPatientIds.length; i++) {
+        for (int i = 0; i < assignedPatientIds.length; i++) {
         newPatientIds[i] = assignedPatientIds[i];
 
     }
     newPatientIds[assignedPatientIds.length] = patientId;
     assignedPatientIds = newPatientIds;
 }
+    public int getPatientLoad(){
+        if (assignedPatientIds == null ) {
+            return 0;
+        }return  assignedPatientIds.length;
+
+    }
 
 
 
