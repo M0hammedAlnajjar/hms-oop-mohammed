@@ -69,6 +69,14 @@ public class NurseService implements Manageable, Searchable {
 
     @Override
     public Object searchById(String id) {
+
+        for (int i = 0; i < nurseCount; i++) {
+
+            if (nurses[i].getId().equals(id)) {
+                return nurses[i];
+            }
+        }
+
         return null;
     }
     // Store nurses without generics
