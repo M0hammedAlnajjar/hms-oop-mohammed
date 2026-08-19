@@ -88,6 +88,15 @@ public class DoctorService implements Manageable, Searchable {
         doctors[doctorCount] = surgeon;
         doctorCount++;
     }
+    // Assign a patient to a doctor
+    public void assignPatient(String doctorId, String patientId) {
+
+        Doctor doctor = (Doctor) searchById(doctorId);
+
+        if (doctor != null) {
+            doctor.assignPatient(patientId);
+        }
+    }
     private Doctor[] doctors = new Doctor[10];
     private int doctorCount = 0;
 }
