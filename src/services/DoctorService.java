@@ -97,6 +97,28 @@ public class DoctorService implements Manageable, Searchable {
             doctor.assignPatient(patientId);
         }
     }
+    // List doctors by specialization
+    public Doctor[] listBySpecialization(String specialization) {
+
+        Doctor[] results = new Doctor[doctorCount];
+        int resultCount = 0;
+
+        for (int i = 0; i < doctorCount; i++) {
+
+            if (doctors[i].getSpecialization().equalsIgnoreCase(specialization)) {
+                results[resultCount] = doctors[i];
+                resultCount++;
+            }
+        }
+
+        Doctor[] finalResults = new Doctor[resultCount];
+
+        for (int i = 0; i < resultCount; i++) {
+            finalResults[i] = results[i];
+        }
+
+        return finalResults;
+    }
     private Doctor[] doctors = new Doctor[10];
     private int doctorCount = 0;
 }
