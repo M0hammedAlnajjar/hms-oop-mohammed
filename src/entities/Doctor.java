@@ -100,6 +100,25 @@ for(String currentSlot :availableSlots){
 return false;
 
 }
+public void assignPatient(String patientId) {
+    if (assignedPatientIds == null || patientId.isBlank()) {
+        System.out.println("Invalid patient id");
+        return;
+
+    }
+    if (assignedPatientIds == null) {
+        assignedPatientIds = new String[]{patientId};
+        return;
+    }
+    String[] newPatientIds = new String[assignedPatientIds.length + 1];
+    for (int i = 0; i < assignedPatientIds.length; i++) {
+        newPatientIds[i] = assignedPatientIds[i];
+
+    }
+    newPatientIds[assignedPatientIds.length] = patientId;
+    assignedPatientIds = newPatientIds;
+}
+
 
 
 }
