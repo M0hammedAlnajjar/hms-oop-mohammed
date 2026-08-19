@@ -1,7 +1,5 @@
 package entities;
 
-import java.util.Arrays;
-
 public class Doctor extends Person {
 
     private String specialization;
@@ -28,7 +26,14 @@ public class Doctor extends Person {
         System.out.println("Experience Years: " + experienceYears);
         System.out.println("Consultation Fee: " + consultationFee);
         System.out.println("On Call: " + onCall);
-        System.out.println("Patient load: "+Arrays.toString(availableSlots));
+        System.out.println("Patient load: "+getPatientLoad());
 
+    }
+
+    private int getPatientLoad() {
+   if (availableSlots == null ) {
+       return 0;
+   }
+    return assignedPatientIds.length;
     }
 }
