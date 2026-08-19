@@ -79,6 +79,7 @@ public class Patient extends Person{
     @Override
     public void displayInfo() {
         super.displayInfo();
+
     }
 //(overloaded)
     public Patient(String id, String firstName, String lastName) {
@@ -86,7 +87,9 @@ public class Patient extends Person{
 
     }
 
+public void addAllergy(){
 
+}
 
 
 }
