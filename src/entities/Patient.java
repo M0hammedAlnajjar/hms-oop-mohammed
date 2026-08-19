@@ -67,6 +67,10 @@ public class Patient extends Person {
     }
 
     public void setOutstandingBalance(double outstandingBalance) {
+        if (outstandingBalance >=0) {
+            this.outstandingBalance = outstandingBalance;
+
+        }
         this.outstandingBalance = outstandingBalance;
     }
 
