@@ -52,7 +52,9 @@ public class Person implements Displayable {
     }
 
     public void setAge(int age) {
-        this.age = age;
+        if (age >=0 && age <=120) {
+            this.age = age;
+        }
     }
 
     public boolean isActive() {
