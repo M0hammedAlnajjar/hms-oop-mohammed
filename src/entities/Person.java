@@ -15,20 +15,31 @@ public class Person implements Displayable {
     private int age;
     private boolean active;
 
-    public Person(boolean active, String address, int age, String dateOfBirth, String email, String firstName, String gender, String id, String lastName, String nationalId, String phoneNumber) {
-        this.active = active;
-        this.address = address;
-        this.age = age;
-        this.dateOfBirth = dateOfBirth;
-        this.email = email;
-        this.firstName = firstName;
-        this.gender = gender;
+    public Person(
+            String id,
+            String firstName,
+            String lastName,
+            String dateOfBirth,
+            String gender,
+            String phoneNumber,
+            String email,
+            String address,
+            String nationalId,
+            int age,
+            boolean active
+    ) {
         this.id = id;
+        this.firstName = firstName;
         this.lastName = lastName;
-        this.nationalId = nationalId;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
         this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.nationalId = nationalId;
+        this.age = age;
+        this.active = active;
     }
-
 //overloaded
     public Person(String id, String firstName, String lastName, String dateOfBirth) {
     }
