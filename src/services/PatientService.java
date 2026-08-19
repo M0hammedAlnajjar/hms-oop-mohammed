@@ -81,7 +81,7 @@ public class PatientService implements Manageable, Searchable {
     }
     @Override
     public Object searchById(String id) {
-        return null;
+        return findPatient(id);
     }
 
     private Patient[] patients = new Patient[100];
