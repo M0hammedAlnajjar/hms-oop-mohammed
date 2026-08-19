@@ -72,6 +72,14 @@ public class RecordService implements Manageable, Searchable {
                 && password.length() >= 8;
     }
 
+    // Mask national ID
+    public static String maskNationalId(String nationalId) {
 
+        if (nationalId == null) {
+            return null;
+        }
+
+        return "****" + nationalId.substring(nationalId.length() - 4);
+    }
 
 }
