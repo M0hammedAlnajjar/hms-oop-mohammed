@@ -38,5 +38,19 @@ public class InputHandler {
 
             System.out.println("Number must be between " + min + " and " + max);
         }
+    }// Read a decimal number from the user
+    public double readDouble(String message) {
+
+        while (true) {
+
+            System.out.print(message);
+            String input = scanner.nextLine();
+
+            try {
+                return Double.parseDouble(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid decimal number. Try again.");
+            }
+        }
     }
 }
