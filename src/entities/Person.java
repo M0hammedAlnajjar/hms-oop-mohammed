@@ -125,9 +125,20 @@ public class Person implements Displayable {
     public String getFullName() {
         return firstName + " " + lastName;
     }
+
+    @Override
+    public void displayInfo() {
+
+    }
+
     public void displaySummary() {
         System.out.println("ID: " + id);
         System.out.println("Name: " + getFullName());
+    }
+
+    @Override
+    public boolean idAdult() {
+        return age >= 18;
     }
 }
 
