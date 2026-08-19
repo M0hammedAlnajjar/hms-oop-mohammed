@@ -34,9 +34,15 @@ public class RecordService implements Manageable, Searchable {
 
     @Override
     public Object[] getAll() {
-        return new Object[0];
-    }
 
+        MedicalRecord[] allRecords = new MedicalRecord[recordCount];
+
+        for (int i = 0; i < recordCount; i++) {
+            allRecords[i] = records[i];
+        }
+
+        return allRecords;
+    }
     @Override
     public Object[] search(String keyword) {
         return new Object[0];
