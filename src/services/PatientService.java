@@ -26,6 +26,16 @@ public class PatientService implements Manageable, Searchable {
 
     // Find a patient by first name and last name
     public Patient findPatient(String firstName, String lastName) {
+
+        for (int i = 0; i < patientCount; i++) {
+
+            if (patients[i].getFirstName().equalsIgnoreCase(firstName)
+                    && patients[i].getLastName().equalsIgnoreCase(lastName)) {
+
+                return patients[i];
+            }
+        }
+
         return null;
     }
     @Override
