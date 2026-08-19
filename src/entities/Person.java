@@ -94,6 +94,7 @@ public class Person implements Displayable {
     }
 
     public void setFirstName(String firstName) {
+        if(firstName != null && !firstName.isBlank()) {}
         this.firstName = firstName;
     }
 
