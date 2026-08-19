@@ -141,6 +141,17 @@ public class PatientService implements Manageable, Searchable {
 
         return finalResults;
     }
+    // Calculate total outstanding balance for all patients
+    public double totalOutstanding() {
+
+        double total = 0;
+
+        for (int i = 0; i < patientCount; i++) {
+            total += patients[i].getOutstandingBalance();
+        }
+
+        return total;
+    }
     private Patient[] patients = new Patient[100];
     private int patientCount = 0;
 
