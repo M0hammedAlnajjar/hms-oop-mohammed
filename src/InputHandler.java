@@ -25,5 +25,18 @@ public class InputHandler {
                 System.out.println("Invalid number. Try again.");
             }
         }
+    }// Read a whole number within a range
+    public int readIntInRange(String message, int min, int max) {
+
+        while (true) {
+
+            int number = readInt(message);
+
+            if (number >= min && number <= max) {
+                return number;
+            }
+
+            System.out.println("Number must be between " + min + " and " + max);
+        }
     }
 }
