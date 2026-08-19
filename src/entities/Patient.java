@@ -80,4 +80,9 @@ public class Patient extends Person{
     public void displayInfo() {
         super.displayInfo();
     }
+
+    public Patient(String id, String firstName, String lastName) {
+        super(id, firstName, lastName);
+
+    }
 }
