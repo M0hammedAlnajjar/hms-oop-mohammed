@@ -85,6 +85,8 @@ public class Patient extends Person{
         System.out.println("Emergency Contact: " + emergencyContact);
         System.out.println("Insured: " + insured);
         System.out.println("Medical Records: " + Arrays.toString(medicalRecordIds));
+        listAllergies();
+        System.out.println("Medical Records: " + getRecordCount());
 
     }
 //(overloaded)
