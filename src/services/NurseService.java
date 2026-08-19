@@ -1,7 +1,7 @@
 package services;
 import interfaces.Manageable;
 import interfaces.Searchable;
-
+import entities.Nurse;
 public class NurseService implements Manageable, Searchable {
     @Override
     public void add(Object entity) {
@@ -27,4 +27,7 @@ public class NurseService implements Manageable, Searchable {
     public Object searchById(String id) {
         return null;
     }
+    // Store nurses without generics
+    private Nurse[] nurses = new Nurse[10];
+    private int nurseCount = 0;
 }

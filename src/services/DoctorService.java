@@ -3,7 +3,7 @@ import interfaces.Manageable;
 import interfaces.Searchable;
 import entities.Doctor;
 import entities.Surgeon;
-import entities.Nurse;
+
 public class DoctorService implements Manageable, Searchable {
     @Override
     public void add(Object entity) {
@@ -144,7 +144,5 @@ public class DoctorService implements Manageable, Searchable {
     private Doctor[] doctors = new Doctor[10];
     private int doctorCount = 0;
 
-    // Store nurses without generics
-    private Nurse[] nurses = new Nurse[10];
-    private int nurseCount = 0;
+
 }
