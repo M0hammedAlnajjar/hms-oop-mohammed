@@ -119,6 +119,13 @@ public void assignPatient(String patientId) {
         }return  assignedPatientIds.length;
 
     }
+    public void raiseFee(double amount) {
+        if (amount>0){
+            consultationFee+=amount;
+
+        }else
+            System.out.println("Fee is out of range");
+    }
 
 
 
