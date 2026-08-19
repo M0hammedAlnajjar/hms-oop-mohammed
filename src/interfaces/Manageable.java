@@ -2,9 +2,9 @@ package interfaces;
 
 public interface Manageable {
 
-    void add();
+    void add(Object entity);
 
-    void remove();
+    void removeById(String id);
 
-    void update();
+    Object[] getAll();
 }

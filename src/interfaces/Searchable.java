@@ -2,7 +2,7 @@ package interfaces;
 
 public interface Searchable {
 
-    void search();
+    Object[] search(String keyword);
 
-    boolean exists();
+    Object searchById(String id);
 }
