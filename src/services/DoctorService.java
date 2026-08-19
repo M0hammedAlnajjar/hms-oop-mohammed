@@ -119,6 +119,28 @@ public class DoctorService implements Manageable, Searchable {
 
         return finalResults;
     }
+    // List available doctors
+    public Doctor[] availableDoctors() {
+
+        Doctor[] results = new Doctor[doctorCount];
+        int resultCount = 0;
+
+        for (int i = 0; i < doctorCount; i++) {
+
+            if (doctors[i].isOnCall()) {
+                results[resultCount] = doctors[i];
+                resultCount++;
+            }
+        }
+
+        Doctor[] finalResults = new Doctor[resultCount];
+
+        for (int i = 0; i < resultCount; i++) {
+            finalResults[i] = results[i];
+        }
+
+        return finalResults;
+    }
     private Doctor[] doctors = new Doctor[10];
     private int doctorCount = 0;
 }
