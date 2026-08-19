@@ -19,6 +19,54 @@ public class Doctor extends Person {
         this.specialization = specialization;
     }
 
+    public String[] getAssignedPatientIds() {
+        return assignedPatientIds;
+    }
+
+    public void setAssignedPatientIds(String[] assignedPatientIds) {
+        this.assignedPatientIds = assignedPatientIds;
+    }
+
+    public String[] getAvailableSlots() {
+        return availableSlots;
+    }
+
+    public void setAvailableSlots(String[] availableSlots) {
+        this.availableSlots = availableSlots;
+    }
+
+    public double getConsultationFee() {
+        return consultationFee;
+    }
+
+    public void setConsultationFee(double consultationFee) {
+        this.consultationFee = consultationFee;
+    }
+
+    public int getExperienceYears() {
+        return experienceYears;
+    }
+
+    public void setExperienceYears(int experienceYears) {
+        this.experienceYears = experienceYears;
+    }
+
+    public boolean isOnCall() {
+        return onCall;
+    }
+
+    public void setOnCall(boolean onCall) {
+        this.onCall = onCall;
+    }
+
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
+
     @Override
     public void displayInfo() {
         super.displayInfo();
@@ -63,10 +111,11 @@ public void removeSlot(String slot) {
         }
         int position = -1;
         for (int i = 0; i < availableSlots.length; i++) {
-           if(availableSlots[i] != null && availableSlots[i].equalsIgnoreCase(slot){
-               position = i;
-               break;
-           }
+           if(availableSlots[i] != null && availableSlots[i].equalsIgnoreCase(slot)) {
+
+                position = i;
+                break;
+            }
         }
         if (position == -1) {
             System.out.println("Slot not found");
