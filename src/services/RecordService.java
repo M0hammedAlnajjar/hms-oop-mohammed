@@ -53,6 +53,10 @@ public class RecordService implements Manageable, Searchable {
 
         return currentYear - birthYear;
     }
+    // Format a date
+    public static String formatDate(String date) {
+        return date;
+    }
 
 
 
