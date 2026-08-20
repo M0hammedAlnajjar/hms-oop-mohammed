@@ -275,6 +275,17 @@ public class HospitalApp {
                         break;
 
                     case "6":
+
+                        doctorId = IO.readln("Enter doctor ID: ");
+                        String patientId = IO.readln("Enter patient ID: ");
+
+                        doctorService.assignPatient(
+                                doctorId,
+                                patientId
+                        );
+
+                        System.out.println("Patient assigned to doctor.");
+
                         break;
 
                     case "7":
