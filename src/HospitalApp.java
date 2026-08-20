@@ -54,11 +54,63 @@ public class HospitalApp {
                     recordMenu();
                     break;
                 case "6":
+                    reportsMenu();
                     break;
 
                 case "7":
                     running = false;
                     System.out.println("Exiting Hospital Management System.");
+                    break;
+
+                default:
+                    System.out.println("Invalid option.");
+            }
+        }
+    }
+
+    private void reportsMenu() {
+
+        boolean back = false;
+
+        while (!back) {
+
+            System.out.println("\n===== REPORTS MENU =====");
+            System.out.println("1. Total Patients");
+            System.out.println("2. Total Doctors");
+            System.out.println("3. Total Nurses");
+            System.out.println("4. Total Appointments");
+            System.out.println("5. Total Medical Records");
+            System.out.println("6. Total Outstanding Balance");
+            System.out.println("7. Confidential Records Count");
+            System.out.println("8. Back");
+
+            String choice = IO.readln("Choose an option: ");
+
+            switch (choice) {
+
+                case "1":
+                    break;
+
+                case "2":
+                    break;
+
+                case "3":
+                    break;
+
+                case "4":
+                    break;
+
+                case "5":
+                    break;
+
+                case "6":
+                    break;
+
+                case "7":
+                    break;
+
+                case "8":
+                    back = true;
                     break;
 
                 default:
