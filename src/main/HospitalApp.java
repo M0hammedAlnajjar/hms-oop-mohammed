@@ -1534,12 +1534,102 @@ public class HospitalApp {
                                     "Enter last name: "
                             );
 
+                    String dateOfBirth =
+                            input.readText(
+                                    "Enter date of birth: "
+                            );
+
+                    String gender =
+                            input.readText(
+                                    "Enter gender: "
+                            );
+
+                    String phoneNumber =
+                            input.readText(
+                                    "Enter phone number: "
+                            );
+
+                    String email =
+                            input.readText(
+                                    "Enter email: "
+                            );
+
+                    String address =
+                            input.readText(
+                                    "Enter address: "
+                            );
+
+                    String nationalId =
+                            input.readText(
+                                    "Enter national ID: "
+                            );
+
+                    int age =
+                            input.readIntInRange(
+                                    "Enter age: ",
+                                    0,
+                                    120
+                            );
+
+                    boolean active =
+                            input.readYesNo(
+                                    "Active (yes/no): "
+                            );
+
+                    String bloodGroup =
+                            input.readText(
+                                    "Enter blood group: "
+                            );
+
+                    String emergencyContact =
+                            input.readText(
+                                    "Enter emergency contact: "
+                            );
+
+                    boolean insured =
+                            input.readYesNo(
+                                    "Insured (yes/no): "
+                            );
+
+                    double outstandingBalance =
+                            input.readDouble(
+                                    "Enter outstanding balance: "
+                            );
+
+                    String registrationDate =
+                            input.readText(
+                                    "Enter registration date: "
+                            );
+
+
                     Patient patient =
                             new Patient(
                                     id,
                                     firstName,
-                                    lastName
+                                    lastName,
+                                    dateOfBirth,
+                                    gender,
+                                    phoneNumber,
+                                    email,
+                                    address,
+                                    nationalId,
+                                    age,
+                                    active,
+
+                                    // No allergies initially
+                                    new String[0],
+
+                                    bloodGroup,
+                                    emergencyContact,
+                                    insured,
+
+                                    // No medical records initially
+                                    new String[0],
+
+                                    outstandingBalance,
+                                    registrationDate
                             );
+
 
                     patientService.add(patient);
 
