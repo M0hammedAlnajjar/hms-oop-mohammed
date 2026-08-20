@@ -1,5 +1,3 @@
-package main;
-
 import entities.Patient;
 import services.PatientService;
 
@@ -122,6 +120,26 @@ public class HospitalApp {
                     break;
 
                 case "3":
+
+                    String keyword = IO.readln("Enter patient name: ");
+
+                    Object[] searchResults = patientService.search(keyword);
+
+                    if (searchResults.length == 0) {
+
+                        System.out.println("No patient found.");
+
+                    } else {
+
+                        for (Object result : searchResults) {
+
+                            Patient foundPatient = (Patient) result;
+
+                            foundPatient.displayInfo();
+                            System.out.println("--------------------");
+                        }
+                    }
+
                     break;
 
                 case "4":

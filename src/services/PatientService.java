@@ -1,6 +1,7 @@
 package services;
 
 
+import entities.InPatient;
 import entities.Patient;
 import interfaces.Manageable;
 import interfaces.Searchable;
