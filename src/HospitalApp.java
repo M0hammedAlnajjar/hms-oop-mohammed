@@ -190,7 +190,7 @@ public class HospitalApp {
 
                 case "5":
 
-                    String shift = IO.readln("Enter shift: ");
+                    shift = IO.readln("Enter shift: ");
 
                     Nurse[] shiftNurses = nurseService.listByShift(shift);
 
@@ -210,6 +210,17 @@ public class HospitalApp {
                     break;
 
                 case "6":
+
+                    nurseId = IO.readln("Enter nurse ID: ");
+                    String newShift = IO.readln("Enter new shift: ");
+
+                    nurseService.reassign(
+                            nurseId,
+                            newShift
+                    );
+
+                    System.out.println("Nurse reassigned.");
+
                     break;
 
                 case "7":
