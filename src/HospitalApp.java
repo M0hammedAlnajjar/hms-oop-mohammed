@@ -118,6 +118,14 @@ public class HospitalApp {
                     break;
 
                 case "4":
+
+                    int totalAppointments =
+                            appointmentService.getAll().length;
+
+                    System.out.println(
+                            "Total Appointments: " + totalAppointments
+                    );
+
                     break;
 
                 case "5":
