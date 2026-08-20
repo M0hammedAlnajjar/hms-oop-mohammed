@@ -314,8 +314,24 @@ public class HospitalApp {
                         break;
 
                     case "8":
-                        break;
 
+                        Doctor[] availableDoctors =
+                                doctorService.availableDoctors();
+
+                        if (availableDoctors.length == 0) {
+
+                            System.out.println("No available doctors found.");
+
+                        } else {
+
+                            for (Doctor doctor : availableDoctors) {
+
+                                doctor.displayInfo();
+                                System.out.println("--------------------");
+                            }
+                        }
+
+                        break;
                     case "9":
                         back = true;
                         break;
