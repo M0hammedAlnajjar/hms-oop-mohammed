@@ -1,7 +1,8 @@
+import services.PatientService;
 public class HospitalApp {
 
     public static void main(String[] args) {
-
+        PatientService patientService = new PatientService();
         HospitalApp app = new HospitalApp();
         app.run();
     }
