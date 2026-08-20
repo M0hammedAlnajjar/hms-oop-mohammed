@@ -108,6 +108,13 @@ public class HospitalApp {
                     break;
 
                 case "3":
+
+                    int totalNurses = nurseService.getAll().length;
+
+                    System.out.println(
+                            "Total Nurses: " + totalNurses
+                    );
+
                     break;
 
                 case "4":
