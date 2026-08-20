@@ -6,9 +6,102 @@ import interfaces.Searchable;
 
 public class NurseService implements Manageable, Searchable {
 
-    // Store nurses without generics
     private Nurse[] nurses = new Nurse[10];
     private int nurseCount = 0;
+
+
+    public NurseService() {
+
+        seed(
+                "N001",
+                "Aisha",
+                "Salem",
+                "1995-01-10",
+                "Female",
+                "91111111",
+                "aisha@gmail.com",
+                "Muscat",
+                "30001",
+                31,
+                true,
+                "DEP01",
+                "Morning",
+                5
+        );
+
+        seed(
+                "N002",
+                "Salim",
+                "Ahmed",
+                "1993-04-12",
+                "Male",
+                "92222222",
+                "salim@gmail.com",
+                "Seeb",
+                "30002",
+                33,
+                true,
+                "DEP02",
+                "Evening",
+                7
+        );
+
+        seed(
+                "N003",
+                "Maryam",
+                "Ali",
+                "1998-09-20",
+                "Female",
+                "93333333",
+                "maryam@gmail.com",
+                "Bawshar",
+                "30003",
+                28,
+                true,
+                "DEP01",
+                "Night",
+                3
+        );
+    }
+
+
+    private void seed(
+            String id,
+            String firstName,
+            String lastName,
+            String dateOfBirth,
+            String gender,
+            String phoneNumber,
+            String email,
+            String address,
+            String nationalId,
+            int age,
+            boolean active,
+            String departmentId,
+            String shift,
+            int yearsOfService
+    ) {
+
+        Nurse nurse = new Nurse(
+                id,
+                firstName,
+                lastName,
+                dateOfBirth,
+                gender,
+                phoneNumber,
+                email,
+                address,
+                nationalId,
+                age,
+                active,
+                departmentId,
+                shift,
+                new String[0],
+                yearsOfService
+        );
+
+        add(nurse);
+    }
 
 
     @Override
@@ -35,19 +128,16 @@ public class NurseService implements Manageable, Searchable {
         for (int i = 0; i < nurseCount; i++) {
 
             if (nurses[i] != null
-                    && nurses[i].getId() != null
-                    && nurses[i].getId().equals(id)) {
+                    && nurses[i].getId().equalsIgnoreCase(id)) {
 
-                for (int j = i;
-                     j < nurseCount - 1;
-                     j++) {
-
+                for (int j = i; j < nurseCount - 1; j++) {
                     nurses[j] = nurses[j + 1];
                 }
 
                 nurses[nurseCount - 1] = null;
                 nurseCount--;
 
+                System.out.println("Nurse removed successfully.");
                 return;
             }
         }
@@ -73,32 +163,17 @@ public class NurseService implements Manageable, Searchable {
     @Override
     public Object[] search(String keyword) {
 
-        Nurse[] results =
-                new Nurse[nurseCount];
-
+        Nurse[] results = new Nurse[nurseCount];
         int resultCount = 0;
-
-        if (keyword == null || keyword.isBlank()) {
-            return new Nurse[0];
-        }
 
         for (int i = 0; i < nurseCount; i++) {
 
-            if (nurses[i] == null) {
-                continue;
-            }
+            if (nurses[i] != null
+                    && (nurses[i].getFirstName()
+                    .equalsIgnoreCase(keyword)
 
-            String firstName =
-                    nurses[i].getFirstName();
-
-            String lastName =
-                    nurses[i].getLastName();
-
-            if ((firstName != null
-                    && firstName.equalsIgnoreCase(keyword))
-                    ||
-                    (lastName != null
-                            && lastName.equalsIgnoreCase(keyword))) {
+                    || nurses[i].getLastName()
+                    .equalsIgnoreCase(keyword))) {
 
                 results[resultCount] = nurses[i];
                 resultCount++;
@@ -122,8 +197,8 @@ public class NurseService implements Manageable, Searchable {
         for (int i = 0; i < nurseCount; i++) {
 
             if (nurses[i] != null
-                    && nurses[i].getId() != null
-                    && nurses[i].getId().equals(id)) {
+                    && nurses[i].getId()
+                    .equalsIgnoreCase(id)) {
 
                 return nurses[i];
             }
@@ -133,24 +208,15 @@ public class NurseService implements Manageable, Searchable {
     }
 
 
-    // List nurses by shift
     public Nurse[] listByShift(String shift) {
 
-        Nurse[] results =
-                new Nurse[nurseCount];
-
+        Nurse[] results = new Nurse[nurseCount];
         int resultCount = 0;
-
-        if (shift == null || shift.isBlank()) {
-            return new Nurse[0];
-        }
 
         for (int i = 0; i < nurseCount; i++) {
 
             if (nurses[i] != null
-                    && nurses[i].getShift() != null
-                    && nurses[i]
-                    .getShift()
+                    && nurses[i].getShift()
                     .equalsIgnoreCase(shift)) {
 
                 results[resultCount] = nurses[i];
@@ -169,7 +235,6 @@ public class NurseService implements Manageable, Searchable {
     }
 
 
-    // Reassign nurse to another shift
     public void reassign(
             String nurseId,
             String newShift
@@ -184,5 +249,9 @@ public class NurseService implements Manageable, Searchable {
         }
 
         nurse.setShift(newShift);
+
+        System.out.println(
+                "Nurse reassigned successfully."
+        );
     }
 }

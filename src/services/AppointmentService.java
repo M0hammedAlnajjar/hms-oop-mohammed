@@ -12,7 +12,50 @@ public class AppointmentService implements Manageable, Searchable {
     private Appointment[] appointments = new Appointment[10];
     private int appointmentCount = 0;
 
+    public AppointmentService() {
 
+        schedule(
+                "P001",
+                "D001",
+                "2026-08-25",
+                "09:00"
+        );
+
+        schedule(
+                "P002",
+                "D002",
+                "2026-08-25",
+                "10:00"
+        );
+
+        schedule(
+                "P003",
+                "D003",
+                "2026-08-26",
+                "11:30"
+        );
+
+        schedule(
+                "P004",
+                "D001",
+                "2026-08-27",
+                "12:00"
+        );
+
+        schedule(
+                "P005",
+                "D004",
+                "2026-08-28",
+                "14:00"
+        );
+
+        schedule(
+                "P006",
+                "D002",
+                "2026-08-29",
+                "15:30"
+        );
+    }
     // Schedule appointment using IDs and date
     public Appointment schedule(
             String patientId,
@@ -41,7 +84,6 @@ public class AppointmentService implements Manageable, Searchable {
 
         return appointment;
     }
-
 
     // Schedule appointment using IDs, date and time
     public Appointment schedule(

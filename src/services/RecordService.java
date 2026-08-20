@@ -16,6 +16,89 @@ public class RecordService implements Manageable, Searchable {
     // =========================
     // Add Record
     // =========================
+    public RecordService() {
+
+        seed(
+                "R001",
+                "P001",
+                "D001",
+                "2026-08-20",
+                "Flu",
+                "Paracetamol",
+                "Rest and drink water",
+                false
+        );
+
+        seed(
+                "R002",
+                "P002",
+                "D002",
+                "2026-08-21",
+                "Allergy",
+                "Antihistamine",
+                "Follow up after one week",
+                false
+        );
+
+        seed(
+                "R003",
+                "P003",
+                "D003",
+                "2026-08-22",
+                "Migraine",
+                "Painkiller",
+                "Avoid stress",
+                true
+        );
+
+        seed(
+                "R004",
+                "P004",
+                "D001",
+                "2026-08-23",
+                "Hypertension",
+                "Medication",
+                "Check blood pressure daily",
+                true
+        );
+
+        seed(
+                "R005",
+                "P005",
+                "D004",
+                "2026-08-24",
+                "Surgery",
+                "Antibiotics",
+                "Post surgery follow up",
+                true
+        );
+    }
+
+    private void seed(
+            String recordId,
+            String patientId,
+            String doctorId,
+            String visitDate,
+            String diagnosis,
+            String prescription,
+            String notes,
+            boolean confidential
+    ) {
+
+        MedicalRecord record =
+                new MedicalRecord(
+                        confidential,
+                        diagnosis,
+                        doctorId,
+                        notes,
+                        patientId,
+                        prescription,
+                        recordId,
+                        visitDate
+                );
+
+        add(record);
+    }
 
     @Override
     public void add(Object entity) {
