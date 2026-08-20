@@ -192,6 +192,26 @@ public class HospitalApp {
                     break;
 
                 case "5":
+
+                    String patientId =
+                            IO.readln("Enter patient ID: ");
+
+                    MedicalRecord[] patientRecords =
+                            recordService.listByPatient(patientId);
+
+                    if (patientRecords.length == 0) {
+
+                        System.out.println("No medical records found for this patient.");
+
+                    } else {
+
+                        for (MedicalRecord patientRecord : patientRecords) {
+
+                            patientRecord.displayInfo();
+                            System.out.println("--------------------");
+                        }
+                    }
+
                     break;
 
                 case "6":
