@@ -7,80 +7,179 @@ import interfaces.Searchable;
 public class RecordService implements Manageable, Searchable {
 
     // Store medical records
-    private MedicalRecord[] records = new MedicalRecord[10];
+    private MedicalRecord[] records =
+            new MedicalRecord[10];
+
     private int recordCount = 0;
+
+
+    // =========================
+    // Add Record
+    // =========================
 
     @Override
     public void add(Object entity) {
 
-        if (entity instanceof MedicalRecord) {
-            records[recordCount] = (MedicalRecord) entity;
-            recordCount++;
+        if (!(entity instanceof MedicalRecord)) {
+            System.out.println("Invalid medical record.");
+            return;
         }
+
+        if (recordCount >= records.length) {
+            System.out.println("Record storage is full.");
+            return;
+        }
+
+        records[recordCount] =
+                (MedicalRecord) entity;
+
+        recordCount++;
     }
+
+
+    // =========================
+    // Remove Record By ID
+    // =========================
 
     @Override
     public void removeById(String id) {
 
+        if (id == null || id.isBlank()) {
+            System.out.println("Invalid record ID.");
+            return;
+        }
+
         for (int i = 0; i < recordCount; i++) {
 
-            if (records[i].getRecordId().equals(id)) {
+            if (records[i] != null
+                    && records[i].getRecordId() != null
+                    && records[i]
+                    .getRecordId()
+                    .equals(id)) {
 
-                for (int j = i; j < recordCount - 1; j++) {
-                    records[j] = records[j + 1];
+                for (int j = i;
+                     j < recordCount - 1;
+                     j++) {
+
+                    records[j] =
+                            records[j + 1];
                 }
 
-                records[recordCount - 1] = null;
+                records[recordCount - 1] =
+                        null;
+
                 recordCount--;
 
                 return;
             }
         }
+
+        System.out.println("Medical record not found.");
     }
+
+
+    // =========================
+    // Get All Records
+    // =========================
 
     @Override
     public Object[] getAll() {
 
-        MedicalRecord[] allRecords = new MedicalRecord[recordCount];
+        MedicalRecord[] allRecords =
+                new MedicalRecord[recordCount];
 
-        for (int i = 0; i < recordCount; i++) {
-            allRecords[i] = records[i];
+        for (int i = 0;
+             i < recordCount;
+             i++) {
+
+            allRecords[i] =
+                    records[i];
         }
 
         return allRecords;
     }
 
+
+    // =========================
+    // Search Records
+    // =========================
+
     @Override
     public Object[] search(String keyword) {
 
-        MedicalRecord[] results = new MedicalRecord[recordCount];
+        MedicalRecord[] results =
+                new MedicalRecord[recordCount];
+
         int resultCount = 0;
 
-        for (int i = 0; i < recordCount; i++) {
+        if (keyword == null || keyword.isBlank()) {
+            return new MedicalRecord[0];
+        }
 
-            if (records[i].getDiagnosis().equalsIgnoreCase(keyword)
-                    || records[i].getPrescription().equalsIgnoreCase(keyword)) {
+        for (int i = 0;
+             i < recordCount;
+             i++) {
 
-                results[resultCount] = records[i];
+            if (records[i] == null) {
+                continue;
+            }
+
+            String diagnosis =
+                    records[i].getDiagnosis();
+
+            String prescription =
+                    records[i].getPrescription();
+
+            if ((diagnosis != null
+                    && diagnosis.equalsIgnoreCase(keyword))
+                    ||
+                    (prescription != null
+                            && prescription
+                            .equalsIgnoreCase(keyword))) {
+
+                results[resultCount] =
+                        records[i];
+
                 resultCount++;
             }
         }
 
-        MedicalRecord[] finalResults = new MedicalRecord[resultCount];
+        MedicalRecord[] finalResults =
+                new MedicalRecord[resultCount];
 
-        for (int i = 0; i < resultCount; i++) {
-            finalResults[i] = results[i];
+        for (int i = 0;
+             i < resultCount;
+             i++) {
+
+            finalResults[i] =
+                    results[i];
         }
 
         return finalResults;
     }
 
+
+    // =========================
+    // Search Record By ID
+    // =========================
+
     @Override
     public Object searchById(String id) {
 
-        for (int i = 0; i < recordCount; i++) {
+        if (id == null || id.isBlank()) {
+            return null;
+        }
 
-            if (records[i].getRecordId().equals(id)) {
+        for (int i = 0;
+             i < recordCount;
+             i++) {
+
+            if (records[i] != null
+                    && records[i].getRecordId() != null
+                    && records[i]
+                    .getRecordId()
+                    .equals(id)) {
+
                 return records[i];
             }
         }
@@ -88,37 +187,73 @@ public class RecordService implements Manageable, Searchable {
         return null;
     }
 
-    // List medical records by patient ID
-    public MedicalRecord[] listByPatient(String patientId) {
 
-        MedicalRecord[] results = new MedicalRecord[recordCount];
+    // =========================
+    // List Records By Patient
+    // =========================
+
+    public MedicalRecord[] listByPatient(
+            String patientId
+    ) {
+
+        MedicalRecord[] results =
+                new MedicalRecord[recordCount];
+
         int resultCount = 0;
 
-        for (int i = 0; i < recordCount; i++) {
+        if (patientId == null
+                || patientId.isBlank()) {
 
-            if (records[i].getPatientId().equals(patientId)) {
-                results[resultCount] = records[i];
+            return new MedicalRecord[0];
+        }
+
+        for (int i = 0;
+             i < recordCount;
+             i++) {
+
+            if (records[i] != null
+                    && records[i].getPatientId() != null
+                    && records[i]
+                    .getPatientId()
+                    .equals(patientId)) {
+
+                results[resultCount] =
+                        records[i];
+
                 resultCount++;
             }
         }
 
-        MedicalRecord[] finalResults = new MedicalRecord[resultCount];
+        MedicalRecord[] finalResults =
+                new MedicalRecord[resultCount];
 
-        for (int i = 0; i < resultCount; i++) {
-            finalResults[i] = results[i];
+        for (int i = 0;
+             i < resultCount;
+             i++) {
+
+            finalResults[i] =
+                    results[i];
         }
 
         return finalResults;
     }
 
-    // Count confidential medical records
+
+    // =========================
+    // Count Confidential Records
+    // =========================
+
     public int countConfidential() {
 
         int count = 0;
 
-        for (int i = 0; i < recordCount; i++) {
+        for (int i = 0;
+             i < recordCount;
+             i++) {
 
-            if (records[i].isConfidential()) {
+            if (records[i] != null
+                    && records[i].isConfidential()) {
+
                 count++;
             }
         }
