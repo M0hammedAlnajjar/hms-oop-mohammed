@@ -9,6 +9,7 @@ public class HospitalApp {
     private NurseService nurseService = new NurseService();
     private AppointmentService appointmentService = new AppointmentService();
     private RecordService recordService = new RecordService();
+
     public static void main(String[] args) {
 
         HospitalApp app = new HospitalApp();
@@ -86,6 +87,47 @@ public class HospitalApp {
             switch (choice) {
 
                 case "1":
+
+                    String recordId =
+                            IO.readln("Enter record ID: ");
+
+                    String patientId =
+                            IO.readln("Enter patient ID: ");
+
+                    String doctorId =
+                            IO.readln("Enter doctor ID: ");
+
+                    String visitDate =
+                            IO.readln("Enter visit date: ");
+
+                    String diagnosis =
+                            IO.readln("Enter diagnosis: ");
+
+                    String prescription =
+                            IO.readln("Enter prescription: ");
+
+                    String notes =
+                            IO.readln("Enter notes: ");
+
+                    boolean confidential = Boolean.parseBoolean(
+                            IO.readln("Confidential (true/false): ")
+                    );
+
+                    MedicalRecord record = new MedicalRecord(
+                            confidential,
+                            diagnosis,
+                            doctorId,
+                            notes,
+                            patientId,
+                            prescription,
+                            recordId,
+                            visitDate
+                    );
+
+                    recordService.add(record);
+
+                    System.out.println("Medical record added successfully.");
+
                     break;
 
                 case "2":
