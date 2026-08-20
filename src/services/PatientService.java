@@ -1,23 +1,103 @@
 package services;
 
-
 import entities.InPatient;
 import entities.Patient;
 import interfaces.Manageable;
 import interfaces.Searchable;
 
-
-
-
 public class PatientService implements Manageable, Searchable {
 
+    private Patient[] patients = new Patient[100];
+    private int patientCount = 0;
 
-    // Find a patient by ID
+
+    // =========================
+    // addPatient Overloads
+    // =========================
+
+    // Add patient using basic details
+    public void addPatient(
+            String id,
+            String firstName,
+            String lastName
+    ) {
+
+        if (patientCount >= patients.length) {
+            System.out.println("Patient storage is full.");
+            return;
+        }
+
+        Patient patient = new Patient(
+                id,
+                firstName,
+                lastName
+        );
+
+        patients[patientCount] = patient;
+        patientCount++;
+    }
+
+
+    // Add patient using basic details and blood group
+    public void addPatient(
+            String id,
+            String firstName,
+            String lastName,
+            String bloodGroup
+    ) {
+
+        if (patientCount >= patients.length) {
+            System.out.println("Patient storage is full.");
+            return;
+        }
+
+        Patient patient = new Patient(
+                id,
+                firstName,
+                lastName
+        );
+
+        patient.setBloodGroup(bloodGroup);
+
+        patients[patientCount] = patient;
+        patientCount++;
+    }
+
+
+    // Add existing Patient object
+    public void addPatient(Patient patient) {
+
+        if (patient == null) {
+            System.out.println("Invalid patient.");
+            return;
+        }
+
+        if (patientCount >= patients.length) {
+            System.out.println("Patient storage is full.");
+            return;
+        }
+
+        patients[patientCount] = patient;
+        patientCount++;
+    }
+
+
+    // =========================
+    // Find Patient
+    // =========================
+
     public Patient findPatient(String id) {
 
+        if (id == null || id.isBlank()) {
+            return null;
+        }
+
         for (int i = 0; i < patientCount; i++) {
 
-            if (patients[i].getId().equals(id)) {
+            if (patients[i] != null
+                    && patients[i].getId() != null
+                    && patients[i].getId().equals(id)) {
+
                 return patients[i];
             }
         }
@@ -25,13 +105,29 @@ public class PatientService implements Manageable, Searchable {
         return null;
     }
 
-    // Find a patient by first name and last name
-    public Patient findPatient(String firstName, String lastName) {
+
+    // Overloaded findPatient
+    public Patient findPatient(
+            String firstName,
+            String lastName
+    ) {
 
         for (int i = 0; i < patientCount; i++) {
 
-            if (patients[i].getFirstName().equalsIgnoreCase(firstName)
-                    && patients[i].getLastName().equalsIgnoreCase(lastName)) {
+            if (patients[i] == null) {
+                continue;
+            }
+
+            String currentFirstName =
+                    patients[i].getFirstName();
+
+            String currentLastName =
+                    patients[i].getLastName();
+
+            if (currentFirstName != null
+                    && currentLastName != null
+                    && currentFirstName.equalsIgnoreCase(firstName)
+                    && currentLastName.equalsIgnoreCase(lastName)) {
 
                 return patients[i];
             }
@@ -39,23 +135,45 @@ public class PatientService implements Manageable, Searchable {
 
         return null;
     }
+
+
+    // =========================
+    // Manageable
+    // =========================
+
     @Override
     public void add(Object entity) {
 
-        if (entity instanceof Patient) {
-            patients[patientCount] = (Patient) entity;
-            patientCount++;
+        if (!(entity instanceof Patient)) {
+            System.out.println("Invalid patient.");
+            return;
         }
+
+        if (patientCount >= patients.length) {
+            System.out.println("Patient storage is full.");
+            return;
+        }
+
+        patients[patientCount] = (Patient) entity;
+        patientCount++;
     }
+
+
     @Override
     public void removeById(String id) {
 
         for (int i = 0; i < patientCount; i++) {
 
-            if (patients[i].getId().equals(id)) {
+            if (patients[i] != null
+                    && patients[i].getId() != null
+                    && patients[i].getId().equals(id)) {
 
-                for (int j = i; j < patientCount - 1; j++) {
-                    patients[j] = patients[j + 1];
+                for (int j = i;
+                     j < patientCount - 1;
+                     j++) {
+
+                    patients[j] =
+                            patients[j + 1];
                 }
 
                 patients[patientCount - 1] = null;
@@ -64,11 +182,16 @@ public class PatientService implements Manageable, Searchable {
                 return;
             }
         }
+
+        System.out.println("Patient not found.");
     }
+
+
     @Override
     public Object[] getAll() {
 
-        Patient[] allPatients = new Patient[patientCount];
+        Patient[] allPatients =
+                new Patient[patientCount];
 
         for (int i = 0; i < patientCount; i++) {
             allPatients[i] = patients[i];
@@ -76,23 +199,49 @@ public class PatientService implements Manageable, Searchable {
 
         return allPatients;
     }
+
+
+    // =========================
+    // Searchable
+    // =========================
+
     @Override
     public Object[] search(String keyword) {
 
-        Patient[] results = new Patient[patientCount];
+        Patient[] results =
+                new Patient[patientCount];
+
         int resultCount = 0;
+
+        if (keyword == null || keyword.isBlank()) {
+            return new Patient[0];
+        }
 
         for (int i = 0; i < patientCount; i++) {
 
-            if (patients[i].getFirstName().equalsIgnoreCase(keyword)
-                    || patients[i].getLastName().equalsIgnoreCase(keyword)) {
+            if (patients[i] == null) {
+                continue;
+            }
+
+            String firstName =
+                    patients[i].getFirstName();
+
+            String lastName =
+                    patients[i].getLastName();
+
+            if ((firstName != null
+                    && firstName.equalsIgnoreCase(keyword))
+                    ||
+                    (lastName != null
+                            && lastName.equalsIgnoreCase(keyword))) {
 
                 results[resultCount] = patients[i];
                 resultCount++;
             }
         }
 
-        Patient[] finalResults = new Patient[resultCount];
+        Patient[] finalResults =
+                new Patient[resultCount];
 
         for (int i = 0; i < resultCount; i++) {
             finalResults[i] = results[i];
@@ -100,40 +249,63 @@ public class PatientService implements Manageable, Searchable {
 
         return finalResults;
     }
+
+
     @Override
     public Object searchById(String id) {
         return findPatient(id);
     }
-    // Update an existing patient
-    // Update patient contact information
+
+
+    // =========================
+    // Update Contact
+    // =========================
+
     public void updateContact(
             String id,
             String phoneNumber,
             String email
     ) {
 
-        Patient patient = (Patient) searchById(id);
+        Patient patient =
+                (Patient) searchById(id);
 
-        if (patient != null) {
-            patient.updateContact(phoneNumber, email);
+        if (patient == null) {
+            System.out.println("Patient not found.");
+            return;
         }
+
+        patient.updateContact(
+                phoneNumber,
+                email
+        );
     }
-    // List all InPatients
+
+
+    // =========================
+    // List InPatients
+    // =========================
+
     public InPatient[] listInPatients() {
 
-        InPatient[] results = new InPatient[patientCount];
+        InPatient[] results =
+                new InPatient[patientCount];
+
         int count = 0;
 
         for (int i = 0; i < patientCount; i++) {
 
             if (patients[i] instanceof InPatient) {
 
-                results[count] = (InPatient) patients[i];
+                results[count] =
+                        (InPatient) patients[i];
+
                 count++;
             }
         }
 
-        InPatient[] finalResults = new InPatient[count];
+        InPatient[] finalResults =
+                new InPatient[count];
 
         for (int i = 0; i < count; i++) {
             finalResults[i] = results[i];
@@ -141,18 +313,24 @@ public class PatientService implements Manageable, Searchable {
 
         return finalResults;
     }
-    // Calculate total outstanding balance for all patients
+
+
+    // =========================
+    // Total Outstanding
+    // =========================
+
     public double totalOutstanding() {
 
         double total = 0;
 
         for (int i = 0; i < patientCount; i++) {
-            total += patients[i].getOutstandingBalance();
+
+            if (patients[i] != null) {
+                total += patients[i]
+                        .getOutstandingBalance();
+            }
         }
 
         return total;
     }
-    private Patient[] patients = new Patient[100];
-    private int patientCount = 0;
-
 }
