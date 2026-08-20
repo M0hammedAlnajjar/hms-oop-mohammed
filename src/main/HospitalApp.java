@@ -1497,18 +1497,16 @@ public class HospitalApp {
 
         while (!back) {
 
-            System.out.println(
-                    "\n===== PATIENT MENU ====="
-            );
-
+            System.out.println("\n===== PATIENT MENU =====");
             System.out.println("1. Add Patient");
-            System.out.println("2. View All Patients");
-            System.out.println("3. Search Patient");
-            System.out.println("4. Update Patient");
-            System.out.println("5. Remove Patient");
-            System.out.println("6. List InPatients");
-            System.out.println("7. Total Outstanding");
-            System.out.println("8. Back");
+            System.out.println("2. Add InPatient");
+            System.out.println("3. View All Patients");
+            System.out.println("4. Search Patient");
+            System.out.println("5. Update Patient");
+            System.out.println("6. Remove Patient");
+            System.out.println("7. List InPatients");
+            System.out.println("8. Total Outstanding");
+            System.out.println("9. Back");
 
             String choice =
                     input.readText(
@@ -1615,21 +1613,14 @@ public class HospitalApp {
                                     nationalId,
                                     age,
                                     active,
-
-                                    // No allergies initially
                                     new String[0],
-
                                     bloodGroup,
                                     emergencyContact,
                                     insured,
-
-                                    // No medical records initially
                                     new String[0],
-
                                     outstandingBalance,
                                     registrationDate
                             );
-
 
                     patientService.add(patient);
 
@@ -1640,7 +1631,151 @@ public class HospitalApp {
                     break;
                 }
 
+
                 case "2": {
+
+                    String id =
+                            input.readText(
+                                    "Enter patient ID: "
+                            );
+
+                    String firstName =
+                            input.readText(
+                                    "Enter first name: "
+                            );
+
+                    String lastName =
+                            input.readText(
+                                    "Enter last name: "
+                            );
+
+                    String dateOfBirth =
+                            input.readText(
+                                    "Enter date of birth: "
+                            );
+
+                    String gender =
+                            input.readText(
+                                    "Enter gender: "
+                            );
+
+                    String phoneNumber =
+                            input.readText(
+                                    "Enter phone number: "
+                            );
+
+                    String email =
+                            input.readText(
+                                    "Enter email: "
+                            );
+
+                    String address =
+                            input.readText(
+                                    "Enter address: "
+                            );
+
+                    String nationalId =
+                            input.readText(
+                                    "Enter national ID: "
+                            );
+
+                    int age =
+                            input.readIntInRange(
+                                    "Enter age: ",
+                                    0,
+                                    120
+                            );
+
+                    boolean active =
+                            input.readYesNo(
+                                    "Active (yes/no): "
+                            );
+
+                    String bloodGroup =
+                            input.readText(
+                                    "Enter blood group: "
+                            );
+
+                    String emergencyContact =
+                            input.readText(
+                                    "Enter emergency contact: "
+                            );
+
+                    boolean insured =
+                            input.readYesNo(
+                                    "Insured (yes/no): "
+                            );
+
+                    double outstandingBalance =
+                            input.readDouble(
+                                    "Enter outstanding balance: "
+                            );
+
+                    String registrationDate =
+                            input.readText(
+                                    "Enter registration date: "
+                            );
+
+                    String admissionDate =
+                            input.readText(
+                                    "Enter admission date: "
+                            );
+
+                    String roomNumber =
+                            input.readText(
+                                    "Enter room number: "
+                            );
+
+                    double dailyCharges =
+                            input.readDouble(
+                                    "Enter daily charges: "
+                            );
+
+                    int daysAdmitted =
+                            input.readIntInRange(
+                                    "Enter days admitted: ",
+                                    0,
+                                    3650
+                            );
+
+
+                    InPatient inPatient =
+                            new InPatient(
+                                    id,
+                                    firstName,
+                                    lastName,
+                                    dateOfBirth,
+                                    gender,
+                                    phoneNumber,
+                                    email,
+                                    address,
+                                    nationalId,
+                                    age,
+                                    active,
+                                    new String[0],
+                                    bloodGroup,
+                                    emergencyContact,
+                                    insured,
+                                    new String[0],
+                                    outstandingBalance,
+                                    registrationDate,
+                                    admissionDate,
+                                    roomNumber,
+                                    dailyCharges,
+                                    daysAdmitted
+                            );
+
+                    patientService.add(inPatient);
+
+                    System.out.println(
+                            "InPatient added successfully."
+                    );
+
+                    break;
+                }
+
+
+                case "3": {
 
                     Object[] patients =
                             patientService.getAll();
@@ -1653,8 +1788,7 @@ public class HospitalApp {
 
                     } else {
 
-                        for (Object patientObject
-                                : patients) {
+                        for (Object patientObject : patients) {
 
                             Patient currentPatient =
                                     (Patient) patientObject;
@@ -1670,7 +1804,8 @@ public class HospitalApp {
                     break;
                 }
 
-                case "3": {
+
+                case "4": {
 
                     String keyword =
                             input.readText(
@@ -1690,8 +1825,7 @@ public class HospitalApp {
 
                     } else {
 
-                        for (Object result
-                                : searchResults) {
+                        for (Object result : searchResults) {
 
                             Patient foundPatient =
                                     (Patient) result;
@@ -1707,7 +1841,8 @@ public class HospitalApp {
                     break;
                 }
 
-                case "4": {
+
+                case "5": {
 
                     String updateId =
                             input.readText(
@@ -1733,7 +1868,8 @@ public class HospitalApp {
                     break;
                 }
 
-                case "5": {
+
+                case "6": {
 
                     String removeId =
                             input.readText(
@@ -1747,7 +1883,8 @@ public class HospitalApp {
                     break;
                 }
 
-                case "6": {
+
+                case "7": {
 
                     InPatient[] inPatients =
                             patientService
@@ -1761,8 +1898,7 @@ public class HospitalApp {
 
                     } else {
 
-                        for (InPatient inPatient
-                                : inPatients) {
+                        for (InPatient inPatient : inPatients) {
 
                             inPatient.displayInfo();
 
@@ -1775,7 +1911,8 @@ public class HospitalApp {
                     break;
                 }
 
-                case "7": {
+
+                case "8": {
 
                     double totalOutstanding =
                             patientService
@@ -1789,11 +1926,13 @@ public class HospitalApp {
                     break;
                 }
 
-                case "8": {
+
+                case "9": {
 
                     back = true;
                     break;
                 }
+
 
                 default: {
 
@@ -1803,5 +1942,4 @@ public class HospitalApp {
                 }
             }
         }
-    }
-}
+    }}
