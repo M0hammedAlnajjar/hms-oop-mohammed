@@ -170,8 +170,27 @@ public class HospitalApp {
                     break;
 
                 case "6":
-                    break;
 
+                            patientId =
+                            IO.readln("Enter patient ID: ");
+
+                    Appointment[] patientAppointments =
+                            appointmentService.listByPatient(patientId);
+
+                    if (patientAppointments.length == 0) {
+
+                        System.out.println("No appointments found for this patient.");
+
+                    } else {
+
+                        for (Appointment patientAppointment : patientAppointments) {
+
+                            patientAppointment.displayInfo();
+                            System.out.println("--------------------");
+                        }
+                    }
+
+                    break;
                 case "7":
                     back = true;
                     break;
