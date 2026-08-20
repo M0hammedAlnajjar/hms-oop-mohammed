@@ -289,6 +289,28 @@ public class HospitalApp {
                         break;
 
                     case "7":
+
+                         specialization =
+                                IO.readln("Enter specialization: ");
+
+                        Doctor[] specializedDoctors =
+                                doctorService.listBySpecialization(specialization);
+
+                        if (specializedDoctors.length == 0) {
+
+                            System.out.println(
+                                    "No doctors found for this specialization."
+                            );
+
+                        } else {
+
+                            for (Doctor doctor : specializedDoctors) {
+
+                                doctor.displayInfo();
+                                System.out.println("--------------------");
+                            }
+                        }
+
                         break;
 
                     case "8":
