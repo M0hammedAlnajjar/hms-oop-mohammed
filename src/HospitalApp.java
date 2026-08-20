@@ -169,6 +169,26 @@ public class HospitalApp {
                         break;
 
                     case "3":
+
+                        String keyword = IO.readln("Enter doctor name or specialization: ");
+
+                        Object[] doctorResults = doctorService.search(keyword);
+
+                        if (doctorResults.length == 0) {
+
+                            System.out.println("No doctor found.");
+
+                        } else {
+
+                            for (Object result : doctorResults) {
+
+                                Doctor foundDoctor = (Doctor) result;
+
+                                foundDoctor.displayInfo();
+                                System.out.println("--------------------");
+                            }
+                        }
+
                         break;
 
                     case "4":
