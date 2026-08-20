@@ -1,9 +1,6 @@
-import entities.Doctor;
-import entities.Patient;
-import entities.Surgeon;
+import entities.*;
 import services.NurseService;
 import services.PatientService;
-import entities.InPatient;
 import services.DoctorService;
 public class HospitalApp {
 
@@ -139,6 +136,24 @@ public class HospitalApp {
                     break;
 
                 case "2":
+
+                    Object[] nurses = nurseService.getAll();
+
+                    if (nurses.length == 0) {
+
+                        System.out.println("No nurses found.");
+
+                    } else {
+
+                        for (Object nurseObject : nurses) {
+
+                            Nurse currentNurse = (Nurse) nurseObject;
+
+                            currentNurse.displayInfo();
+                            System.out.println("--------------------");
+                        }
+                    }
+
                     break;
 
                 case "3":
