@@ -1,5 +1,6 @@
 import entities.Doctor;
 import entities.Patient;
+import entities.Surgeon;
 import services.PatientService;
 import entities.InPatient;
 import services.DoctorService;
@@ -202,6 +203,75 @@ public class HospitalApp {
                         break;
 
                     case "5":
+
+                        String surgeonId = IO.readln("Enter surgeon ID: ");
+                         firstName = IO.readln("Enter first name: ");
+                         lastName = IO.readln("Enter last name: ");
+                         dateOfBirth = IO.readln("Enter date of birth: ");
+                         gender = IO.readln("Enter gender: ");
+                         phoneNumber = IO.readln("Enter phone number: ");
+                         email = IO.readln("Enter email: ");
+                         address = IO.readln("Enter address: ");
+                         nationalId = IO.readln("Enter national ID: ");
+
+                         age = Integer.parseInt(
+                                IO.readln("Enter age: ")
+                        );
+
+                         active = Boolean.parseBoolean(
+                                IO.readln("Active (true/false): ")
+                        );
+
+                         consultationFee = Double.parseDouble(
+                                IO.readln("Enter consultation fee: ")
+                        );
+
+                        experienceYears = Integer.parseInt(
+                                IO.readln("Enter experience years: ")
+                        );
+
+                         onCall = Boolean.parseBoolean(
+                                IO.readln("On call (true/false): ")
+                        );
+
+                         specialization =
+                                IO.readln("Enter specialization: ");
+
+                        int surgeriesPerformed = Integer.parseInt(
+                                IO.readln("Enter surgeries performed: ")
+                        );
+
+                        boolean theatreAccess = Boolean.parseBoolean(
+                                IO.readln("Operation theatre access (true/false): ")
+                        );
+
+                        Surgeon surgeon = new Surgeon(
+                                surgeonId,
+                                firstName,
+                                lastName,
+                                dateOfBirth,
+                                gender,
+                                phoneNumber,
+                                email,
+                                address,
+                                nationalId,
+                                age,
+                                active,
+                                new String[0],
+                                new String[0],
+                                consultationFee,
+                                experienceYears,
+                                onCall,
+                                specialization,
+                                surgeriesPerformed,
+                                theatreAccess,
+                                new String[0]
+                        );
+
+                        doctorService.addSurgeon(surgeon);
+
+                        System.out.println("Surgeon added successfully.");
+
                         break;
 
                     case "6":
