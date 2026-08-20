@@ -304,9 +304,9 @@ public class HospitalApp {
 
                         } else {
 
-                            for (Doctor doctor : specializedDoctors) {
+                            for (Doctor specializedDoctor : specializedDoctors) {
 
-                                doctor.displayInfo();
+                                specializedDoctor.displayInfo();
                                 System.out.println("--------------------");
                             }
                         }
@@ -324,9 +324,9 @@ public class HospitalApp {
 
                         } else {
 
-                            for (Doctor doctor : availableDoctors) {
+                            for (Doctor availableDoctor : availableDoctors) {
 
-                                doctor.displayInfo();
+                                availableDoctor.displayInfo();
                                 System.out.println("--------------------");
                             }
                         }
