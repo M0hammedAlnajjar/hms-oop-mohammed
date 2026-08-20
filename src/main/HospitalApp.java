@@ -2,30 +2,60 @@ package main;
 
 import entities.*;
 import services.*;
+import utils.InputHandler;
 
 public class HospitalApp {
 
-    // Patient service available to all methods
-    private PatientService patientService = new PatientService();
-    private DoctorService doctorService = new DoctorService();
-    private NurseService nurseService = new NurseService();
-    private AppointmentService appointmentService = new AppointmentService();
-    private RecordService recordService = new RecordService();
+    // =========================
+    // Services
+    // =========================
+
+    private PatientService patientService =
+            new PatientService();
+
+    private DoctorService doctorService =
+            new DoctorService();
+
+    private NurseService nurseService =
+            new NurseService();
+
+    private AppointmentService appointmentService =
+            new AppointmentService();
+
+    private RecordService recordService =
+            new RecordService();
+
+    private InputHandler input =
+            new InputHandler();
+
+
+    // =========================
+    // Main
+    // =========================
 
     public static void main(String[] args) {
 
-        HospitalApp app = new HospitalApp();
+        HospitalApp app =
+                new HospitalApp();
+
         app.run();
     }
 
-    // Start the hospital system
+
+    // =========================
+    // Main Menu
+    // =========================
+
     public void run() {
 
         boolean running = true;
 
         while (running) {
 
-            System.out.println("\n===== HOSPITAL MANAGEMENT SYSTEM =====");
+            System.out.println(
+                    "\n===== HOSPITAL MANAGEMENT SYSTEM ====="
+            );
+
             System.out.println("1. Patients");
             System.out.println("2. Doctors");
             System.out.println("3. Nurses");
@@ -34,41 +64,68 @@ public class HospitalApp {
             System.out.println("6. Reports");
             System.out.println("7. Exit");
 
-            String choice = IO.readln("Choose an option: ");
+            String choice =
+                    input.readText(
+                            "Choose an option: "
+                    );
 
             switch (choice) {
 
-                case "1":
+                case "1": {
                     patientMenu();
                     break;
-                case "2":
+                }
+
+                case "2": {
                     doctorMenu();
                     break;
+                }
 
-                case "3":
+                case "3": {
                     nurseMenu();
                     break;
+                }
 
-                case "4":
+                case "4": {
                     appointmentMenu();
                     break;
-                case "5":
+                }
+
+                case "5": {
                     recordMenu();
                     break;
-                case "6":
+                }
+
+                case "6": {
                     reportsMenu();
                     break;
+                }
 
-                case "7":
+                case "7": {
+
                     running = false;
-                    System.out.println("Exiting Hospital Management System.");
-                    break;
 
-                default:
-                    System.out.println("Invalid option.");
+                    System.out.println(
+                            "Exiting Hospital Management System."
+                    );
+
+                    break;
+                }
+
+                default: {
+
+                    System.out.println(
+                            "Invalid option."
+                    );
+                }
             }
         }
     }
+
+
+    // =========================
+    // Reports Menu
+    // =========================
 
     private void reportsMenu() {
 
@@ -76,7 +133,10 @@ public class HospitalApp {
 
         while (!back) {
 
-            System.out.println("\n===== REPORTS MENU =====");
+            System.out.println(
+                    "\n===== REPORTS MENU ====="
+            );
+
             System.out.println("1. Total Patients");
             System.out.println("2. Total Doctors");
             System.out.println("3. Total Nurses");
@@ -86,92 +146,136 @@ public class HospitalApp {
             System.out.println("7. Confidential Records Count");
             System.out.println("8. Back");
 
-            String choice = IO.readln("Choose an option: ");
+            String choice =
+                    input.readText(
+                            "Choose an option: "
+                    );
 
             switch (choice) {
-                case "1":
 
-                    int totalPatients = patientService.getAll().length;
+                case "1": {
+
+                    int totalPatients =
+                            patientService
+                                    .getAll()
+                                    .length;
 
                     System.out.println(
-                            "Total Patients: " + totalPatients
+                            "Total Patients: "
+                                    + totalPatients
                     );
 
                     break;
+                }
 
-                case "2":
+                case "2": {
 
-                    int totalDoctors = doctorService.getAll().length;
+                    int totalDoctors =
+                            doctorService
+                                    .getAll()
+                                    .length;
 
                     System.out.println(
-                            "Total Doctors: " + totalDoctors
+                            "Total Doctors: "
+                                    + totalDoctors
                     );
 
                     break;
+                }
 
-                case "3":
+                case "3": {
 
-                    int totalNurses = nurseService.getAll().length;
+                    int totalNurses =
+                            nurseService
+                                    .getAll()
+                                    .length;
 
                     System.out.println(
-                            "Total Nurses: " + totalNurses
+                            "Total Nurses: "
+                                    + totalNurses
                     );
 
                     break;
+                }
 
-                case "4":
+                case "4": {
 
                     int totalAppointments =
-                            appointmentService.getAll().length;
+                            appointmentService
+                                    .getAll()
+                                    .length;
 
                     System.out.println(
-                            "Total Appointments: " + totalAppointments
+                            "Total Appointments: "
+                                    + totalAppointments
                     );
 
                     break;
+                }
 
-                case "5":
+                case "5": {
 
                     int totalRecords =
-                            recordService.getAll().length;
+                            recordService
+                                    .getAll()
+                                    .length;
 
                     System.out.println(
-                            "Total Medical Records: " + totalRecords
+                            "Total Medical Records: "
+                                    + totalRecords
                     );
 
                     break;
+                }
 
-                case "6":
+                case "6": {
 
                     double totalOutstanding =
-                            patientService.totalOutstanding();
+                            patientService
+                                    .totalOutstanding();
 
                     System.out.println(
-                            "Total Outstanding Balance: " + totalOutstanding
+                            "Total Outstanding Balance: "
+                                    + totalOutstanding
                     );
 
                     break;
+                }
 
-                case "7":
+                case "7": {
 
                     int confidentialRecords =
-                            recordService.countConfidential();
+                            recordService
+                                    .countConfidential();
 
                     System.out.println(
-                            "Confidential Records Count: " + confidentialRecords
+                            "Confidential Records Count: "
+                                    + confidentialRecords
                     );
 
                     break;
+                }
 
-                case "8":
+                case "8": {
+
                     back = true;
                     break;
+                }
 
-                default:
-                    System.out.println("Invalid option.");
+                default: {
+
+                    System.out.println(
+                            "Invalid option."
+                    );
+                }
             }
         }
     }
+
+
+    // =========================
+    // Medical Record Menu
+    // =========================
 
     private void recordMenu() {
 
@@ -179,7 +283,10 @@ public class HospitalApp {
 
         while (!back) {
 
-            System.out.println("\n===== MEDICAL RECORD MENU =====");
+            System.out.println(
+                    "\n===== MEDICAL RECORD MENU ====="
+            );
+
             System.out.println("1. Add Medical Record");
             System.out.println("2. View All Medical Records");
             System.out.println("3. Search Medical Record");
@@ -188,61 +295,86 @@ public class HospitalApp {
             System.out.println("6. Count Confidential Records");
             System.out.println("7. Back");
 
-            String choice = IO.readln("Choose an option: ");
+            String choice =
+                    input.readText(
+                            "Choose an option: "
+                    );
 
             switch (choice) {
 
-                case "1":
+                case "1": {
 
                     String recordId =
-                            IO.readln("Enter record ID: ");
+                            input.readText(
+                                    "Enter record ID: "
+                            );
 
                     String patientId =
-                            IO.readln("Enter patient ID: ");
+                            input.readText(
+                                    "Enter patient ID: "
+                            );
 
                     String doctorId =
-                            IO.readln("Enter doctor ID: ");
+                            input.readText(
+                                    "Enter doctor ID: "
+                            );
 
                     String visitDate =
-                            IO.readln("Enter visit date: ");
+                            input.readText(
+                                    "Enter visit date: "
+                            );
 
                     String diagnosis =
-                            IO.readln("Enter diagnosis: ");
+                            input.readText(
+                                    "Enter diagnosis: "
+                            );
 
                     String prescription =
-                            IO.readln("Enter prescription: ");
+                            input.readText(
+                                    "Enter prescription: "
+                            );
 
                     String notes =
-                            IO.readln("Enter notes: ");
+                            input.readText(
+                                    "Enter notes: "
+                            );
 
-                    boolean confidential = Boolean.parseBoolean(
-                            IO.readln("Confidential (true/false): ")
-                    );
+                    boolean confidential =
+                            input.readYesNo(
+                                    "Confidential (yes/no): "
+                            );
 
-                    MedicalRecord record = new MedicalRecord(
-                            confidential,
-                            diagnosis,
-                            doctorId,
-                            notes,
-                            patientId,
-                            prescription,
-                            recordId,
-                            visitDate
-                    );
+                    MedicalRecord record =
+                            new MedicalRecord(
+                                    confidential,
+                                    diagnosis,
+                                    doctorId,
+                                    notes,
+                                    patientId,
+                                    prescription,
+                                    recordId,
+                                    visitDate
+                            );
 
                     recordService.add(record);
 
-                    System.out.println("Medical record added successfully.");
+                    System.out.println(
+                            "Medical record added successfully."
+                    );
 
                     break;
+                }
 
-                case "2":
+                case "2": {
 
-                    Object[] records = recordService.getAll();
+                    Object[] records =
+                            recordService.getAll();
 
                     if (records.length == 0) {
 
-                        System.out.println("No medical records found.");
+                        System.out.println(
+                                "No medical records found."
+                        );
 
                     } else {
 
@@ -253,92 +385,135 @@ public class HospitalApp {
 
                             currentRecord.displayInfo();
 
-                            System.out.println("--------------------");
+                            System.out.println(
+                                    "--------------------"
+                            );
                         }
                     }
 
                     break;
+                }
 
-                case "3":
+                case "3": {
 
                     String keyword =
-                            IO.readln("Enter diagnosis or prescription: ");
+                            input.readText(
+                                    "Enter diagnosis or prescription: "
+                            );
 
                     Object[] recordResults =
-                            recordService.search(keyword);
+                            recordService.search(
+                                    keyword
+                            );
 
                     if (recordResults.length == 0) {
 
-                        System.out.println("No medical records found.");
+                        System.out.println(
+                                "No medical records found."
+                        );
 
                     } else {
 
-                        for (Object result : recordResults) {
+                        for (Object result
+                                : recordResults) {
 
                             MedicalRecord foundRecord =
                                     (MedicalRecord) result;
 
                             foundRecord.displayInfo();
 
-                            System.out.println("--------------------");
+                            System.out.println(
+                                    "--------------------"
+                            );
                         }
                     }
 
                     break;
+                }
 
-                case "4":
+                case "4": {
 
                     String removeRecordId =
-                            IO.readln("Enter record ID: ");
+                            input.readText(
+                                    "Enter record ID: "
+                            );
 
-                    recordService.removeById(removeRecordId);
-
-                    System.out.println("Medical record removed.");
-
-                    break;
-
-                case "5":
-
-                    patientId = IO.readln("Enter patient ID: ");
-
-                    MedicalRecord[] patientRecords =
-                            recordService.listByPatient(patientId);
-
-                    if (patientRecords.length == 0) {
-
-                        System.out.println("No medical records found for this patient.");
-
-                    } else {
-
-                        for (MedicalRecord patientRecord : patientRecords) {
-
-                            patientRecord.displayInfo();
-                            System.out.println("--------------------");
-                        }
-                    }
-
-                    break;
-
-                case "6":
-
-                    int confidentialCount =
-                            recordService.countConfidential();
-
-                    System.out.println(
-                            "Confidential Records Count: " + confidentialCount
+                    recordService.removeById(
+                            removeRecordId
                     );
 
                     break;
+                }
 
-                case "7":
+                case "5": {
+
+                    String patientId =
+                            input.readText(
+                                    "Enter patient ID: "
+                            );
+
+                    MedicalRecord[] patientRecords =
+                            recordService
+                                    .listByPatient(
+                                            patientId
+                                    );
+
+                    if (patientRecords.length == 0) {
+
+                        System.out.println(
+                                "No medical records found for this patient."
+                        );
+
+                    } else {
+
+                        for (MedicalRecord patientRecord
+                                : patientRecords) {
+
+                            patientRecord.displayInfo();
+
+                            System.out.println(
+                                    "--------------------"
+                            );
+                        }
+                    }
+
+                    break;
+                }
+
+                case "6": {
+
+                    int confidentialCount =
+                            recordService
+                                    .countConfidential();
+
+                    System.out.println(
+                            "Confidential Records Count: "
+                                    + confidentialCount
+                    );
+
+                    break;
+                }
+
+                case "7": {
+
                     back = true;
                     break;
+                }
 
-                default:
-                    System.out.println("Invalid option.");
+                default: {
+
+                    System.out.println(
+                            "Invalid option."
+                    );
+                }
             }
         }
     }
+
+
+    // =========================
+    // Appointment Menu
+    // =========================
 
     private void appointmentMenu() {
 
@@ -346,7 +521,10 @@ public class HospitalApp {
 
         while (!back) {
 
-            System.out.println("\n===== APPOINTMENT MENU =====");
+            System.out.println(
+                    "\n===== APPOINTMENT MENU ====="
+            );
+
             System.out.println("1. Schedule Appointment");
             System.out.println("2. Cancel Appointment");
             System.out.println("3. Complete Appointment");
@@ -355,130 +533,216 @@ public class HospitalApp {
             System.out.println("6. List By Patient");
             System.out.println("7. Back");
 
-            String choice = IO.readln("Choose an option: ");
+            String choice =
+                    input.readText(
+                            "Choose an option: "
+                    );
 
             switch (choice) {
 
-                case "1":
+                case "1": {
 
-                    String patientId = IO.readln("Enter patient ID: ");
-                    String doctorId = IO.readln("Enter doctor ID: ");
-                    String date = IO.readln("Enter appointment date: ");
-                    String time = IO.readln("Enter appointment time: ");
+                    String patientId =
+                            input.readText(
+                                    "Enter patient ID: "
+                            );
 
-                    appointmentService.schedule(
-                            patientId,
-                            doctorId,
-                            date,
-                            time
-                    );
+                    String doctorId =
+                            input.readText(
+                                    "Enter doctor ID: "
+                            );
 
-                    System.out.println("Appointment scheduled successfully.");
+                    String date =
+                            input.readText(
+                                    "Enter appointment date: "
+                            );
+
+                    String time =
+                            input.readText(
+                                    "Enter appointment time: "
+                            );
+
+                    Appointment appointment =
+                            appointmentService.schedule(
+                                    patientId,
+                                    doctorId,
+                                    date,
+                                    time
+                            );
+
+                    if (appointment != null) {
+
+                        System.out.println(
+                                "Appointment scheduled successfully."
+                        );
+                    }
 
                     break;
-                case "2":
+                }
+
+                case "2": {
 
                     String appointmentId =
-                            IO.readln("Enter appointment ID: ");
+                            input.readText(
+                                    "Enter appointment ID: "
+                            );
 
-                    appointmentService.cancel(appointmentId);
-
-                    System.out.println("Appointment cancelled.");
-
-                    break;
-                case "3":
-
-                    String completeAppointmentId =
-                            IO.readln("Enter appointment ID: ");
-
-                    appointmentService.complete(completeAppointmentId);
-
-                    System.out.println("Appointment completed.");
+                    appointmentService.cancel(
+                            appointmentId
+                    );
 
                     break;
+                }
 
-                case "4":
+                case "3": {
 
-                    String rescheduleId =
-                            IO.readln("Enter appointment ID: ");
+                    String appointmentId =
+                            input.readText(
+                                    "Enter appointment ID: "
+                            );
+
+                    appointmentService.complete(
+                            appointmentId
+                    );
+
+                    break;
+                }
+
+                case "4": {
+
+                    String appointmentId =
+                            input.readText(
+                                    "Enter appointment ID: "
+                            );
 
                     String newDate =
-                            IO.readln("Enter new appointment date: ");
+                            input.readText(
+                                    "Enter new appointment date: "
+                            );
 
                     String newTime =
-                            IO.readln("Enter new appointment time: ");
+                            input.readText(
+                                    "Enter new appointment time: "
+                            );
 
                     appointmentService.reschedule(
-                            rescheduleId,
+                            appointmentId,
                             newDate,
                             newTime
                     );
 
-                    System.out.println("Appointment rescheduled successfully.");
-
                     break;
+                }
 
-                case "5":
+                case "5": {
+
+                    String[] allowedStatus = {
+                            "Scheduled",
+                            "Completed",
+                            "Cancelled",
+                            "Rescheduled"
+                    };
 
                     String status =
-                            IO.readln("Enter appointment status: ");
+                            input.readFromAllowedSet(
+                                    "Enter appointment status: ",
+                                    allowedStatus
+                            );
 
                     Appointment[] statusAppointments =
-                            appointmentService.listByStatus(status);
+                            appointmentService
+                                    .listByStatus(
+                                            status
+                                    );
 
                     if (statusAppointments.length == 0) {
 
-                        System.out.println("No appointments found with this status.");
+                        System.out.println(
+                                "No appointments found with this status."
+                        );
 
                     } else {
 
-                        for (Appointment statusAppointment : statusAppointments) {
+                        for (Appointment statusAppointment
+                                : statusAppointments) {
 
                             statusAppointment.displayInfo();
-                            System.out.println("--------------------");
+
+                            System.out.println(
+                                    "--------------------"
+                            );
                         }
                     }
 
                     break;
+                }
 
-                case "6":
+                case "6": {
 
-                            patientId =
-                            IO.readln("Enter patient ID: ");
+                    String patientId =
+                            input.readText(
+                                    "Enter patient ID: "
+                            );
 
                     Appointment[] patientAppointments =
-                            appointmentService.listByPatient(patientId);
+                            appointmentService
+                                    .listByPatient(
+                                            patientId
+                                    );
 
                     if (patientAppointments.length == 0) {
 
-                        System.out.println("No appointments found for this patient.");
+                        System.out.println(
+                                "No appointments found for this patient."
+                        );
 
                     } else {
 
-                        for (Appointment patientAppointment : patientAppointments) {
+                        for (Appointment patientAppointment
+                                : patientAppointments) {
 
                             patientAppointment.displayInfo();
-                            System.out.println("--------------------");
+
+                            System.out.println(
+                                    "--------------------"
+                            );
                         }
                     }
 
                     break;
-                case "7":
+                }
+
+                case "7": {
+
                     back = true;
                     break;
+                }
 
-                default:
-                    System.out.println("Invalid option.");
+                default: {
+
+                    System.out.println(
+                            "Invalid option."
+                    );
+                }
             }
         }
     }
+
+
+    // =========================
+    // Nurse Menu
+    // =========================
+
     private void nurseMenu() {
 
         boolean back = false;
 
         while (!back) {
 
-            System.out.println("\n===== NURSE MENU =====");
+            System.out.println(
+                    "\n===== NURSE MENU ====="
+            );
+
             System.out.println("1. Add Nurse");
             System.out.println("2. View All Nurses");
             System.out.println("3. Search Nurse");
@@ -487,444 +751,756 @@ public class HospitalApp {
             System.out.println("6. Reassign Nurse");
             System.out.println("7. Back");
 
-            String choice = IO.readln("Choose an option: ");
+            String choice =
+                    input.readText(
+                            "Choose an option: "
+                    );
 
             switch (choice) {
 
-                case "1":
+                case "1": {
 
-                    String nurseId = IO.readln("Enter nurse ID: ");
-                    String firstName = IO.readln("Enter first name: ");
-                    String lastName = IO.readln("Enter last name: ");
-                    String dateOfBirth = IO.readln("Enter date of birth: ");
-                    String gender = IO.readln("Enter gender: ");
-                    String phoneNumber = IO.readln("Enter phone number: ");
-                    String email = IO.readln("Enter email: ");
-                    String address = IO.readln("Enter address: ");
-                    String nationalId = IO.readln("Enter national ID: ");
+                    String nurseId =
+                            input.readText(
+                                    "Enter nurse ID: "
+                            );
 
-                    int age = Integer.parseInt(
-                            IO.readln("Enter age: ")
-                    );
+                    String firstName =
+                            input.readText(
+                                    "Enter first name: "
+                            );
 
-                    boolean active = Boolean.parseBoolean(
-                            IO.readln("Active (true/false): ")
-                    );
+                    String lastName =
+                            input.readText(
+                                    "Enter last name: "
+                            );
 
-                    String departmentId = IO.readln("Enter department ID: ");
-                    String shift = IO.readln("Enter shift: ");
+                    String dateOfBirth =
+                            input.readText(
+                                    "Enter date of birth: "
+                            );
 
-                    int yearsOfService = Integer.parseInt(
-                            IO.readln("Enter years of service: ")
-                    );
+                    String gender =
+                            input.readText(
+                                    "Enter gender: "
+                            );
 
-                    Nurse nurse = new Nurse(
-                            nurseId,
-                            firstName,
-                            lastName,
-                            dateOfBirth,
-                            gender,
-                            phoneNumber,
-                            email,
-                            address,
-                            nationalId,
-                            age,
-                            active,
-                            departmentId,
-                            shift,
-                            new String[0],
-                            yearsOfService
-                    );
+                    String phoneNumber =
+                            input.readText(
+                                    "Enter phone number: "
+                            );
+
+                    String email =
+                            input.readText(
+                                    "Enter email: "
+                            );
+
+                    String address =
+                            input.readText(
+                                    "Enter address: "
+                            );
+
+                    String nationalId =
+                            input.readText(
+                                    "Enter national ID: "
+                            );
+
+                    int age =
+                            input.readIntInRange(
+                                    "Enter age: ",
+                                    0,
+                                    120
+                            );
+
+                    boolean active =
+                            input.readYesNo(
+                                    "Active (yes/no): "
+                            );
+
+                    String departmentId =
+                            input.readText(
+                                    "Enter department ID: "
+                            );
+
+                    String[] allowedShifts = {
+                            "Morning",
+                            "Evening",
+                            "Night"
+                    };
+
+                    String shift =
+                            input.readFromAllowedSet(
+                                    "Enter shift: ",
+                                    allowedShifts
+                            );
+
+                    int yearsOfService =
+                            input.readIntInRange(
+                                    "Enter years of service: ",
+                                    0,
+                                    80
+                            );
+
+                    Nurse nurse =
+                            new Nurse(
+                                    nurseId,
+                                    firstName,
+                                    lastName,
+                                    dateOfBirth,
+                                    gender,
+                                    phoneNumber,
+                                    email,
+                                    address,
+                                    nationalId,
+                                    age,
+                                    active,
+                                    departmentId,
+                                    shift,
+                                    new String[0],
+                                    yearsOfService
+                            );
 
                     nurseService.add(nurse);
 
-                    System.out.println("Nurse added successfully.");
+                    System.out.println(
+                            "Nurse added successfully."
+                    );
 
                     break;
+                }
 
-                case "2":
+                case "2": {
 
-                    Object[] nurses = nurseService.getAll();
+                    Object[] nurses =
+                            nurseService.getAll();
 
                     if (nurses.length == 0) {
 
-                        System.out.println("No nurses found.");
+                        System.out.println(
+                                "No nurses found."
+                        );
 
                     } else {
 
-                        for (Object nurseObject : nurses) {
+                        for (Object nurseObject
+                                : nurses) {
 
-                            Nurse currentNurse = (Nurse) nurseObject;
+                            Nurse currentNurse =
+                                    (Nurse) nurseObject;
 
                             currentNurse.displayInfo();
-                            System.out.println("--------------------");
+
+                            System.out.println(
+                                    "--------------------"
+                            );
                         }
                     }
 
                     break;
+                }
 
-                case "3":
+                case "3": {
 
-                    String keyword = IO.readln("Enter nurse name: ");
+                    String keyword =
+                            input.readText(
+                                    "Enter nurse name: "
+                            );
 
-                    Object[] nurseResults = nurseService.search(keyword);
+                    Object[] nurseResults =
+                            nurseService.search(
+                                    keyword
+                            );
 
                     if (nurseResults.length == 0) {
 
-                        System.out.println("No nurse found.");
+                        System.out.println(
+                                "No nurse found."
+                        );
 
                     } else {
 
-                        for (Object result : nurseResults) {
+                        for (Object result
+                                : nurseResults) {
 
-                            Nurse foundNurse = (Nurse) result;
+                            Nurse foundNurse =
+                                    (Nurse) result;
 
                             foundNurse.displayInfo();
-                            System.out.println("--------------------");
+
+                            System.out.println(
+                                    "--------------------"
+                            );
                         }
                     }
 
                     break;
-                case "4":
+                }
 
-                    nurseId = IO.readln("Enter nurse ID: ");
+                case "4": {
 
-                    nurseService.removeById(nurseId);
+                    String nurseId =
+                            input.readText(
+                                    "Enter nurse ID: "
+                            );
 
-                    System.out.println("Nurse removed.");
+                    nurseService.removeById(
+                            nurseId
+                    );
 
                     break;
+                }
 
-                case "5":
+                case "5": {
 
-                    shift = IO.readln("Enter shift: ");
+                    String[] allowedShifts = {
+                            "Morning",
+                            "Evening",
+                            "Night"
+                    };
 
-                    Nurse[] shiftNurses = nurseService.listByShift(shift);
+                    String shift =
+                            input.readFromAllowedSet(
+                                    "Enter shift: ",
+                                    allowedShifts
+                            );
+
+                    Nurse[] shiftNurses =
+                            nurseService
+                                    .listByShift(
+                                            shift
+                                    );
 
                     if (shiftNurses.length == 0) {
 
-                        System.out.println("No nurses found for this shift.");
+                        System.out.println(
+                                "No nurses found for this shift."
+                        );
 
                     } else {
 
-                        for (Nurse shiftNurse : shiftNurses) {
+                        for (Nurse shiftNurse
+                                : shiftNurses) {
 
                             shiftNurse.displayInfo();
-                            System.out.println("--------------------");
+
+                            System.out.println(
+                                    "--------------------"
+                            );
                         }
                     }
 
                     break;
+                }
 
-                case "6":
+                case "6": {
 
-                    nurseId = IO.readln("Enter nurse ID: ");
-                    String newShift = IO.readln("Enter new shift: ");
+                    String nurseId =
+                            input.readText(
+                                    "Enter nurse ID: "
+                            );
+
+                    String[] allowedShifts = {
+                            "Morning",
+                            "Evening",
+                            "Night"
+                    };
+
+                    String newShift =
+                            input.readFromAllowedSet(
+                                    "Enter new shift: ",
+                                    allowedShifts
+                            );
 
                     nurseService.reassign(
                             nurseId,
                             newShift
                     );
 
-                    System.out.println("Nurse reassigned.");
-
                     break;
+                }
 
-                case "7":
+                case "7": {
+
                     back = true;
                     break;
+                }
 
-                default:
-                    System.out.println("Invalid option.");
+                default: {
+
+                    System.out.println(
+                            "Invalid option."
+                    );
+                }
             }
         }
     }
 
+
+    // =========================
+    // Doctor Menu
+    // =========================
+
     private void doctorMenu() {
 
-            boolean back = false;
-
-            while (!back) {
-
-                System.out.println("\n===== DOCTOR MENU =====");
-                System.out.println("1. Add Doctor");
-                System.out.println("2. View All Doctors");
-                System.out.println("3. Search Doctor");
-                System.out.println("4. Remove Doctor");
-                System.out.println("5. Add Surgeon");
-                System.out.println("6. Assign Patient");
-                System.out.println("7. List By Specialization");
-                System.out.println("8. Available Doctors");
-                System.out.println("9. Back");
-
-                String choice = IO.readln("Choose an option: ");
-
-                switch (choice) {
-
-                    case "1":
-
-                        String doctorId = IO.readln("Enter doctor ID: ");
-                        String firstName = IO.readln("Enter first name: ");
-                        String lastName = IO.readln("Enter last name: ");
-                        String dateOfBirth = IO.readln("Enter date of birth: ");
-                        String gender = IO.readln("Enter gender: ");
-                        String phoneNumber = IO.readln("Enter phone number: ");
-                        String email = IO.readln("Enter email: ");
-                        String address = IO.readln("Enter address: ");
-                        String nationalId = IO.readln("Enter national ID: ");
-
-                        int age = Integer.parseInt(
-                                IO.readln("Enter age: ")
-                        );
-
-                        boolean active = Boolean.parseBoolean(
-                                IO.readln("Active (true/false): ")
-                        );
-
-                        String specialization =
-                                IO.readln("Enter specialization: ");
-
-                        int experienceYears = Integer.parseInt(
-                                IO.readln("Enter experience years: ")
-                        );
-
-                        double consultationFee = Double.parseDouble(
-                                IO.readln("Enter consultation fee: ")
-                        );
-
-                        boolean onCall = Boolean.parseBoolean(
-                                IO.readln("On call (true/false): ")
-                        );
-
-                        Doctor doctor = new Doctor(
-                                doctorId,
-                                firstName,
-                                lastName,
-                                dateOfBirth,
-                                gender,
-                                phoneNumber,
-                                email,
-                                address,
-                                nationalId,
-                                age,
-                                active,
-                                new String[0],
-                                new String[0],
-                                consultationFee,
-                                experienceYears,
-                                onCall,
-                                specialization
-                        );
-
-                        doctorService.add(doctor);
-
-                        System.out.println("Doctor added successfully.");
-
-                        break;
-
-                    case "2":
-
-                        Object[] doctors = doctorService.getAll();
-
-                        if (doctors.length == 0) {
-
-                            System.out.println("No doctors found.");
-
-                        } else {
-
-                            for (Object doctorObject : doctors) {
-
-                                Doctor currentDoctor = (Doctor) doctorObject;
-
-                                currentDoctor.displayInfo();
-                                System.out.println("--------------------");
-                            }
-                        }
-
-                        break;
-
-                    case "3":
-
-                        String keyword = IO.readln("Enter doctor name or specialization: ");
-
-                        Object[] doctorResults = doctorService.search(keyword);
-
-                        if (doctorResults.length == 0) {
-
-                            System.out.println("No doctor found.");
-
-                        } else {
-
-                            for (Object result : doctorResults) {
-
-                                Doctor foundDoctor = (Doctor) result;
-
-                                foundDoctor.displayInfo();
-                                System.out.println("--------------------");
-                            }
-                        }
-
-                        break;
-
-                    case "4":
-
-                         doctorId = IO.readln("Enter doctor ID: ");
-
-                        doctorService.removeById(doctorId);
-
-                        System.out.println("Doctor removed.");
-
-                        break;
-
-                    case "5":
-
-                        String surgeonId = IO.readln("Enter surgeon ID: ");
-                         firstName = IO.readln("Enter first name: ");
-                         lastName = IO.readln("Enter last name: ");
-                         dateOfBirth = IO.readln("Enter date of birth: ");
-                         gender = IO.readln("Enter gender: ");
-                         phoneNumber = IO.readln("Enter phone number: ");
-                         email = IO.readln("Enter email: ");
-                         address = IO.readln("Enter address: ");
-                         nationalId = IO.readln("Enter national ID: ");
-
-                         age = Integer.parseInt(
-                                IO.readln("Enter age: ")
-                        );
-
-                         active = Boolean.parseBoolean(
-                                IO.readln("Active (true/false): ")
-                        );
-
-                         consultationFee = Double.parseDouble(
-                                IO.readln("Enter consultation fee: ")
-                        );
-
-                        experienceYears = Integer.parseInt(
-                                IO.readln("Enter experience years: ")
-                        );
-
-                         onCall = Boolean.parseBoolean(
-                                IO.readln("On call (true/false): ")
-                        );
-
-                         specialization =
-                                IO.readln("Enter specialization: ");
-
-                        int surgeriesPerformed = Integer.parseInt(
-                                IO.readln("Enter surgeries performed: ")
-                        );
-
-                        boolean theatreAccess = Boolean.parseBoolean(
-                                IO.readln("Operation theatre access (true/false): ")
-                        );
-
-                        Surgeon surgeon = new Surgeon(
-                                surgeonId,
-                                firstName,
-                                lastName,
-                                dateOfBirth,
-                                gender,
-                                phoneNumber,
-                                email,
-                                address,
-                                nationalId,
-                                age,
-                                active,
-                                new String[0],
-                                new String[0],
-                                consultationFee,
-                                experienceYears,
-                                onCall,
-                                specialization,
-                                surgeriesPerformed,
-                                theatreAccess,
-                                new String[0]
-                        );
-
-                        doctorService.addSurgeon(surgeon);
-
-                        System.out.println("Surgeon added successfully.");
-
-                        break;
-
-                    case "6":
-
-                        doctorId = IO.readln("Enter doctor ID: ");
-                        String patientId = IO.readln("Enter patient ID: ");
-
-                        doctorService.assignPatient(
-                                doctorId,
-                                patientId
-                        );
-
-                        System.out.println("Patient assigned to doctor.");
-
-                        break;
-
-                    case "7":
-
-                         specialization =
-                                IO.readln("Enter specialization: ");
-
-                        Doctor[] specializedDoctors =
-                                doctorService.listBySpecialization(specialization);
-
-                        if (specializedDoctors.length == 0) {
-
-                            System.out.println(
-                                    "No doctors found for this specialization."
+        boolean back = false;
+
+        while (!back) {
+
+            System.out.println(
+                    "\n===== DOCTOR MENU ====="
+            );
+
+            System.out.println("1. Add Doctor");
+            System.out.println("2. View All Doctors");
+            System.out.println("3. Search Doctor");
+            System.out.println("4. Remove Doctor");
+            System.out.println("5. Add Surgeon");
+            System.out.println("6. Assign Patient");
+            System.out.println("7. List By Specialization");
+            System.out.println("8. Available Doctors");
+            System.out.println("9. Back");
+
+            String choice =
+                    input.readText(
+                            "Choose an option: "
+                    );
+
+            switch (choice) {
+
+                case "1": {
+
+                    String doctorId =
+                            input.readText(
+                                    "Enter doctor ID: "
                             );
 
-                        } else {
+                    String firstName =
+                            input.readText(
+                                    "Enter first name: "
+                            );
 
-                            for (Doctor specializedDoctor : specializedDoctors) {
+                    String lastName =
+                            input.readText(
+                                    "Enter last name: "
+                            );
 
-                                specializedDoctor.displayInfo();
-                                System.out.println("--------------------");
-                            }
+                    String dateOfBirth =
+                            input.readText(
+                                    "Enter date of birth: "
+                            );
+
+                    String gender =
+                            input.readText(
+                                    "Enter gender: "
+                            );
+
+                    String phoneNumber =
+                            input.readText(
+                                    "Enter phone number: "
+                            );
+
+                    String email =
+                            input.readText(
+                                    "Enter email: "
+                            );
+
+                    String address =
+                            input.readText(
+                                    "Enter address: "
+                            );
+
+                    String nationalId =
+                            input.readText(
+                                    "Enter national ID: "
+                            );
+
+                    int age =
+                            input.readIntInRange(
+                                    "Enter age: ",
+                                    0,
+                                    120
+                            );
+
+                    boolean active =
+                            input.readYesNo(
+                                    "Active (yes/no): "
+                            );
+
+                    String specialization =
+                            input.readText(
+                                    "Enter specialization: "
+                            );
+
+                    int experienceYears =
+                            input.readIntInRange(
+                                    "Enter experience years: ",
+                                    0,
+                                    80
+                            );
+
+                    double consultationFee =
+                            input.readDouble(
+                                    "Enter consultation fee: "
+                            );
+
+                    boolean onCall =
+                            input.readYesNo(
+                                    "On call (yes/no): "
+                            );
+
+                    Doctor doctor =
+                            new Doctor(
+                                    doctorId,
+                                    firstName,
+                                    lastName,
+                                    dateOfBirth,
+                                    gender,
+                                    phoneNumber,
+                                    email,
+                                    address,
+                                    nationalId,
+                                    age,
+                                    active,
+                                    new String[0],
+                                    new String[0],
+                                    consultationFee,
+                                    experienceYears,
+                                    onCall,
+                                    specialization
+                            );
+
+                    doctorService.add(doctor);
+
+                    System.out.println(
+                            "Doctor added successfully."
+                    );
+
+                    break;
+                }
+
+                case "2": {
+
+                    Object[] doctors =
+                            doctorService.getAll();
+
+                    if (doctors.length == 0) {
+
+                        System.out.println(
+                                "No doctors found."
+                        );
+
+                    } else {
+
+                        for (Object doctorObject
+                                : doctors) {
+
+                            Doctor currentDoctor =
+                                    (Doctor) doctorObject;
+
+                            currentDoctor.displayInfo();
+
+                            System.out.println(
+                                    "--------------------"
+                            );
                         }
+                    }
 
-                        break;
+                    break;
+                }
 
-                    case "8":
+                case "3": {
 
-                        Doctor[] availableDoctors =
-                                doctorService.availableDoctors();
+                    String keyword =
+                            input.readText(
+                                    "Enter doctor name or specialization: "
+                            );
 
-                        if (availableDoctors.length == 0) {
+                    Object[] doctorResults =
+                            doctorService.search(
+                                    keyword
+                            );
 
-                            System.out.println("No available doctors found.");
+                    if (doctorResults.length == 0) {
 
-                        } else {
+                        System.out.println(
+                                "No doctor found."
+                        );
 
-                            for (Doctor availableDoctor : availableDoctors) {
+                    } else {
 
-                                availableDoctor.displayInfo();
-                                System.out.println("--------------------");
-                            }
+                        for (Object result
+                                : doctorResults) {
+
+                            Doctor foundDoctor =
+                                    (Doctor) result;
+
+                            foundDoctor.displayInfo();
+
+                            System.out.println(
+                                    "--------------------"
+                            );
                         }
+                    }
 
-                        break;
-                    case "9":
-                        back = true;
-                        break;
+                    break;
+                }
 
-                    default:
-                        System.out.println("Invalid option.");
+                case "4": {
+
+                    String doctorId =
+                            input.readText(
+                                    "Enter doctor ID: "
+                            );
+
+                    doctorService.removeById(
+                            doctorId
+                    );
+
+                    break;
+                }
+
+                case "5": {
+
+                    String surgeonId =
+                            input.readText(
+                                    "Enter surgeon ID: "
+                            );
+
+                    String firstName =
+                            input.readText(
+                                    "Enter first name: "
+                            );
+
+                    String lastName =
+                            input.readText(
+                                    "Enter last name: "
+                            );
+
+                    String dateOfBirth =
+                            input.readText(
+                                    "Enter date of birth: "
+                            );
+
+                    String gender =
+                            input.readText(
+                                    "Enter gender: "
+                            );
+
+                    String phoneNumber =
+                            input.readText(
+                                    "Enter phone number: "
+                            );
+
+                    String email =
+                            input.readText(
+                                    "Enter email: "
+                            );
+
+                    String address =
+                            input.readText(
+                                    "Enter address: "
+                            );
+
+                    String nationalId =
+                            input.readText(
+                                    "Enter national ID: "
+                            );
+
+                    int age =
+                            input.readIntInRange(
+                                    "Enter age: ",
+                                    0,
+                                    120
+                            );
+
+                    boolean active =
+                            input.readYesNo(
+                                    "Active (yes/no): "
+                            );
+
+                    double consultationFee =
+                            input.readDouble(
+                                    "Enter consultation fee: "
+                            );
+
+                    int experienceYears =
+                            input.readIntInRange(
+                                    "Enter experience years: ",
+                                    0,
+                                    80
+                            );
+
+                    boolean onCall =
+                            input.readYesNo(
+                                    "On call (yes/no): "
+                            );
+
+                    String specialization =
+                            input.readText(
+                                    "Enter specialization: "
+                            );
+
+                    int surgeriesPerformed =
+                            input.readIntInRange(
+                                    "Enter surgeries performed: ",
+                                    0,
+                                    100000
+                            );
+
+                    boolean theatreAccess =
+                            input.readYesNo(
+                                    "Operation theatre access (yes/no): "
+                            );
+
+                    Surgeon surgeon =
+                            new Surgeon(
+                                    surgeonId,
+                                    firstName,
+                                    lastName,
+                                    dateOfBirth,
+                                    gender,
+                                    phoneNumber,
+                                    email,
+                                    address,
+                                    nationalId,
+                                    age,
+                                    active,
+                                    new String[0],
+                                    new String[0],
+                                    consultationFee,
+                                    experienceYears,
+                                    onCall,
+                                    specialization,
+                                    surgeriesPerformed,
+                                    theatreAccess,
+                                    new String[0]
+                            );
+
+                    doctorService.addSurgeon(
+                            surgeon
+                    );
+
+                    System.out.println(
+                            "Surgeon added successfully."
+                    );
+
+                    break;
+                }
+
+                case "6": {
+
+                    String doctorId =
+                            input.readText(
+                                    "Enter doctor ID: "
+                            );
+
+                    String patientId =
+                            input.readText(
+                                    "Enter patient ID: "
+                            );
+
+                    doctorService.assignPatient(
+                            doctorId,
+                            patientId
+                    );
+
+                    break;
+                }
+
+                case "7": {
+
+                    String specialization =
+                            input.readText(
+                                    "Enter specialization: "
+                            );
+
+                    Doctor[] specializedDoctors =
+                            doctorService
+                                    .listBySpecialization(
+                                            specialization
+                                    );
+
+                    if (specializedDoctors.length == 0) {
+
+                        System.out.println(
+                                "No doctors found for this specialization."
+                        );
+
+                    } else {
+
+                        for (Doctor specializedDoctor
+                                : specializedDoctors) {
+
+                            specializedDoctor.displayInfo();
+
+                            System.out.println(
+                                    "--------------------"
+                            );
+                        }
+                    }
+
+                    break;
+                }
+
+                case "8": {
+
+                    Doctor[] availableDoctors =
+                            doctorService
+                                    .availableDoctors();
+
+                    if (availableDoctors.length == 0) {
+
+                        System.out.println(
+                                "No available doctors found."
+                        );
+
+                    } else {
+
+                        for (Doctor availableDoctor
+                                : availableDoctors) {
+
+                            availableDoctor.displayInfo();
+
+                            System.out.println(
+                                    "--------------------"
+                            );
+                        }
+                    }
+
+                    break;
+                }
+
+                case "9": {
+
+                    back = true;
+                    break;
+                }
+
+                default: {
+
+                    System.out.println(
+                            "Invalid option."
+                    );
                 }
             }
         }
+    }
 
 
-    // Patient menu
+    // =========================
+    // Patient Menu
+    // =========================
+
     public void patientMenu() {
 
         boolean back = false;
 
         while (!back) {
 
-            System.out.println("\n===== PATIENT MENU =====");
+            System.out.println(
+                    "\n===== PATIENT MENU ====="
+            );
+
             System.out.println("1. Add Patient");
             System.out.println("2. View All Patients");
             System.out.println("3. Search Patient");
@@ -934,74 +1510,129 @@ public class HospitalApp {
             System.out.println("7. Total Outstanding");
             System.out.println("8. Back");
 
-            String choice = IO.readln("Choose an option: ");
+            String choice =
+                    input.readText(
+                            "Choose an option: "
+                    );
 
             switch (choice) {
 
-                case "1":
+                case "1": {
 
-                    String id = IO.readln("Enter patient ID: ");
-                    String firstName = IO.readln("Enter first name: ");
-                    String lastName = IO.readln("Enter last name: ");
+                    String id =
+                            input.readText(
+                                    "Enter patient ID: "
+                            );
 
-                    Patient patient = new Patient(
-                            id,
-                            firstName,
-                            lastName
-                    );
+                    String firstName =
+                            input.readText(
+                                    "Enter first name: "
+                            );
+
+                    String lastName =
+                            input.readText(
+                                    "Enter last name: "
+                            );
+
+                    Patient patient =
+                            new Patient(
+                                    id,
+                                    firstName,
+                                    lastName
+                            );
 
                     patientService.add(patient);
 
-                    System.out.println("Patient added successfully.");
+                    System.out.println(
+                            "Patient added successfully."
+                    );
 
                     break;
+                }
 
-                case "2":
+                case "2": {
 
-                    Object[] patients = patientService.getAll();
+                    Object[] patients =
+                            patientService.getAll();
 
                     if (patients.length == 0) {
-                        System.out.println("No patients found.");
+
+                        System.out.println(
+                                "No patients found."
+                        );
+
                     } else {
 
-                        for (Object patientObject : patients) {
+                        for (Object patientObject
+                                : patients) {
 
-                            Patient currentPatient = (Patient) patientObject;
+                            Patient currentPatient =
+                                    (Patient) patientObject;
+
                             currentPatient.displayInfo();
-                            System.out.println("--------------------");
+
+                            System.out.println(
+                                    "--------------------"
+                            );
                         }
                     }
 
                     break;
+                }
 
-                case "3":
+                case "3": {
 
-                    String keyword = IO.readln("Enter patient name: ");
+                    String keyword =
+                            input.readText(
+                                    "Enter patient name: "
+                            );
 
-                    Object[] searchResults = patientService.search(keyword);
+                    Object[] searchResults =
+                            patientService.search(
+                                    keyword
+                            );
 
                     if (searchResults.length == 0) {
 
-                        System.out.println("No patient found.");
+                        System.out.println(
+                                "No patient found."
+                        );
 
                     } else {
 
-                        for (Object result : searchResults) {
+                        for (Object result
+                                : searchResults) {
 
-                            Patient foundPatient = (Patient) result;
+                            Patient foundPatient =
+                                    (Patient) result;
 
                             foundPatient.displayInfo();
-                            System.out.println("--------------------");
+
+                            System.out.println(
+                                    "--------------------"
+                            );
                         }
                     }
 
                     break;
+                }
 
-                case "4":
+                case "4": {
 
-                    String updateId = IO.readln("Enter patient ID: ");
-                    String newPhone = IO.readln("Enter new phone number: ");
-                    String newEmail = IO.readln("Enter new email: ");
+                    String updateId =
+                            input.readText(
+                                    "Enter patient ID: "
+                            );
+
+                    String newPhone =
+                            input.readText(
+                                    "Enter new phone number: "
+                            );
+
+                    String newEmail =
+                            input.readText(
+                                    "Enter new email: "
+                            );
 
                     patientService.updateContact(
                             updateId,
@@ -1010,48 +1641,76 @@ public class HospitalApp {
                     );
 
                     break;
-                case "5":
+                }
 
-                    String removeId = IO.readln("Enter patient ID: ");
+                case "5": {
 
-                    patientService.removeById(removeId);
+                    String removeId =
+                            input.readText(
+                                    "Enter patient ID: "
+                            );
 
-                    System.out.println("Patient removed.");
+                    patientService.removeById(
+                            removeId
+                    );
 
                     break;
+                }
 
-                case "6":
+                case "6": {
 
-                    InPatient[] inPatients = patientService.listInPatients();
+                    InPatient[] inPatients =
+                            patientService
+                                    .listInPatients();
 
                     if (inPatients.length == 0) {
-                        System.out.println("No InPatients found.");
+
+                        System.out.println(
+                                "No InPatients found."
+                        );
+
                     } else {
 
-                        for (InPatient inPatient : inPatients) {
+                        for (InPatient inPatient
+                                : inPatients) {
+
                             inPatient.displayInfo();
-                            System.out.println("--------------------");
+
+                            System.out.println(
+                                    "--------------------"
+                            );
                         }
                     }
 
                     break;
+                }
 
-                case "7":
+                case "7": {
 
-                    double totalOutstanding = patientService.totalOutstanding();
+                    double totalOutstanding =
+                            patientService
+                                    .totalOutstanding();
 
                     System.out.println(
-                            "Total Outstanding Balance: " + totalOutstanding
+                            "Total Outstanding Balance: "
+                                    + totalOutstanding
                     );
 
                     break;
+                }
 
-                case "8":
+                case "8": {
+
                     back = true;
                     break;
+                }
 
-                default:
-                    System.out.println("Invalid option.");
+                default: {
+
+                    System.out.println(
+                            "Invalid option."
+                    );
+                }
             }
         }
     }
