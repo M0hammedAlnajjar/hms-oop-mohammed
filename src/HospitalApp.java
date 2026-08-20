@@ -131,6 +131,26 @@ public class HospitalApp {
                     break;
 
                 case "2":
+
+                    Object[] records = recordService.getAll();
+
+                    if (records.length == 0) {
+
+                        System.out.println("No medical records found.");
+
+                    } else {
+
+                        for (Object recordObject : records) {
+
+                            MedicalRecord currentRecord =
+                                    (MedicalRecord) recordObject;
+
+                            currentRecord.displayInfo();
+
+                            System.out.println("--------------------");
+                        }
+                    }
+
                     break;
 
                 case "3":
