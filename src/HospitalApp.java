@@ -67,6 +67,50 @@ public class HospitalApp {
     }
 
     private void recordMenu() {
+
+        boolean back = false;
+
+        while (!back) {
+
+            System.out.println("\n===== MEDICAL RECORD MENU =====");
+            System.out.println("1. Add Medical Record");
+            System.out.println("2. View All Medical Records");
+            System.out.println("3. Search Medical Record");
+            System.out.println("4. Remove Medical Record");
+            System.out.println("5. List By Patient");
+            System.out.println("6. Count Confidential Records");
+            System.out.println("7. Back");
+
+            String choice = IO.readln("Choose an option: ");
+
+            switch (choice) {
+
+                case "1":
+                    break;
+
+                case "2":
+                    break;
+
+                case "3":
+                    break;
+
+                case "4":
+                    break;
+
+                case "5":
+                    break;
+
+                case "6":
+                    break;
+
+                case "7":
+                    back = true;
+                    break;
+
+                default:
+                    System.out.println("Invalid option.");
+            }
+        }
     }
 
     private void appointmentMenu() {
