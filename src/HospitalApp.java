@@ -178,8 +178,14 @@ public class HospitalApp {
                     }
 
                     break;
-
                 case "4":
+
+                    String nurseId = IO.readln("Enter nurse ID: ");
+
+                    nurseService.removeById(nurseId);
+
+                    System.out.println("Nurse removed.");
+
                     break;
 
                 case "5":
