@@ -33,10 +33,26 @@ public class InPatient extends Patient{
             int daysAdmitted
     ) {
 
+        // Person -> Patient -> InPatient
         super(
                 id,
                 firstName,
-                lastName
+                lastName,
+                dateOfBirth,
+                gender,
+                phoneNumber,
+                email,
+                address,
+                nationalId,
+                age,
+                active,
+                allergies,
+                bloodGroup,
+                emergencyContact,
+                insured,
+                medicalRecordIds,
+                outstandingBalance,
+                registrationDate
         );
 
         this.admissionDate = admissionDate;
@@ -44,6 +60,9 @@ public class InPatient extends Patient{
         this.dailyCharges = dailyCharges;
         this.daysAdmitted = daysAdmitted;
     }
+
+
+
     @Override
     public void displayInfo() {
         super.displayInfo();

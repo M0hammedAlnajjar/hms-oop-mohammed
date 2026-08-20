@@ -1,6 +1,6 @@
 import entities.Patient;
 import services.PatientService;
-
+import entities.InPatient;
 public class HospitalApp {
 
     // Patient service available to all methods

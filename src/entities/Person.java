@@ -49,6 +49,10 @@ public class Person implements Displayable {
         this.lastName = lastName;
     }
 
+    public Person() {
+
+    }
+
     public int getAge() {
         return age;
     }
