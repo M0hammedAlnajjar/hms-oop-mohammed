@@ -1,6 +1,8 @@
 package entities;
 
-public class MedicalRecord {
+import interfaces.Displayable;
+
+public class MedicalRecord implements Displayable {
 
     private String recordId;
     private String patientId;
@@ -21,14 +23,15 @@ public class MedicalRecord {
             String recordId,
             String visitDate
     ) {
-        this.confidential = confidential;
-        this.diagnosis = diagnosis;
-        this.doctorId = doctorId;
-        this.notes = notes;
-        this.patientId = patientId;
-        this.prescription = prescription;
-        this.recordId = recordId;
-        this.visitDate = visitDate;
+
+        setConfidential(confidential);
+        setDiagnosis(diagnosis);
+        setDoctorId(doctorId);
+        setNotes(notes);
+        setPatientId(patientId);
+        setPrescription(prescription);
+        setRecordId(recordId);
+        setVisitDate(visitDate);
     }
 
     public String getRecordId() {
@@ -36,7 +39,10 @@ public class MedicalRecord {
     }
 
     public void setRecordId(String recordId) {
-        this.recordId = recordId;
+
+        if (recordId != null && !recordId.isBlank()) {
+            this.recordId = recordId;
+        }
     }
 
     public String getPatientId() {
@@ -44,7 +50,10 @@ public class MedicalRecord {
     }
 
     public void setPatientId(String patientId) {
-        this.patientId = patientId;
+
+        if (patientId != null && !patientId.isBlank()) {
+            this.patientId = patientId;
+        }
     }
 
     public String getDoctorId() {
@@ -52,7 +61,10 @@ public class MedicalRecord {
     }
 
     public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
+
+        if (doctorId != null && !doctorId.isBlank()) {
+            this.doctorId = doctorId;
+        }
     }
 
     public String getVisitDate() {
@@ -60,7 +72,10 @@ public class MedicalRecord {
     }
 
     public void setVisitDate(String visitDate) {
-        this.visitDate = visitDate;
+
+        if (visitDate != null && !visitDate.isBlank()) {
+            this.visitDate = visitDate;
+        }
     }
 
     public String getDiagnosis() {
@@ -68,7 +83,10 @@ public class MedicalRecord {
     }
 
     public void setDiagnosis(String diagnosis) {
-        this.diagnosis = diagnosis;
+
+        if (diagnosis != null && !diagnosis.isBlank()) {
+            this.diagnosis = diagnosis;
+        }
     }
 
     public String getPrescription() {
@@ -76,7 +94,10 @@ public class MedicalRecord {
     }
 
     public void setPrescription(String prescription) {
-        this.prescription = prescription;
+
+        if (prescription != null && !prescription.isBlank()) {
+            this.prescription = prescription;
+        }
     }
 
     public String getNotes() {
@@ -84,7 +105,10 @@ public class MedicalRecord {
     }
 
     public void setNotes(String notes) {
-        this.notes = notes;
+
+        if (notes != null) {
+            this.notes = notes;
+        }
     }
 
     public boolean isConfidential() {
@@ -95,7 +119,9 @@ public class MedicalRecord {
         this.confidential = confidential;
     }
 
+    @Override
     public void displayInfo() {
+
         System.out.println("Record Id: " + recordId);
         System.out.println("Patient Id: " + patientId);
         System.out.println("Doctor Id: " + doctorId);
@@ -106,8 +132,33 @@ public class MedicalRecord {
         System.out.println("Confidential: " + confidential);
     }
 
+    @Override
+    public void displaySummary() {
+
+        System.out.println(
+                "Record ID: " + recordId
+                        + " | Patient ID: " + patientId
+                        + " | Diagnosis: " + diagnosis
+        );
+    }
+
+    @Override
+    public boolean isAdult() {
+        return false;
+    }
+
     public void appendNote(String note) {
-        notes = notes + " " + note;
+
+        if (note == null || note.isBlank()) {
+            System.out.println("Invalid note");
+            return;
+        }
+
+        if (notes == null || notes.isBlank()) {
+            notes = note;
+        } else {
+            notes = notes + " " + note;
+        }
     }
 
     public void markConfidential() {
