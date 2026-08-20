@@ -182,6 +182,13 @@ public class HospitalApp {
                     break;
 
                 case "7":
+
+                    double totalOutstanding = patientService.totalOutstanding();
+
+                    System.out.println(
+                            "Total Outstanding Balance: " + totalOutstanding
+                    );
+
                     break;
 
                 case "8":
