@@ -1,10 +1,12 @@
 import entities.Patient;
 import services.PatientService;
 import entities.InPatient;
+import services.DoctorService;
 public class HospitalApp {
 
     // Patient service available to all methods
     private PatientService patientService = new PatientService();
+    private DoctorService doctorService = new DoctorService();
 
     public static void main(String[] args) {
 
