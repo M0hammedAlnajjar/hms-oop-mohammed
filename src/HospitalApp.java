@@ -88,6 +88,21 @@ public class HospitalApp {
             switch (choice) {
 
                 case "1":
+
+                    String patientId = IO.readln("Enter patient ID: ");
+                    String doctorId = IO.readln("Enter doctor ID: ");
+                    String date = IO.readln("Enter appointment date: ");
+                    String time = IO.readln("Enter appointment time: ");
+
+                    appointmentService.schedule(
+                            patientId,
+                            doctorId,
+                            date,
+                            time
+                    );
+
+                    System.out.println("Appointment scheduled successfully.");
+
                     break;
 
                 case "2":
