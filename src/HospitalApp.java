@@ -35,8 +35,8 @@ public class HospitalApp {
                 case "1":
                     patientMenu();
                     break;
-
                 case "2":
+                    doctorMenu();
                     break;
 
                 case "3":
@@ -60,6 +60,9 @@ public class HospitalApp {
                     System.out.println("Invalid option.");
             }
         }
+    }
+
+    private void doctorMenu() {
     }
 
     // Patient menu
