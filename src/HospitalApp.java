@@ -69,8 +69,51 @@ public class HospitalApp {
     }
 
     private void appointmentMenu() {
-    }
 
+        boolean back = false;
+
+        while (!back) {
+
+            System.out.println("\n===== APPOINTMENT MENU =====");
+            System.out.println("1. Schedule Appointment");
+            System.out.println("2. Cancel Appointment");
+            System.out.println("3. Complete Appointment");
+            System.out.println("4. Reschedule Appointment");
+            System.out.println("5. List By Status");
+            System.out.println("6. List By Patient");
+            System.out.println("7. Back");
+
+            String choice = IO.readln("Choose an option: ");
+
+            switch (choice) {
+
+                case "1":
+                    break;
+
+                case "2":
+                    break;
+
+                case "3":
+                    break;
+
+                case "4":
+                    break;
+
+                case "5":
+                    break;
+
+                case "6":
+                    break;
+
+                case "7":
+                    back = true;
+                    break;
+
+                default:
+                    System.out.println("Invalid option.");
+            }
+        }
+    }
     private void nurseMenu() {
 
         boolean back = false;
