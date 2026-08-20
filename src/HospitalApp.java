@@ -114,8 +114,15 @@ public class HospitalApp {
                     System.out.println("Appointment cancelled.");
 
                     break;
-
                 case "3":
+
+                    String completeAppointmentId =
+                            IO.readln("Enter appointment ID: ");
+
+                    appointmentService.complete(completeAppointmentId);
+
+                    System.out.println("Appointment completed.");
+
                     break;
 
                 case "4":
