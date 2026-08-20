@@ -260,4 +260,20 @@ public class Doctor extends Person {
             );
         }
     }
+    // Update consultation fee
+    public void updateFee(double fee) {
+
+        if (fee >= 0) {
+            consultationFee = fee;
+        }
+    }
+
+    // Update consultation fee with reason
+    public void updateFee(double fee, String reason) {
+
+        if (fee >= 0) {
+            consultationFee = fee;
+            System.out.println("Reason: " + reason);
+        }
+    }
 }
