@@ -98,6 +98,13 @@ public class HospitalApp {
                     break;
 
                 case "2":
+
+                    int totalDoctors = doctorService.getAll().length;
+
+                    System.out.println(
+                            "Total Doctors: " + totalDoctors
+                    );
+
                     break;
 
                 case "3":
