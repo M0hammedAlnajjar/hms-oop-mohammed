@@ -151,6 +151,14 @@ public class HospitalApp {
                     break;
 
                 case "7":
+
+                    int confidentialRecords =
+                            recordService.countConfidential();
+
+                    System.out.println(
+                            "Confidential Records Count: " + confidentialRecords
+                    );
+
                     break;
 
                 case "8":
