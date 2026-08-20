@@ -45,26 +45,17 @@ public class Patient extends Person {
                 active
         );
 
-        setAllergies(allergies);
-        setBloodGroup(bloodGroup);
-        setEmergencyContact(emergencyContact);
-        setInsured(insured);
-        setMedicalRecordIds(medicalRecordIds);
-        setOutstandingBalance(outstandingBalance);
-        setRegistrationDate(registrationDate);
+        this.allergies = allergies;
+        this.bloodGroup = bloodGroup;
+        this.emergencyContact = emergencyContact;
+        this.insured = insured;
+        this.medicalRecordIds = medicalRecordIds;
+        this.outstandingBalance = outstandingBalance;
+        this.registrationDate = registrationDate;
     }
 
-    public Patient(
-            String id,
-            String firstName,
-            String lastName
-    ) {
-
-        super(
-                id,
-                firstName,
-                lastName
-        );
+    public Patient(String id, String firstName, String lastName) {
+        super();
     }
 
     public String[] getAllergies() {
@@ -115,10 +106,6 @@ public class Patient extends Person {
 
         if (outstandingBalance >= 0) {
             this.outstandingBalance = outstandingBalance;
-        } else {
-            System.out.println(
-                    "Outstanding balance cannot be negative"
-            );
         }
     }
 
@@ -128,16 +115,10 @@ public class Patient extends Person {
 
     public void setRegistrationDate(String registrationDate) {
 
-        if (registrationDate != null
-                && !registrationDate.isBlank()) {
+        if (registrationDate != null &&
+                !registrationDate.isBlank()) {
 
             this.registrationDate = registrationDate;
-
-        } else {
-
-            System.out.println(
-                    "Registration date cannot be empty"
-            );
         }
     }
 
@@ -146,78 +127,44 @@ public class Patient extends Person {
 
         super.displayInfo();
 
-        System.out.println(
-                "Blood Group: " + bloodGroup
-        );
-
-        System.out.println(
-                "Emergency Contact: " + emergencyContact
-        );
-
-        System.out.println(
-                "Registration Date: " + registrationDate
-        );
-
-        System.out.println(
-                "Outstanding Balance: " + outstandingBalance
-        );
-
-        System.out.println(
-                "Insured: " + insured
-        );
+        System.out.println("Blood Group: " + bloodGroup);
+        System.out.println("Emergency Contact: " + emergencyContact);
+        System.out.println("Registration Date: " + registrationDate);
+        System.out.println("Outstanding Balance: " + outstandingBalance);
+        System.out.println("Insured: " + insured);
 
         listAllergies();
 
         System.out.println(
-                "Medical Record Count: "
-                        + getRecordCount()
+                "Medical Record Count: " + getRecordCount()
         );
     }
 
     public void addAllergy(String allergy) {
 
         if (allergy == null || allergy.isBlank()) {
-
-            System.out.println(
-                    "Invalid Allergy"
-            );
-
+            System.out.println("Invalid Allergy");
             return;
         }
 
         if (hasAllergy(allergy)) {
-
-            System.out.println(
-                    "Allergy already exists"
-            );
-
+            System.out.println("Allergy already exists");
             return;
         }
 
         if (allergies == null) {
-
-            allergies =
-                    new String[]{allergy};
-
+            allergies = new String[]{allergy};
             return;
         }
 
         String[] newAllergies =
-                new String[
-                        allergies.length + 1
-                        ];
+                new String[allergies.length + 1];
 
-        for (int i = 0;
-             i < allergies.length;
-             i++) {
-
-            newAllergies[i] =
-                    allergies[i];
+        for (int i = 0; i < allergies.length; i++) {
+            newAllergies[i] = allergies[i];
         }
 
-        newAllergies[
-                allergies.length
-                ] = allergy;
+        newAllergies[allergies.length] = allergy;
 
         allergies = newAllergies;
     }
@@ -234,9 +181,8 @@ public class Patient extends Person {
 
         for (String currentAllergy : allergies) {
 
-            if (currentAllergy != null
-                    && currentAllergy
-                    .equalsIgnoreCase(allergy)) {
+            if (currentAllergy != null &&
+                    currentAllergy.equalsIgnoreCase(allergy)) {
 
                 return true;
             }
@@ -249,63 +195,39 @@ public class Patient extends Person {
 
         System.out.println("Allergies:");
 
-        if (allergies == null
-                || allergies.length == 0) {
-
-            System.out.println(
-                    "No Allergies"
-            );
-
+        if (allergies == null || allergies.length == 0) {
+            System.out.println("No Allergies");
             return;
         }
 
         for (String allergy : allergies) {
 
             if (allergy != null) {
-
-                System.out.println(
-                        "- " + allergy
-                );
+                System.out.println("- " + allergy);
             }
         }
     }
 
     public void addRecordId(String recordId) {
 
-        if (recordId == null
-                || recordId.isBlank()) {
-
-            System.out.println(
-                    "Invalid Record Id"
-            );
-
+        if (recordId == null || recordId.isBlank()) {
+            System.out.println("Invalid Record Id");
             return;
         }
 
         if (medicalRecordIds == null) {
-
-            medicalRecordIds =
-                    new String[]{recordId};
-
+            medicalRecordIds = new String[]{recordId};
             return;
         }
 
         String[] newRecordIds =
-                new String[
-                        medicalRecordIds.length + 1
-                        ];
+                new String[medicalRecordIds.length + 1];
 
-        for (int i = 0;
-             i < medicalRecordIds.length;
-             i++) {
-
-            newRecordIds[i] =
-                    medicalRecordIds[i];
+        for (int i = 0; i < medicalRecordIds.length; i++) {
+            newRecordIds[i] = medicalRecordIds[i];
         }
 
-        newRecordIds[
-                medicalRecordIds.length
-                ] = recordId;
+        newRecordIds[medicalRecordIds.length] = recordId;
 
         medicalRecordIds = newRecordIds;
     }
@@ -337,28 +259,8 @@ public class Patient extends Person {
         outstandingBalance = 0;
     }
 
-    // Update phone only
-    public void updateContact(
-            String phoneNumber
-    ) {
-
-        setPhoneNumber(
-                phoneNumber
-        );
-    }
-
-    // Update phone and email
-    public void updateContact(
-            String phoneNumber,
-            String email
-    ) {
-
-        setPhoneNumber(
-                phoneNumber
-        );
-
-        setEmail(
-                email
-        );
+    public void updateContact(String phoneNumber, String email) {
+        setPhoneNumber(phoneNumber);
+        setEmail(email);
     }
 }

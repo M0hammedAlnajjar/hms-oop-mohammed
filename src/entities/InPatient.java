@@ -159,4 +159,35 @@ public class InPatient extends Patient {
     public double totalRoomCost() {
         return dailyCharges * daysAdmitted;
     }
+
+    public void PatientService() {
+        super();
+
+        InPatient inPatient = new InPatient(
+                "P004",
+                "Ali",
+                "Hassan",
+                "1990-05-10",
+                "Male",
+                "95678901",
+                "ali@gmail.com",
+                "Muscat",
+                "10004",
+                36,
+                true,
+                new String[0],
+                "AB+",
+                "96789012",
+                true,
+                new String[0],
+                100.0,
+                "2026-08-20",
+                "2026-08-20",
+                "R101",
+                25.0,
+                3
+        );
+
+        add(inPatient);
+    }
 }
