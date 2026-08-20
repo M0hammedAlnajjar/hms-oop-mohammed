@@ -28,6 +28,7 @@ public class HospitalApp {
             switch (choice) {
 
                 case "1":
+                    patientMenu();
                     break;
 
                 case "2":
@@ -54,5 +55,8 @@ public class HospitalApp {
                     System.out.println("Invalid option.");
             }
         }
+    }
+
+    private void patientMenu() {
     }
 }
