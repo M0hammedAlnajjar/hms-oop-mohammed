@@ -192,6 +192,13 @@ public class HospitalApp {
                         break;
 
                     case "4":
+
+                         doctorId = IO.readln("Enter doctor ID: ");
+
+                        doctorService.removeById(doctorId);
+
+                        System.out.println("Doctor removed.");
+
                         break;
 
                     case "5":
