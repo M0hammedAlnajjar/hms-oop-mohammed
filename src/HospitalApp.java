@@ -63,6 +63,59 @@ public class HospitalApp {
     }
 
     private void doctorMenu() {
+
+            boolean back = false;
+
+            while (!back) {
+
+                System.out.println("\n===== DOCTOR MENU =====");
+                System.out.println("1. Add Doctor");
+                System.out.println("2. View All Doctors");
+                System.out.println("3. Search Doctor");
+                System.out.println("4. Remove Doctor");
+                System.out.println("5. Add Surgeon");
+                System.out.println("6. Assign Patient");
+                System.out.println("7. List By Specialization");
+                System.out.println("8. Available Doctors");
+                System.out.println("9. Back");
+
+                String choice = IO.readln("Choose an option: ");
+
+                switch (choice) {
+
+                    case "1":
+                        break;
+
+                    case "2":
+                        break;
+
+                    case "3":
+                        break;
+
+                    case "4":
+                        break;
+
+                    case "5":
+                        break;
+
+                    case "6":
+                        break;
+
+                    case "7":
+                        break;
+
+                    case "8":
+                        break;
+
+                    case "9":
+                        back = true;
+                        break;
+
+                    default:
+                        System.out.println("Invalid option.");
+                }
+            }
+        }
     }
 
     // Patient menu
