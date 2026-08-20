@@ -303,51 +303,64 @@ public class AppointmentService implements Manageable, Searchable {
     }
 
 
-    // Cancel appointment by ID
     public void cancel(String appointmentId) {
 
-        for (int i = 0;
-             i < appointmentCount;
-             i++) {
+        if (appointmentId == null || appointmentId.isBlank()) {
+            System.out.println("Invalid appointment ID.");
+            return;
+        }
+
+        for (int i = 0; i < appointmentCount; i++) {
 
             if (appointments[i] != null
                     && appointments[i].getAppointmentId() != null
-                    && appointments[i]
-                    .getAppointmentId()
-                    .equals(appointmentId)) {
+                    && appointments[i].getAppointmentId()
+                    .equalsIgnoreCase(appointmentId)) {
 
                 appointments[i].cancel();
 
+                System.out.println(
+                        "Appointment cancelled successfully."
+                );
+
                 return;
             }
         }
 
-        System.out.println("Appointment not found.");
+        System.out.println(
+                "Appointment not found."
+        );
     }
 
 
-    // Complete appointment by ID
     public void complete(String appointmentId) {
 
-        for (int i = 0;
-             i < appointmentCount;
-             i++) {
+        if (appointmentId == null || appointmentId.isBlank()) {
+            System.out.println("Invalid appointment ID.");
+            return;
+        }
+
+        for (int i = 0; i < appointmentCount; i++) {
 
             if (appointments[i] != null
                     && appointments[i].getAppointmentId() != null
-                    && appointments[i]
-                    .getAppointmentId()
-                    .equals(appointmentId)) {
+                    && appointments[i].getAppointmentId()
+                    .equalsIgnoreCase(appointmentId)) {
 
                 appointments[i].complete();
+
+                System.out.println(
+                        "Appointment completed successfully."
+                );
 
                 return;
             }
         }
 
-        System.out.println("Appointment not found.");
+        System.out.println(
+                "Appointment not found."
+        );
     }
-
 
     // Reschedule appointment
     public void reschedule(
