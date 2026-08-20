@@ -6,5 +6,6 @@ public interface Displayable {
 
     boolean idAdult();
 
+
     boolean isAdult();
 }

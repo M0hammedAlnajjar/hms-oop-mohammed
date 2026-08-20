@@ -171,6 +171,7 @@ public class Person implements Displayable {
         return false;
     }
 
+
     @Override
     public boolean isAdult() {
         return age >= 18;
