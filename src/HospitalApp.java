@@ -166,6 +166,19 @@ public class HospitalApp {
                     break;
 
                 case "6":
+
+                    InPatient[] inPatients = patientService.listInPatients();
+
+                    if (inPatients.length == 0) {
+                        System.out.println("No InPatients found.");
+                    } else {
+
+                        for (InPatient inPatient : inPatients) {
+                            inPatient.displayInfo();
+                            System.out.println("--------------------");
+                        }
+                    }
+
                     break;
 
                 case "7":
