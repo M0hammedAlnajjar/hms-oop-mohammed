@@ -1,8 +1,15 @@
+package main;
+
+import entities.Patient;
 import services.PatientService;
+
 public class HospitalApp {
 
+    // Patient service available to all methods
+    private PatientService patientService = new PatientService();
+
     public static void main(String[] args) {
-        PatientService patientService = new PatientService();
+
         HospitalApp app = new HospitalApp();
         app.run();
     }
@@ -56,54 +63,71 @@ public class HospitalApp {
             }
         }
     }
-        public void patientMenu() {
 
-            boolean back = false;
+    // Patient menu
+    public void patientMenu() {
 
-            while (!back) {
+        boolean back = false;
 
-                System.out.println("\n===== PATIENT MENU =====");
-                System.out.println("1. Add Patient");
-                System.out.println("2. View All Patients");
-                System.out.println("3. Search Patient");
-                System.out.println("4. Update Patient");
-                System.out.println("5. Remove Patient");
-                System.out.println("6. List InPatients");
-                System.out.println("7. Total Outstanding");
-                System.out.println("8. Back");
+        while (!back) {
 
-                String choice = IO.readln("Choose an option: ");
+            System.out.println("\n===== PATIENT MENU =====");
+            System.out.println("1. Add Patient");
+            System.out.println("2. View All Patients");
+            System.out.println("3. Search Patient");
+            System.out.println("4. Update Patient");
+            System.out.println("5. Remove Patient");
+            System.out.println("6. List InPatients");
+            System.out.println("7. Total Outstanding");
+            System.out.println("8. Back");
 
-                switch (choice) {
+            String choice = IO.readln("Choose an option: ");
 
-                    case "1":
-                        break;
+            switch (choice) {
 
-                    case "2":
-                        break;
+                case "1":
 
-                    case "3":
-                        break;
+                    String id = IO.readln("Enter patient ID: ");
+                    String firstName = IO.readln("Enter first name: ");
+                    String lastName = IO.readln("Enter last name: ");
 
-                    case "4":
-                        break;
+                    Patient patient = new Patient(
+                            id,
+                            firstName,
+                            lastName
+                    );
 
-                    case "5":
-                        break;
+                    patientService.add(patient);
 
-                    case "6":
-                        break;
+                    System.out.println("Patient added successfully.");
 
-                    case "7":
-                        break;
+                    break;
 
-                    case "8":
-                        back = true;
-                        break;
+                case "2":
+                    break;
 
-                    default:
-                        System.out.println("Invalid option.");
-                }
+                case "3":
+                    break;
+
+                case "4":
+                    break;
+
+                case "5":
+                    break;
+
+                case "6":
+                    break;
+
+                case "7":
+                    break;
+
+                case "8":
+                    back = true;
+                    break;
+
+                default:
+                    System.out.println("Invalid option.");
             }
         }
     }
+}

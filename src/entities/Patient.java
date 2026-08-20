@@ -13,22 +13,7 @@ public class Patient extends Person {
     public Patient(
             String id,
             String firstName,
-            String lastName,
-            String dateOfBirth,
-            String gender,
-            String phoneNumber,
-            String email,
-            String address,
-            String nationalId,
-            int age,
-            boolean active,
-            String[] allergies,
-            String bloodGroup,
-            String emergencyContact,
-            boolean insured,
-            String[] medicalRecordIds,
-            double outstandingBalance,
-            String registrationDate
+            String lastName
     ) {
 
         super(
