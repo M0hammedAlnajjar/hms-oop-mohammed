@@ -143,8 +143,18 @@ public class HospitalApp {
                     break;
 
                 case "4":
-                    break;
 
+                    String updateId = IO.readln("Enter patient ID: ");
+                    String newPhone = IO.readln("Enter new phone number: ");
+                    String newEmail = IO.readln("Enter new email: ");
+
+                    patientService.updateContact(
+                            updateId,
+                            newPhone,
+                            newEmail
+                    );
+
+                    break;
                 case "5":
                     break;
 
