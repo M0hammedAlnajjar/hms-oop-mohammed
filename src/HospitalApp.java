@@ -1,8 +1,5 @@
 import entities.*;
-import services.AppointmentService;
-import services.NurseService;
-import services.PatientService;
-import services.DoctorService;
+import services.*;
 
 public class HospitalApp {
 
@@ -11,6 +8,7 @@ public class HospitalApp {
     private DoctorService doctorService = new DoctorService();
     private NurseService nurseService = new NurseService();
     private AppointmentService appointmentService = new AppointmentService();
+    private RecordService recordService = new RecordService();
     public static void main(String[] args) {
 
         HospitalApp app = new HospitalApp();
@@ -52,8 +50,8 @@ public class HospitalApp {
                     appointmentMenu();
                     break;
                 case "5":
+                    recordMenu();
                     break;
-
                 case "6":
                     break;
 
@@ -66,6 +64,9 @@ public class HospitalApp {
                     System.out.println("Invalid option.");
             }
         }
+    }
+
+    private void recordMenu() {
     }
 
     private void appointmentMenu() {
