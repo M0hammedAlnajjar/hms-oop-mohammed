@@ -87,8 +87,14 @@ public class HospitalApp {
             String choice = IO.readln("Choose an option: ");
 
             switch (choice) {
-
                 case "1":
+
+                    int totalPatients = patientService.getAll().length;
+
+                    System.out.println(
+                            "Total Patients: " + totalPatients
+                    );
+
                     break;
 
                 case "2":
