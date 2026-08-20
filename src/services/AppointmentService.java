@@ -12,12 +12,18 @@ public class AppointmentService implements Manageable, Searchable {
     private Appointment[] appointments = new Appointment[10];
     private int appointmentCount = 0;
 
+
     // Schedule appointment using IDs and date
     public Appointment schedule(
             String patientId,
             String doctorId,
             String date
     ) {
+
+        if (appointmentCount >= appointments.length) {
+            System.out.println("Appointment storage is full.");
+            return null;
+        }
 
         Appointment appointment = new Appointment(
                 date,
@@ -36,6 +42,7 @@ public class AppointmentService implements Manageable, Searchable {
         return appointment;
     }
 
+
     // Schedule appointment using IDs, date and time
     public Appointment schedule(
             String patientId,
@@ -43,6 +50,11 @@ public class AppointmentService implements Manageable, Searchable {
             String date,
             String time
     ) {
+
+        if (appointmentCount >= appointments.length) {
+            System.out.println("Appointment storage is full.");
+            return null;
+        }
 
         Appointment appointment = new Appointment(
                 date,
@@ -61,6 +73,7 @@ public class AppointmentService implements Manageable, Searchable {
         return appointment;
     }
 
+
     // Schedule appointment using full objects and reason
     public Appointment schedule(
             Patient patient,
@@ -69,6 +82,16 @@ public class AppointmentService implements Manageable, Searchable {
             String time,
             String reason
     ) {
+
+        if (appointmentCount >= appointments.length) {
+            System.out.println("Appointment storage is full.");
+            return null;
+        }
+
+        if (patient == null || doctor == null) {
+            System.out.println("Patient or doctor is invalid.");
+            return null;
+        }
 
         Appointment appointment = new Appointment(
                 date,
@@ -87,47 +110,81 @@ public class AppointmentService implements Manageable, Searchable {
         return appointment;
     }
 
+
+    // Add appointment
     @Override
     public void add(Object entity) {
 
-        if (entity instanceof Appointment) {
-            appointments[appointmentCount] = (Appointment) entity;
-            appointmentCount++;
+        if (!(entity instanceof Appointment)) {
+            System.out.println("Invalid appointment.");
+            return;
         }
+
+        if (appointmentCount >= appointments.length) {
+            System.out.println("Appointment storage is full.");
+            return;
+        }
+
+        appointments[appointmentCount] =
+                (Appointment) entity;
+
+        appointmentCount++;
     }
 
+
+    // Remove appointment by ID
     @Override
     public void removeById(String id) {
 
         for (int i = 0; i < appointmentCount; i++) {
 
-            if (appointments[i].getAppointmentId().equals(id)) {
+            if (appointments[i] != null
+                    && appointments[i].getAppointmentId() != null
+                    && appointments[i]
+                    .getAppointmentId()
+                    .equals(id)) {
 
-                for (int j = i; j < appointmentCount - 1; j++) {
-                    appointments[j] = appointments[j + 1];
+                for (int j = i;
+                     j < appointmentCount - 1;
+                     j++) {
+
+                    appointments[j] =
+                            appointments[j + 1];
                 }
 
-                appointments[appointmentCount - 1] = null;
+                appointments[appointmentCount - 1] =
+                        null;
+
                 appointmentCount--;
 
                 return;
             }
         }
+
+        System.out.println("Appointment not found.");
     }
 
+
+    // Get all appointments
     @Override
     public Object[] getAll() {
 
         Appointment[] allAppointments =
                 new Appointment[appointmentCount];
 
-        for (int i = 0; i < appointmentCount; i++) {
-            allAppointments[i] = appointments[i];
+        for (int i = 0;
+             i < appointmentCount;
+             i++) {
+
+            allAppointments[i] =
+                    appointments[i];
         }
 
         return allAppointments;
     }
 
+
+    // Search appointment by keyword
     @Override
     public Object[] search(String keyword) {
 
@@ -136,12 +193,33 @@ public class AppointmentService implements Manageable, Searchable {
 
         int resultCount = 0;
 
-        for (int i = 0; i < appointmentCount; i++) {
+        if (keyword == null || keyword.isBlank()) {
+            return new Appointment[0];
+        }
 
-            if (appointments[i].getStatus().equalsIgnoreCase(keyword)
-                    || appointments[i].getReason().equalsIgnoreCase(keyword)) {
+        for (int i = 0;
+             i < appointmentCount;
+             i++) {
 
-                results[resultCount] = appointments[i];
+            if (appointments[i] == null) {
+                continue;
+            }
+
+            String status =
+                    appointments[i].getStatus();
+
+            String reason =
+                    appointments[i].getReason();
+
+            if ((status != null
+                    && status.equalsIgnoreCase(keyword))
+                    ||
+                    (reason != null
+                            && reason.equalsIgnoreCase(keyword))) {
+
+                results[resultCount] =
+                        appointments[i];
+
                 resultCount++;
             }
         }
@@ -149,19 +227,32 @@ public class AppointmentService implements Manageable, Searchable {
         Appointment[] finalResults =
                 new Appointment[resultCount];
 
-        for (int i = 0; i < resultCount; i++) {
-            finalResults[i] = results[i];
+        for (int i = 0;
+             i < resultCount;
+             i++) {
+
+            finalResults[i] =
+                    results[i];
         }
 
         return finalResults;
     }
 
+
+    // Search appointment by ID
     @Override
     public Object searchById(String id) {
 
-        for (int i = 0; i < appointmentCount; i++) {
+        for (int i = 0;
+             i < appointmentCount;
+             i++) {
 
-            if (appointments[i].getAppointmentId().equals(id)) {
+            if (appointments[i] != null
+                    && appointments[i].getAppointmentId() != null
+                    && appointments[i]
+                    .getAppointmentId()
+                    .equals(id)) {
+
                 return appointments[i];
             }
         }
@@ -169,29 +260,52 @@ public class AppointmentService implements Manageable, Searchable {
         return null;
     }
 
+
     // Cancel appointment by ID
     public void cancel(String appointmentId) {
 
-        for (int i = 0; i < appointmentCount; i++) {
+        for (int i = 0;
+             i < appointmentCount;
+             i++) {
 
-            if (appointments[i].getAppointmentId().equals(appointmentId)) {
+            if (appointments[i] != null
+                    && appointments[i].getAppointmentId() != null
+                    && appointments[i]
+                    .getAppointmentId()
+                    .equals(appointmentId)) {
+
                 appointments[i].cancel();
+
                 return;
             }
         }
+
+        System.out.println("Appointment not found.");
     }
+
 
     // Complete appointment by ID
     public void complete(String appointmentId) {
 
-        for (int i = 0; i < appointmentCount; i++) {
+        for (int i = 0;
+             i < appointmentCount;
+             i++) {
 
-            if (appointments[i].getAppointmentId().equals(appointmentId)) {
+            if (appointments[i] != null
+                    && appointments[i].getAppointmentId() != null
+                    && appointments[i]
+                    .getAppointmentId()
+                    .equals(appointmentId)) {
+
                 appointments[i].complete();
+
                 return;
             }
         }
+
+        System.out.println("Appointment not found.");
     }
+
 
     // Reschedule appointment
     public void reschedule(
@@ -200,9 +314,15 @@ public class AppointmentService implements Manageable, Searchable {
             String newTime
     ) {
 
-        for (int i = 0; i < appointmentCount; i++) {
+        for (int i = 0;
+             i < appointmentCount;
+             i++) {
 
-            if (appointments[i].getAppointmentId().equals(appointmentId)) {
+            if (appointments[i] != null
+                    && appointments[i].getAppointmentId() != null
+                    && appointments[i]
+                    .getAppointmentId()
+                    .equals(appointmentId)) {
 
                 appointments[i].reschedule(
                         newDate,
@@ -212,7 +332,10 @@ public class AppointmentService implements Manageable, Searchable {
                 return;
             }
         }
+
+        System.out.println("Appointment not found.");
     }
+
 
     // List appointments by status
     public Appointment[] listByStatus(String status) {
@@ -222,11 +345,23 @@ public class AppointmentService implements Manageable, Searchable {
 
         int resultCount = 0;
 
-        for (int i = 0; i < appointmentCount; i++) {
+        if (status == null || status.isBlank()) {
+            return new Appointment[0];
+        }
 
-            if (appointments[i].getStatus().equalsIgnoreCase(status)) {
+        for (int i = 0;
+             i < appointmentCount;
+             i++) {
 
-                results[resultCount] = appointments[i];
+            if (appointments[i] != null
+                    && appointments[i].getStatus() != null
+                    && appointments[i]
+                    .getStatus()
+                    .equalsIgnoreCase(status)) {
+
+                results[resultCount] =
+                        appointments[i];
+
                 resultCount++;
             }
         }
@@ -234,26 +369,47 @@ public class AppointmentService implements Manageable, Searchable {
         Appointment[] finalResults =
                 new Appointment[resultCount];
 
-        for (int i = 0; i < resultCount; i++) {
-            finalResults[i] = results[i];
+        for (int i = 0;
+             i < resultCount;
+             i++) {
+
+            finalResults[i] =
+                    results[i];
         }
 
         return finalResults;
     }
 
+
     // List appointments by patient ID
-    public Appointment[] listByPatient(String patientId) {
+    public Appointment[] listByPatient(
+            String patientId
+    ) {
 
         Appointment[] results =
                 new Appointment[appointmentCount];
 
         int resultCount = 0;
 
-        for (int i = 0; i < appointmentCount; i++) {
+        if (patientId == null
+                || patientId.isBlank()) {
 
-            if (appointments[i].getPatientId().equals(patientId)) {
+            return new Appointment[0];
+        }
 
-                results[resultCount] = appointments[i];
+        for (int i = 0;
+             i < appointmentCount;
+             i++) {
+
+            if (appointments[i] != null
+                    && appointments[i].getPatientId() != null
+                    && appointments[i]
+                    .getPatientId()
+                    .equals(patientId)) {
+
+                results[resultCount] =
+                        appointments[i];
+
                 resultCount++;
             }
         }
@@ -261,8 +417,12 @@ public class AppointmentService implements Manageable, Searchable {
         Appointment[] finalResults =
                 new Appointment[resultCount];
 
-        for (int i = 0; i < resultCount; i++) {
-            finalResults[i] = results[i];
+        for (int i = 0;
+             i < resultCount;
+             i++) {
+
+            finalResults[i] =
+                    results[i];
         }
 
         return finalResults;
