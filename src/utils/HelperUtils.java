@@ -23,5 +23,15 @@ public class HelperUtils {
 
         return fullName;
     }
+
+    public static boolean isOneOf(String status, String[] allowed) {
+
+        return false;
+    }
+
+    public static boolean isValidText(String patientId) {
+
+        return false;
+    }
 }
 

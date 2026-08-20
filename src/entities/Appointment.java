@@ -1,6 +1,9 @@
 package entities;
 
-public class Appointment {
+import interfaces.Displayable;
+import utils.HelperUtils;
+
+public class Appointment implements Displayable {
 
     private String appointmentId;
     private String patientId;
@@ -36,7 +39,10 @@ public class Appointment {
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        String[] allowed = {"Scheduled", "Cancelled", "Complete"};
+        if (HelperUtils.isOneOf(status, allowed)) {
+            this.status = status;
+        }
     }
 
     public String getReason() {
@@ -44,7 +50,7 @@ public class Appointment {
     }
 
     public void setReason(String reason) {
-        this.reason = reason;
+        this.reason = reason == null ? "" : reason;
     }
 
     public String getPatientId() {
@@ -52,7 +58,9 @@ public class Appointment {
     }
 
     public void setPatientId(String patientId) {
-        this.patientId = patientId;
+        if (HelperUtils.isValidText(patientId)) {
+            this.patientId = patientId;
+        }
     }
 
     public boolean isFollowUp() {
@@ -68,7 +76,9 @@ public class Appointment {
     }
 
     public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
+        if (HelperUtils.isValidText(doctorId)) {
+            this.doctorId = doctorId;
+        }
     }
 
     public String getAppointmentTime() {
@@ -76,7 +86,9 @@ public class Appointment {
     }
 
     public void setAppointmentTime(String appointmentTime) {
-        this.appointmentTime = appointmentTime;
+        if (appointmentTime == null || HelperUtils.isValidText(appointmentTime)) {
+            this.appointmentTime = appointmentTime;
+        }
     }
 
     public String getAppointmentId() {
@@ -84,7 +96,9 @@ public class Appointment {
     }
 
     public void setAppointmentId(String appointmentId) {
-        this.appointmentId = appointmentId;
+        if (HelperUtils.isValidText(appointmentId)) {
+            this.appointmentId = appointmentId;
+        }
     }
 
     public String getAppointmentDate() {
@@ -92,7 +106,9 @@ public class Appointment {
     }
 
     public void setAppointmentDate(String appointmentDate) {
-        this.appointmentDate = appointmentDate;
+        if (HelperUtils.isValidText(appointmentDate)) {
+            this.appointmentDate = appointmentDate;
+        }
     }
 
     public void displayInfo() {
@@ -104,6 +120,17 @@ public class Appointment {
         System.out.println("Status: " + status);
         System.out.println("Reason: " + reason);
         System.out.println("Follow Up: " + followUp);
+    }
+
+    @Override
+    public void displaySummary() {
+        System.out.println("Appointment ID: " + appointmentId + " | Status: " + status);
+    }
+
+
+    @Override
+    public boolean isAdult() {
+        return false;
     }
 
     public void cancel() {
@@ -121,11 +148,20 @@ public class Appointment {
     }
 
     public boolean isPast(String givenDate) {
-        return appointmentDate.compareTo(givenDate) < 0;
+        return appointmentDate != null && givenDate != null && appointmentDate.compareTo(givenDate) < 0;
     }
 
+    public void addNotes(String note) {
+        if (HelperUtils.isValidText(note)) {
+            System.out.println("Note: " + note);
+        }
+    }
     public void addNotes(String note, String author) {
-        System.out.println("Note: " + note);
-        System.out.println("Author: " + author);
+        if (HelperUtils.isValidText(note)) {
+            System.out.println("Note: " + note);
+            if (HelperUtils.isValidText(author)) {
+                System.out.println("Author: " + author);
+            }
+        }
     }
 }
