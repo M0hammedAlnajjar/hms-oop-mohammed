@@ -7,13 +7,15 @@ import interfaces.Searchable;
 
 public class DoctorService implements Manageable, Searchable {
 
+    // Store doctors
     private Doctor[] doctors = new Doctor[10];
+
     private int doctorCount = 0;
 
 
-    // =========================
+    // =========================================
     // Constructor - Seed Data
-    // =========================
+    // =========================================
 
     public DoctorService() {
 
@@ -72,6 +74,7 @@ public class DoctorService implements Manageable, Searchable {
         );
 
 
+        // Seed Surgeon
         Surgeon surgeon = new Surgeon(
                 "D004",
                 "Mohammed",
@@ -98,6 +101,10 @@ public class DoctorService implements Manageable, Searchable {
         addSurgeon(surgeon);
     }
 
+
+    // =========================================
+    // Seed Doctor
+    // =========================================
 
     private void seed(
             String id,
@@ -141,192 +148,414 @@ public class DoctorService implements Manageable, Searchable {
     }
 
 
+    // =========================================
+    // Add Doctor
+    // =========================================
+
     @Override
     public void add(Object entity) {
 
         if (!(entity instanceof Doctor)) {
-            System.out.println("Invalid doctor.");
+
+            System.out.println(
+                    "Invalid doctor."
+            );
+
             return;
         }
+
 
         if (doctorCount >= doctors.length) {
-            System.out.println("Doctor storage is full.");
+
+            System.out.println(
+                    "Doctor storage is full."
+            );
+
             return;
         }
 
-        doctors[doctorCount] = (Doctor) entity;
+
+        doctors[doctorCount] =
+                (Doctor) entity;
+
         doctorCount++;
     }
 
 
+    // =========================================
+    // Remove Doctor By ID
+    // =========================================
+
     @Override
     public void removeById(String id) {
+
+        if (id == null || id.isBlank()) {
+
+            System.out.println(
+                    "Invalid doctor ID."
+            );
+
+            return;
+        }
+
 
         for (int i = 0; i < doctorCount; i++) {
 
             if (doctors[i] != null
                     && doctors[i].getId() != null
-                    && doctors[i].getId().equalsIgnoreCase(id)) {
+                    && doctors[i]
+                    .getId()
+                    .equalsIgnoreCase(id)) {
 
-                for (int j = i; j < doctorCount - 1; j++) {
-                    doctors[j] = doctors[j + 1];
+
+                // Shift doctors left
+                for (int j = i;
+                     j < doctorCount - 1;
+                     j++) {
+
+                    doctors[j] =
+                            doctors[j + 1];
                 }
 
-                doctors[doctorCount - 1] = null;
+
+                doctors[doctorCount - 1] =
+                        null;
+
                 doctorCount--;
 
-                System.out.println("Doctor removed successfully.");
+
+                System.out.println(
+                        "Doctor removed successfully."
+                );
+
                 return;
             }
         }
 
-        System.out.println("Doctor not found.");
+
+        System.out.println(
+                "Doctor not found."
+        );
     }
 
+
+    // =========================================
+    // Get All Doctors
+    // =========================================
 
     @Override
     public Object[] getAll() {
 
-        Doctor[] allDoctors = new Doctor[doctorCount];
+        Doctor[] allDoctors =
+                new Doctor[doctorCount];
 
-        for (int i = 0; i < doctorCount; i++) {
-            allDoctors[i] = doctors[i];
+
+        for (int i = 0;
+             i < doctorCount;
+             i++) {
+
+            allDoctors[i] =
+                    doctors[i];
         }
+
 
         return allDoctors;
     }
 
 
+    // =========================================
+    // Search Doctors
+    // =========================================
+
     @Override
     public Object[] search(String keyword) {
 
-        Doctor[] results = new Doctor[doctorCount];
+        Doctor[] results =
+                new Doctor[doctorCount];
+
         int resultCount = 0;
 
-        for (int i = 0; i < doctorCount; i++) {
+
+        if (keyword == null ||
+                keyword.isBlank()) {
+
+            return new Doctor[0];
+        }
+
+
+        for (int i = 0;
+             i < doctorCount;
+             i++) {
 
             if (doctors[i] == null) {
                 continue;
             }
 
-            if (doctors[i].getFirstName().equalsIgnoreCase(keyword)
-                    || doctors[i].getLastName().equalsIgnoreCase(keyword)
-                    || doctors[i].getSpecialization().equalsIgnoreCase(keyword)) {
 
-                results[resultCount] = doctors[i];
+            if (doctors[i]
+                    .getFirstName()
+                    .equalsIgnoreCase(keyword)
+
+                    || doctors[i]
+                    .getLastName()
+                    .equalsIgnoreCase(keyword)
+
+                    || doctors[i]
+                    .getSpecialization()
+                    .equalsIgnoreCase(keyword)) {
+
+
+                results[resultCount] =
+                        doctors[i];
+
                 resultCount++;
             }
         }
 
-        Doctor[] finalResults = new Doctor[resultCount];
 
-        for (int i = 0; i < resultCount; i++) {
-            finalResults[i] = results[i];
+        Doctor[] finalResults =
+                new Doctor[resultCount];
+
+
+        for (int i = 0;
+             i < resultCount;
+             i++) {
+
+            finalResults[i] =
+                    results[i];
         }
+
 
         return finalResults;
     }
 
 
+    // =========================================
+    // Search Doctor By ID
+    // =========================================
+
     @Override
     public Object searchById(String id) {
 
-        for (int i = 0; i < doctorCount; i++) {
+        if (id == null || id.isBlank()) {
+            return null;
+        }
+
+
+        for (int i = 0;
+             i < doctorCount;
+             i++) {
 
             if (doctors[i] != null
-                    && doctors[i].getId().equalsIgnoreCase(id)) {
+                    && doctors[i].getId() != null
+                    && doctors[i]
+                    .getId()
+                    .equalsIgnoreCase(id)) {
 
                 return doctors[i];
             }
         }
 
+
         return null;
     }
 
 
-    public void addSurgeon(Surgeon surgeon) {
+    // =========================================
+    // Add Surgeon
+    // =========================================
+
+    public void addSurgeon(
+            Surgeon surgeon
+    ) {
 
         if (surgeon == null) {
+
+            System.out.println(
+                    "Invalid surgeon."
+            );
+
             return;
         }
+
 
         if (doctorCount >= doctors.length) {
-            System.out.println("Doctor storage is full.");
+
+            System.out.println(
+                    "Doctor storage is full."
+            );
+
             return;
         }
 
-        doctors[doctorCount] = surgeon;
+
+        doctors[doctorCount] =
+                surgeon;
+
         doctorCount++;
     }
 
+
+    // =========================================
+    // Assign Patient To Doctor
+    // =========================================
 
     public void assignPatient(
             String doctorId,
             String patientId
     ) {
 
-        Doctor doctor =
-                (Doctor) searchById(doctorId);
+        // Validate doctor ID
+        if (doctorId == null ||
+                doctorId.isBlank()) {
 
-        if (doctor == null) {
-            System.out.println("Doctor not found.");
+            System.out.println(
+                    "Invalid doctor ID."
+            );
+
             return;
         }
 
-        doctor.assignPatient(patientId);
+
+        // Validate patient ID
+        if (patientId == null ||
+                patientId.isBlank()) {
+
+            System.out.println(
+                    "Invalid patient ID."
+            );
+
+            return;
+        }
+
+
+        // Find doctor
+        Doctor doctor =
+                (Doctor) searchById(
+                        doctorId
+                );
+
+
+        if (doctor == null) {
+
+            System.out.println(
+                    "Doctor not found."
+            );
+
+            return;
+        }
+
+
+        // Assign patient
+        doctor.assignPatient(
+                patientId
+        );
+
+
+        System.out.println(
+                "Patient assigned successfully."
+        );
     }
 
+
+    // =========================================
+    // List Doctors By Specialization
+    // =========================================
 
     public Doctor[] listBySpecialization(
             String specialization
     ) {
 
-        Doctor[] results = new Doctor[doctorCount];
+        Doctor[] results =
+                new Doctor[doctorCount];
+
         int resultCount = 0;
 
-        for (int i = 0; i < doctorCount; i++) {
+
+        if (specialization == null ||
+                specialization.isBlank()) {
+
+            return new Doctor[0];
+        }
+
+
+        for (int i = 0;
+             i < doctorCount;
+             i++) {
 
             if (doctors[i] != null
-                    && doctors[i].getSpecialization()
-                    .equalsIgnoreCase(specialization)) {
+                    && doctors[i]
+                    .getSpecialization()
+                    .equalsIgnoreCase(
+                            specialization
+                    )) {
 
-                results[resultCount] = doctors[i];
+
+                results[resultCount] =
+                        doctors[i];
+
                 resultCount++;
             }
         }
 
+
         Doctor[] finalResults =
                 new Doctor[resultCount];
 
-        for (int i = 0; i < resultCount; i++) {
-            finalResults[i] = results[i];
+
+        for (int i = 0;
+             i < resultCount;
+             i++) {
+
+            finalResults[i] =
+                    results[i];
         }
+
 
         return finalResults;
     }
 
 
+    // =========================================
+    // List Available Doctors
+    // =========================================
+
     public Doctor[] availableDoctors() {
 
-        Doctor[] results = new Doctor[doctorCount];
+        Doctor[] results =
+                new Doctor[doctorCount];
+
         int resultCount = 0;
 
-        for (int i = 0; i < doctorCount; i++) {
+
+        for (int i = 0;
+             i < doctorCount;
+             i++) {
 
             if (doctors[i] != null
                     && doctors[i].isOnCall()) {
 
-                results[resultCount] = doctors[i];
+
+                results[resultCount] =
+                        doctors[i];
+
                 resultCount++;
             }
         }
 
+
         Doctor[] finalResults =
                 new Doctor[resultCount];
 
-        for (int i = 0; i < resultCount; i++) {
-            finalResults[i] = results[i];
+
+        for (int i = 0;
+             i < resultCount;
+             i++) {
+
+            finalResults[i] =
+                    results[i];
         }
+
 
         return finalResults;
     }
