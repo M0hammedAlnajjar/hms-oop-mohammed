@@ -88,6 +88,54 @@ public class HospitalApp {
             switch (choice) {
 
                 case "1":
+
+                    String nurseId = IO.readln("Enter nurse ID: ");
+                    String firstName = IO.readln("Enter first name: ");
+                    String lastName = IO.readln("Enter last name: ");
+                    String dateOfBirth = IO.readln("Enter date of birth: ");
+                    String gender = IO.readln("Enter gender: ");
+                    String phoneNumber = IO.readln("Enter phone number: ");
+                    String email = IO.readln("Enter email: ");
+                    String address = IO.readln("Enter address: ");
+                    String nationalId = IO.readln("Enter national ID: ");
+
+                    int age = Integer.parseInt(
+                            IO.readln("Enter age: ")
+                    );
+
+                    boolean active = Boolean.parseBoolean(
+                            IO.readln("Active (true/false): ")
+                    );
+
+                    String departmentId = IO.readln("Enter department ID: ");
+                    String shift = IO.readln("Enter shift: ");
+
+                    int yearsOfService = Integer.parseInt(
+                            IO.readln("Enter years of service: ")
+                    );
+
+                    Nurse nurse = new Nurse(
+                            nurseId,
+                            firstName,
+                            lastName,
+                            dateOfBirth,
+                            gender,
+                            phoneNumber,
+                            email,
+                            address,
+                            nationalId,
+                            age,
+                            active,
+                            departmentId,
+                            shift,
+                            new String[0],
+                            yearsOfService
+                    );
+
+                    nurseService.add(nurse);
+
+                    System.out.println("Nurse added successfully.");
+
                     break;
 
                 case "2":
