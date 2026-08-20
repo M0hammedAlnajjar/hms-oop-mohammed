@@ -193,8 +193,7 @@ public class HospitalApp {
 
                 case "5":
 
-                    String patientId =
-                            IO.readln("Enter patient ID: ");
+                    patientId = IO.readln("Enter patient ID: ");
 
                     MedicalRecord[] patientRecords =
                             recordService.listByPatient(patientId);
@@ -215,6 +214,14 @@ public class HospitalApp {
                     break;
 
                 case "6":
+
+                    int confidentialCount =
+                            recordService.countConfidential();
+
+                    System.out.println(
+                            "Confidential Records Count: " + confidentialCount
+                    );
+
                     break;
 
                 case "7":
