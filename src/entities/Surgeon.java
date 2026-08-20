@@ -1,6 +1,7 @@
 package entities;
 
-public class Surgeon extends Doctor  {
+public class Surgeon extends Doctor {
+
     private int surgeriesPerformed;
     private boolean operationTheatreAccess;
     private String[] upcomingSurgeryDates;
@@ -28,7 +29,6 @@ public class Surgeon extends Doctor  {
             String[] upcomingSurgeryDates
     ) {
 
-
         super(
                 id,
                 firstName,
@@ -49,40 +49,98 @@ public class Surgeon extends Doctor  {
                 specialization
         );
 
-        this.surgeriesPerformed = surgeriesPerformed;
+        setSurgeriesPerformed(surgeriesPerformed);
+        setOperationTheatreAccess(operationTheatreAccess);
+        setUpcomingSurgeryDates(upcomingSurgeryDates);
+    }
+
+    public int getSurgeriesPerformed() {
+        return surgeriesPerformed;
+    }
+
+    public void setSurgeriesPerformed(int surgeriesPerformed) {
+
+        if (surgeriesPerformed >= 0) {
+            this.surgeriesPerformed = surgeriesPerformed;
+        } else {
+            System.out.println("Surgeries performed cannot be negative");
+        }
+    }
+
+    public boolean isOperationTheatreAccess() {
+        return operationTheatreAccess;
+    }
+
+    public void setOperationTheatreAccess(boolean operationTheatreAccess) {
         this.operationTheatreAccess = operationTheatreAccess;
+    }
+
+    public String[] getUpcomingSurgeryDates() {
+        return upcomingSurgeryDates;
+    }
+
+    public void setUpcomingSurgeryDates(String[] upcomingSurgeryDates) {
         this.upcomingSurgeryDates = upcomingSurgeryDates;
     }
+
     @Override
     public void displayInfo() {
+
         super.displayInfo();
 
-        System.out.println("Surgeries Performed: " + surgeriesPerformed);
-        System.out.println("Operation Theatre Access: " + operationTheatreAccess);
-        System.out.println("Upcoming Surgery Count: " + getUpcomingCount());
+        System.out.println(
+                "Surgeries Performed: " + surgeriesPerformed
+        );
+
+        System.out.println(
+                "Operation Theatre Access: " + operationTheatreAccess
+        );
+
+        System.out.println(
+                "Upcoming Surgery Count: " + getUpcomingCount()
+        );
     }
+
     public void performSurgery() {
         surgeriesPerformed++;
     }
 
     public void scheduleSurgery(String surgeryDate) {
 
+        if (surgeryDate == null || surgeryDate.isBlank()) {
+
+            System.out.println("Invalid surgery date");
+            return;
+        }
+
         if (upcomingSurgeryDates == null) {
-            upcomingSurgeryDates = new String[]{surgeryDate};
+
+            upcomingSurgeryDates =
+                    new String[]{surgeryDate};
+
             return;
         }
 
         String[] newDates =
-                new String[upcomingSurgeryDates.length + 1];
+                new String[
+                        upcomingSurgeryDates.length + 1
+                        ];
 
-        for (int i = 0; i < upcomingSurgeryDates.length; i++) {
-            newDates[i] = upcomingSurgeryDates[i];
+        for (int i = 0;
+             i < upcomingSurgeryDates.length;
+             i++) {
+
+            newDates[i] =
+                    upcomingSurgeryDates[i];
         }
 
-        newDates[upcomingSurgeryDates.length] = surgeryDate;
+        newDates[
+                upcomingSurgeryDates.length
+                ] = surgeryDate;
 
         upcomingSurgeryDates = newDates;
     }
+
     public int getUpcomingCount() {
 
         if (upcomingSurgeryDates == null) {
@@ -90,17 +148,5 @@ public class Surgeon extends Doctor  {
         }
 
         return upcomingSurgeryDates.length;
-    }
-
-    public void updateContact(String phoneNumber, String email) {
-        setPhoneNumber(phoneNumber);
-        setEmail(email);
-    }
-    public void updateFee(double fee) {
-        setConsultationFee(fee);
-    }
-    public void updateFee(double fee, String reason) {
-        setConsultationFee(fee);
-        System.out.println("Reason: " + reason);
     }
 }
