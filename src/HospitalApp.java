@@ -126,6 +126,24 @@ public class HospitalApp {
                     break;
 
                 case "4":
+
+                    String rescheduleId =
+                            IO.readln("Enter appointment ID: ");
+
+                    String newDate =
+                            IO.readln("Enter new appointment date: ");
+
+                    String newTime =
+                            IO.readln("Enter new appointment time: ");
+
+                    appointmentService.reschedule(
+                            rescheduleId,
+                            newDate,
+                            newTime
+                    );
+
+                    System.out.println("Appointment rescheduled successfully.");
+
                     break;
 
                 case "5":
