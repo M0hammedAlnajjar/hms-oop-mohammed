@@ -147,6 +147,26 @@ public class HospitalApp {
                     break;
 
                 case "5":
+
+                    String status =
+                            IO.readln("Enter appointment status: ");
+
+                    Appointment[] statusAppointments =
+                            appointmentService.listByStatus(status);
+
+                    if (statusAppointments.length == 0) {
+
+                        System.out.println("No appointments found with this status.");
+
+                    } else {
+
+                        for (Appointment statusAppointment : statusAppointments) {
+
+                            statusAppointment.displayInfo();
+                            System.out.println("--------------------");
+                        }
+                    }
+
                     break;
 
                 case "6":
