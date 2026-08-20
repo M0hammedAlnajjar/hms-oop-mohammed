@@ -791,7 +791,7 @@ public class HospitalApp {
                             );
 
                     String email =
-                            input.readText(
+                            input.readEmail(
                                     "Enter email: "
                             );
 
@@ -1100,7 +1100,7 @@ public class HospitalApp {
                             );
 
                     String email =
-                            input.readText(
+                            input.readEmail(
                                     "Enter email: "
                             );
 
@@ -1292,7 +1292,7 @@ public class HospitalApp {
                             );
 
                     String email =
-                            input.readText(
+                            input.readEmail(
                                     "Enter email: "
                             );
 
@@ -1548,7 +1548,7 @@ public class HospitalApp {
                             );
 
                     String email =
-                            input.readText(
+                            input.readEmail(
                                     "Enter email: "
                             );
 
@@ -1665,7 +1665,7 @@ public class HospitalApp {
                             );
 
                     String email =
-                            input.readText(
+                            input.readEmail(
                                     "Enter email: "
                             );
 
@@ -1855,7 +1855,7 @@ public class HospitalApp {
                             );
 
                     String newEmail =
-                            input.readText(
+                            input.readEmail(
                                     "Enter new email: "
                             );
 
