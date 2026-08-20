@@ -180,7 +180,7 @@ public class HospitalApp {
                     break;
                 case "4":
 
-                    String nurseId = IO.readln("Enter nurse ID: ");
+                    nurseId = IO.readln("Enter nurse ID: ");
 
                     nurseService.removeById(nurseId);
 
@@ -189,6 +189,24 @@ public class HospitalApp {
                     break;
 
                 case "5":
+
+                    String shift = IO.readln("Enter shift: ");
+
+                    Nurse[] shiftNurses = nurseService.listByShift(shift);
+
+                    if (shiftNurses.length == 0) {
+
+                        System.out.println("No nurses found for this shift.");
+
+                    } else {
+
+                        for (Nurse shiftNurse : shiftNurses) {
+
+                            shiftNurse.displayInfo();
+                            System.out.println("--------------------");
+                        }
+                    }
+
                     break;
 
                 case "6":
