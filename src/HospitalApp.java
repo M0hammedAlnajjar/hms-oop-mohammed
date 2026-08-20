@@ -148,6 +148,24 @@ public class HospitalApp {
                         break;
 
                     case "2":
+
+                        Object[] doctors = doctorService.getAll();
+
+                        if (doctors.length == 0) {
+
+                            System.out.println("No doctors found.");
+
+                        } else {
+
+                            for (Object doctorObject : doctors) {
+
+                                Doctor currentDoctor = (Doctor) doctorObject;
+
+                                currentDoctor.displayInfo();
+                                System.out.println("--------------------");
+                            }
+                        }
+
                         break;
 
                     case "3":
