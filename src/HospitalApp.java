@@ -116,7 +116,7 @@ public class HospitalApp {
                 }
             }
         }
-    }
+
 
     // Patient menu
     public void patientMenu() {
