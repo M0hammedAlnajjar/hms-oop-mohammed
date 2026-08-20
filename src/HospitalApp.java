@@ -154,6 +154,30 @@ public class HospitalApp {
                     break;
 
                 case "3":
+
+                    String keyword =
+                            IO.readln("Enter diagnosis or prescription: ");
+
+                    Object[] recordResults =
+                            recordService.search(keyword);
+
+                    if (recordResults.length == 0) {
+
+                        System.out.println("No medical records found.");
+
+                    } else {
+
+                        for (Object result : recordResults) {
+
+                            MedicalRecord foundRecord =
+                                    (MedicalRecord) result;
+
+                            foundRecord.displayInfo();
+
+                            System.out.println("--------------------");
+                        }
+                    }
+
                     break;
 
                 case "4":
