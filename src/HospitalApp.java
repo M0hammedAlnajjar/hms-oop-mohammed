@@ -1,6 +1,7 @@
 import entities.Doctor;
 import entities.Patient;
 import entities.Surgeon;
+import services.NurseService;
 import services.PatientService;
 import entities.InPatient;
 import services.DoctorService;
@@ -9,7 +10,7 @@ public class HospitalApp {
     // Patient service available to all methods
     private PatientService patientService = new PatientService();
     private DoctorService doctorService = new DoctorService();
-
+    private NurseService nurseService = new NurseService();
     public static void main(String[] args) {
 
         HospitalApp app = new HospitalApp();
@@ -44,6 +45,7 @@ public class HospitalApp {
                     break;
 
                 case "3":
+                    nurseMenu();
                     break;
 
                 case "4":
@@ -58,6 +60,53 @@ public class HospitalApp {
                 case "7":
                     running = false;
                     System.out.println("Exiting Hospital Management System.");
+                    break;
+
+                default:
+                    System.out.println("Invalid option.");
+            }
+        }
+    }
+
+    private void nurseMenu() {
+
+        boolean back = false;
+
+        while (!back) {
+
+            System.out.println("\n===== NURSE MENU =====");
+            System.out.println("1. Add Nurse");
+            System.out.println("2. View All Nurses");
+            System.out.println("3. Search Nurse");
+            System.out.println("4. Remove Nurse");
+            System.out.println("5. List By Shift");
+            System.out.println("6. Reassign Nurse");
+            System.out.println("7. Back");
+
+            String choice = IO.readln("Choose an option: ");
+
+            switch (choice) {
+
+                case "1":
+                    break;
+
+                case "2":
+                    break;
+
+                case "3":
+                    break;
+
+                case "4":
+                    break;
+
+                case "5":
+                    break;
+
+                case "6":
+                    break;
+
+                case "7":
+                    back = true;
                     break;
 
                 default:
