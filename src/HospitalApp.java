@@ -104,6 +104,21 @@ public class HospitalApp {
                     break;
 
                 case "2":
+
+                    Object[] patients = patientService.getAll();
+
+                    if (patients.length == 0) {
+                        System.out.println("No patients found.");
+                    } else {
+
+                        for (Object patientObject : patients) {
+
+                            Patient currentPatient = (Patient) patientObject;
+                            currentPatient.displayInfo();
+                            System.out.println("--------------------");
+                        }
+                    }
+
                     break;
 
                 case "3":
