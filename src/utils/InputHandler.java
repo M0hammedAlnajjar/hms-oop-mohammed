@@ -152,5 +152,25 @@ public class InputHandler {
                     "Invalid value. Try again."
             );
         }
+
+    }
+    // Read and validate email
+    public String readEmail(String message) {
+
+        while (true) {
+
+            System.out.print(message);
+
+            String email =
+                    scanner.nextLine();
+
+            if (HelperUtils.isValidEmail(email)) {
+                return email;
+            }
+
+            System.out.println(
+                    "Invalid email. Example: name@gmail.com"
+            );
+        }
     }
 }
