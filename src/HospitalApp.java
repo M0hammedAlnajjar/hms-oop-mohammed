@@ -129,6 +129,14 @@ public class HospitalApp {
                     break;
 
                 case "5":
+
+                    int totalRecords =
+                            recordService.getAll().length;
+
+                    System.out.println(
+                            "Total Medical Records: " + totalRecords
+                    );
+
                     break;
 
                 case "6":
