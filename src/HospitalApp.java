@@ -1,3 +1,4 @@
+import entities.Doctor;
 import entities.Patient;
 import services.PatientService;
 import entities.InPatient;
@@ -86,6 +87,64 @@ public class HospitalApp {
                 switch (choice) {
 
                     case "1":
+
+                        String doctorId = IO.readln("Enter doctor ID: ");
+                        String firstName = IO.readln("Enter first name: ");
+                        String lastName = IO.readln("Enter last name: ");
+                        String dateOfBirth = IO.readln("Enter date of birth: ");
+                        String gender = IO.readln("Enter gender: ");
+                        String phoneNumber = IO.readln("Enter phone number: ");
+                        String email = IO.readln("Enter email: ");
+                        String address = IO.readln("Enter address: ");
+                        String nationalId = IO.readln("Enter national ID: ");
+
+                        int age = Integer.parseInt(
+                                IO.readln("Enter age: ")
+                        );
+
+                        boolean active = Boolean.parseBoolean(
+                                IO.readln("Active (true/false): ")
+                        );
+
+                        String specialization =
+                                IO.readln("Enter specialization: ");
+
+                        int experienceYears = Integer.parseInt(
+                                IO.readln("Enter experience years: ")
+                        );
+
+                        double consultationFee = Double.parseDouble(
+                                IO.readln("Enter consultation fee: ")
+                        );
+
+                        boolean onCall = Boolean.parseBoolean(
+                                IO.readln("On call (true/false): ")
+                        );
+
+                        Doctor doctor = new Doctor(
+                                doctorId,
+                                firstName,
+                                lastName,
+                                dateOfBirth,
+                                gender,
+                                phoneNumber,
+                                email,
+                                address,
+                                nationalId,
+                                age,
+                                active,
+                                new String[0],
+                                new String[0],
+                                consultationFee,
+                                experienceYears,
+                                onCall,
+                                specialization
+                        );
+
+                        doctorService.add(doctor);
+
+                        System.out.println("Doctor added successfully.");
+
                         break;
 
                     case "2":
