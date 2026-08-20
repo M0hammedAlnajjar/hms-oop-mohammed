@@ -44,19 +44,26 @@ public class RecordService implements Manageable, Searchable {
     @Override
     public void removeById(String id) {
 
+        // Check if the ID is invalid
         if (id == null || id.isBlank()) {
-            System.out.println("Invalid record ID.");
+
+            System.out.println(
+                    "Invalid record ID."
+            );
+
             return;
         }
 
+        // Search for the medical record
         for (int i = 0; i < recordCount; i++) {
 
             if (records[i] != null
                     && records[i].getRecordId() != null
                     && records[i]
                     .getRecordId()
-                    .equals(id)) {
+                    .equalsIgnoreCase(id)) {
 
+                // Shift records to the left
                 for (int j = i;
                      j < recordCount - 1;
                      j++) {
@@ -65,19 +72,26 @@ public class RecordService implements Manageable, Searchable {
                             records[j + 1];
                 }
 
+                // Remove the last duplicate reference
                 records[recordCount - 1] =
                         null;
 
+                // Decrease record count
                 recordCount--;
+
+                System.out.println(
+                        "Medical record removed successfully."
+                );
 
                 return;
             }
         }
 
-        System.out.println("Medical record not found.");
+        // Record was not found
+        System.out.println(
+                "Medical record not found."
+        );
     }
-
-
     // =========================
     // Get All Records
     // =========================
